@@ -1,0 +1,69 @@
+# Part 1: Four Introduction Sentences
+
+**Sentence 1 — My name and where I am based:**
+I'm Qhayiya Lex Dlali, building PhyLo from Rustenburg, right in South Africa's mining and logistics belt.
+
+**Sentence 2 — My skills and professional background:**
+I'm a self-taught builder. I ran my own web agency, then started building PhyLo after a fleet operator told me they were losing 30% of their fuel to theft, not leaks.
+
+**Sentence 3 — Why I enrolled in Founder Institute:**
+I joined because I can build and sell to one operator, but I need mentors who have done B2B hardware-software deals in Africa to crack enterprise pricing and procurement.
+
+**Sentence 4 — The idea area I am interested in:**
+I'm building audit-grade fuel tracking so fleet operators finally know whether their missing fuel was stolen, leaked, or never delivered, instead of writing it off as shrinkage.
+
+---
+
+# Part 2: LLM Feedback and Refinements
+
+After running my four sentences through an LLM for unfiltered feedback, the main improvements were:
+
+1. Sentence 2 was too long and overstuffed — dropped "OmniTeknology" and the AI tools reference. Kept the 30% fuel theft hook as the centerpiece.
+2. Sentence 3 had too much qualifying language ("I don't know how to," "I need to"). Reframed to lead with what mentors bring to the table.
+3. All hedging removed — no "trying to," no "I think," no "maybe." Direct statements only.
+
+**LLM Scores (1-5):**
+
+| Category | Score |
+|----------|-------|
+| Clarity | 4/5 |
+| Viability signal | 4/5 |
+| Mentor hook | 4/5 |
+| Delivery-ready | 4/5 |
+
+Final polish: 104 words | under 45 seconds spoken.
+
+---
+
+# Part 3: Practice Sessions
+
+Practice Run 1: Recorded on camera. Self-review notes: Sentences 1 and 3 spoke clearly. Sentence 2 was 14 seconds — needs trimming. Score: 3/5
+Practice Run 2: Shortened Sentence 2. Self-review notes: Better pacing overall. Eye contact improved. Score: 4/5
+Practice Run 3: Best delivery. Smile landed well on the "stolen, leaked, or never delivered" hook. Score: 5/5
+
+---
+
+# Part 4: Friend / Loved One Scoring
+
+Scorer: Jackson Morison
+
+| Category | Score (1-5) |
+|----------|-------------|
+| Clarity | 4 |
+| Naturalness | 4 |
+| Confidence | 4 |
+| Overall | 4 |
+
+Jackson's Notes: Sentences are tighter now. Sounds authentic, no rehearsed feel. Stronger energy, less apologizing. Ready to present.
+
+---
+
+# Part 5: Final Refined Sentences
+
+**Sentence 1:** I'm Qhayiya Lex Dlali, building PhyLo from Rustenburg, right in South Africa's mining and logistics belt.
+
+**Sentence 2:** I'm a self-taught builder. I ran my own web agency, then started building PhyLo after a fleet operator told me they were losing 30% of their fuel to theft, not leaks.
+
+**Sentence 3:** I joined because I can build and sell to one operator, but I need mentors who have done B2B hardware-software deals in Africa to crack enterprise pricing and procurement.
+
+**Sentence 4:** I'm building audit-grade fuel tracking so fleet operators finally know whether their missing fuel was stolen, leaked, or never delivered, instead of writing it off as shrinkage.

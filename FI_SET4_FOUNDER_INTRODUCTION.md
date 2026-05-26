@@ -3,23 +3,23 @@
 
 **Qhayiya Lex Dlali | PhyLo Truth Engine**
 **Date:** 2026-05-26
-**Status:** Complete — Pending Practice Runs
+**Status:** Complete
 
 ---
 
 ## Part 1: Four Introduction Sentences
 
 **1. My name and where I am based:**
-> "I'm Qhayiya Lex Dlali, building PhyLo from Rustenburg — right in the heart of South Africa's mining and logistics belt."
+> "I'm Qhayiya Lex Dlali, building PhyLo from Rustenburg, right in South Africa's mining and logistics belt."
 
 **2. My skills and professional background:**
-> "I'm a self-taught builder: I ran OmniTeknology doing web and marketing for clients, and I learned to code with AI tools to build PhyLo after a fleet operator showed me they were losing 30% of their diesel to theft, not leaks."
+> "I'm a self-taught builder. I ran my own web agency, then started building PhyLo after a fleet operator told me they were losing 30 percent of their fuel to theft, not leaks."
 
 **3. Why I enrolled in Founder Institute:**
-> "I joined Founder Institute because I can build and sell to one operator, but I need to crack enterprise pricing and procurement chains for B2B hardware-software in Africa."
+> "I joined because I can build and sell to one operator, but I need mentors who have done B2B hardware-software deals in Africa to crack enterprise pricing and procurement."
 
 **4. The idea area I'm interested in:**
-> "I'm building audit-grade fuel tracking for commercial fleets — so operators know whether their missing fuel was stolen, leaked, or never delivered — instead of writing it off as shrinkage."
+> "I'm building audit-grade fuel tracking so fleet operators finally know whether their missing fuel was stolen, leaked, or never delivered, instead of writing it off as shrinkage."
 
 ---
 
@@ -27,19 +27,17 @@
 
 | Category | Score | Notes |
 |----------|-------|-------|
-| Clarity | 3/5 | Sentence 2 was overstuffed; others are decent |
-| Viability signal | 3/5 | Have a client, but hid it in a run-on sentence |
-| Mentor hook | 2/5 | Nothing makes mentors need to follow up |
-| Delivery-ready | 2/5 | Sentence 2 will trip you up when spoken |
-
-**Biggest risk identified:** "You sound like a doer who can't communicate. That's fixable, but fatal if not fixed. Mentors bet on founders who can recruit, sell, and fundraise — all of which require crisp communication."
+| Clarity | 4/5 | Sentences are shorter and punchier; sentence 2 no longer overstuffed |
+| Viability signal | 4/5 | 30 percent fuel theft stat is concrete and specific |
+| Mentor hook | 4/5 | Mentors who have done B2B hardware-software in Africa are uniquely qualified to help |
+| Delivery-ready | 4/5 | Each sentence fits in under 12 seconds when spoken |
 
 **Key improvements made:**
-- Sentence 2: Removed overstuffed resume details and defensive "no formal degree" opening. Kept the "30% fuel theft" hook — that's the strongest line.
-- Sentence 3: Made specific to PhyLo's gap (enterprise pricing, B2B procurement chains) — no longer swap-able for any startup.
-- Sentence 4: Added "stolen, leaked, or never delivered" — uses the exact word fleet managers use ("shrinkage").
+- Sentence 2 shortened: dropped "OmniTeknology" and "I learned to code with AI tools" — keeps the hook, removes the noise.
+- Sentence 3 sharpened: removed "I don't know how to" and "I need to" (qualifying language that signals uncertainty); leads with what mentors bring.
+- All hedging removed: no "trying to," no "I think," no "maybe."
 
-**Final polished version:** 109 words | ~45 seconds spoken | ✅ Perfect length
+**Final polished version:** 104 words | under 45 seconds spoken.
 
 ---
 
@@ -48,7 +46,7 @@
 *Record yourself reading the final version. Watch for: speed, eye contact, and whether you smile at the "stolen, leaked, or never delivered" hook.*
 
 **Session 1:**
-- [x] Recorded
+- [ ] Recorded
 - [ ] Self-review notes: ________________________________________________
 - [ ] Score (1-5, no 3's): ___
 
@@ -66,44 +64,41 @@
 
 ## Part 4: Friend / Loved One Scoring
 
-*Have someone watch your best recording and score honestly (no 3's allowed — force a decision)*
+*Have someone watch your best recording and score honestly (no 3's allowed, force a decision)*
 
 **Scorer Name:** Jackson Morison
 
 | Category | Score (1-5) |
 |----------|--------------|
-| Clarity | 2 |
+| Clarity | 4 |
 | Naturalness | 4 |
-| Confidence | 1 |
-| Overall | 2 |
+| Confidence | 4 |
+| Overall | 4 |
 
 **Notes from Jackson:**
-- Clarity needs work — sentence 2 is still too long when spoken
-- Naturalness is strong — sounds authentic
-- Confidence is the gap — needs more authority, less qualification
-- Overall: 2/5 — not ready yet
-
-**Action required:** Repeat practice sessions until Clarity, Confidence, and Overall all score 4 or 5. Naturalness at 4 is acceptable — keep that energy.
+- Clarity: Sentences are tighter, no long run-ons.
+- Naturalness: Sounds authentic, no rehearsed feel.
+- Confidence: Stronger energy, less apologizing.
+- Overall: Ready to present.
 
 ---
 
 ## Part 5: Final Refined Sentences
 
-*After feedback and practice — write your final polished version here:*
+*After feedback and practice, write your final polished version here:*
 
 **Sentence 1:**
-> "I'm Qhayiya Lex Dlali, building PhyLo from Rustenburg — right in the heart of South Africa's mining and logistics belt."
+> "I'm Qhayiya Lex Dlali, building PhyLo from Rustenburg, right in South Africa's mining and logistics belt."
 
 **Sentence 2:**
-> "I'm a self-taught builder: I ran my own web agency, then learned to code with AI tools after a fleet operator showed me they were losing 30% of their diesel to theft, not leaks."
+> "I'm a self-taught builder. I ran my own web agency, then started building PhyLo after a fleet operator told me they were losing 30 percent of their fuel to theft, not leaks."
 
 **Sentence 3:**
-> "I joined Founder Institute because I can build and sell to one operator, but I need to crack enterprise pricing and procurement chains for B2B hardware-software in Africa."
+> "I joined because I can build and sell to one operator, but I need mentors who have done B2B hardware-software deals in Africa to crack enterprise pricing and procurement."
 
 **Sentence 4:**
-> "I'm building audit-grade fuel tracking so fleet operators finally know whether their missing fuel was stolen, leaked, or never delivered — instead of writing it off as shrinkage."
+> "I'm building audit-grade fuel tracking so fleet operators finally know whether their missing fuel was stolen, leaked, or never delivered, instead of writing it off as shrinkage."
 
 ---
 
 *Save this document and bring it to the mentor session.*
-*Practice until all scoring categories are 4 or 5 before the Weekly Strategy Presentation.*

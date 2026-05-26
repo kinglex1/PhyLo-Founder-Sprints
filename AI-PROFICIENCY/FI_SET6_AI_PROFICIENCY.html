@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhyLo — Set 6: AI Proficiency | FI Launch Track Sprint 1</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; line-height: 1.6; }
+  .container { max-width: 850px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.1rem; font-weight: 600; color: #cbd5e1; margin-top: 1.75rem; margin-bottom: 0.75rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.4rem; }
+  h3 { font-size: 0.95rem; font-weight: 600; color: #94a3b8; margin-top: 1rem; margin-bottom: 0.4rem; }
+  .meta { font-size: 0.8rem; color: #64748b; margin-bottom: 1.5rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; }
+  .done { background: #052e16; color: #4ade80; border: 1px solid #166534; }
+  .block { background: #111827; border: 1px solid #1e293b; border-left: 3px solid #3b82f6; padding: 0.75rem 1rem; margin: 0.75rem 0; font-size: 0.85rem; color: #94a3b8; border-radius: 0 6px 6px 0; }
+  .tag { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; }
+  .tag-pass { background: #052e16; color: #4ade80; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin: 0.75rem 0; }
+  th { background: #1e293b; color: #94a3b8; font-weight: 600; text-align: left; padding: 0.5rem 0.75rem; }
+  td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #1e293b; }
+  tr:hover td { background: #111827; }
+  .logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .logo-card { background: #1a1f2e; border: 1px solid #334155; border-radius: 8px; padding: 0.75rem; text-align: center; }
+  .logo-card img { width: 100%; max-height: 180px; object-fit: contain; border-radius: 4px; }
+  .logo-card p { font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; }
+  .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; margin: 1rem 0; }
+  .score-card { background: #1a1f2e; border: 1px solid #334155; border-radius: 8px; padding: 0.75rem; text-align: center; }
+  .score-card .name { font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.25rem; }
+  .score-card .val { font-size: 1.5rem; font-weight: 700; color: #4ade80; }
+  .score-card .desc { font-size: 0.65rem; color: #475569; margin-top: 0.25rem; }
+  .link-box { background: #111827; border: 1px solid #334155; border-radius: 6px; padding: 0.75rem 1rem; margin: 0.75rem 0; }
+  .link-box a { color: #60a5fa; word-break: break-all; font-size: 0.85rem; }
+  .link-box .label { font-size: 0.75rem; color: #475569; margin-bottom: 0.25rem; }
+  .survey-q { background: #111827; border: 1px solid #1e293b; border-radius: 6px; padding: 0.75rem 1rem; margin: 0.5rem 0; font-size: 0.85rem; }
+  .survey-q .q-num { font-size: 0.7rem; font-weight: 700; color: #4ade80; margin-bottom: 0.25rem; }
+  .call-card { background: #111827; border: 1px solid #1e293b; border-left: 3px solid #10b981; border-radius: 6px; padding: 0.75rem 1rem; margin: 0.75rem 0; font-size: 0.85rem; }
+  .call-card .name { font-weight: 700; color: #f8fafc; }
+  .call-card .date { font-size: 0.75rem; color: #475569; margin-bottom: 0.5rem; }
+  .highlight-green { background: #052e16; border-left: 3px solid #4ade80; padding: 0.75rem 1rem; margin: 0.75rem 0; font-size: 0.85rem; color: #4ade80; border-radius: 0 6px 6px 0; }
+  .highlight-orange { background: #1a1508; border-left: 3px solid #f59e0b; padding: 0.75rem 1rem; margin: 0.75rem 0; font-size: 0.85rem; color: #f59e0b; border-radius: 0 6px 6px 0; }
+  .divider { height: 1px; background: #1e293b; margin: 1.5rem 0; }
+  .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #1e293b; font-size: 0.75rem; color: #475569; text-align: center; }
+  @media (max-width: 600px) { .logo-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>PhyLo — Set 6: AI Proficiency</h1>
+<div class="meta">FI Launch Track Sprint 1 | Qhayiya Lex Dlali | PhyLo Truth Engine | 2026-05-26 | <span class="badge done">COMPLETE</span></div>
+
+<h2>PART 1: Market Landscape</h2>
+<p style="font-size:0.85rem; color:#94a3b8; margin-bottom:1rem;">
+  Research + LLM-generated one-page market analysis covering size, growth, key players, and the Why Now shift.
+</p>
+
+<div class="block">
+  <strong style="color:#f8fafc;">South Africa Fleet Management Market</strong><br>
+  USD 230M in fleet management services (Ken Research 2025). 2.4 million active commercial fleet management units in 2023, projected to reach 3.9 million by 2028. Market growing at 15-18% CAGR driven by rising fuel prices, telematics adoption, and regulatory mandates.<br><br>
+  <strong style="color:#f8fafc;">Global Context:</strong> USD 27B fleet management market (2025) growing to USD 45B by 2030 (13.5% CAGR). MEA region: USD 2.45B (2024) to USD 6.66B by 2032 (15.38% CAGR).<br><br>
+  <strong style="color:#f8fafc;">Fuel-Specific:</strong> Fuel represents up to 40% of fleet operating costs in South Africa. 15-20% of diesel sold in South Africa is redistributed through theft networks. Diesel at ZAR 22/liter makes unexplained losses existential for fleet operators.
+</div>
+
+<h3>Key Players (South Africa)</h3>
+<table>
+  <tr><th>Company</th><th>Position</th><th>Key Strength</th></tr>
+  <tr><td>Cartrack / MiFleet</td><td>Market leader</td><td>AI driving behavior, 12-15% fuel reduction</td></tr>
+  <tr><td>Tracker SA</td><td>Long-established</td><td>Stolen vehicle recovery, insurer partnerships</td></tr>
+  <tr><td>MiX by Powerfleet</td><td>Enterprise</td><td>Global fleet analytics platform</td></tr>
+  <tr><td>Netstar</td><td>Mid-market</td><td>Telematics, nationwide recovery</td></tr>
+  <tr><td>DigitFMS</td><td>Fuel-theft specialist</td><td>Live probes, GPS-linked theft alerts</td></tr>
+</table>
+
+<h3>The Why Now Shift</h3>
+<div class="highlight-green">
+  <strong>Before 2024:</strong> Fuel management = GPS + alert thresholds. Systems raise alarms when fuel drops. Managers get notifications but cannot distinguish theft from mechanical loss, sensor error, or operational variance.<br><br>
+  <strong>Now 2024-2026:</strong> AI and physics-based models make audit-grade fuel accountability achievable. Rising diesel prices (ZAR 22/liter) mean 6-10% unexplained losses are no longer tolerable. No competitor offers physics-informed, audit-grade reports that legally qualify as evidence. This is PhyLo's window.
+</div>
+
+<div class="link-box">
+  <div class="label">Market Landscape Document (Google Docs)</div>
+  <a href="#">https://docs.google.com/document/d/1sV2Kj0P5hLRaZ7mQAxT6bSjKu7x9Y/edit</a><br>
+  <span style="font-size:0.75rem; color:#475569;">Research sources: Data Bridge Market Research, Ken Research, GM Insights, Statista, BusinessWire, DigitFMS</span>
+</div>
+
+<h2>PART 2: PhyLo Logo Design</h2>
+<p style="font-size:0.85rem; color:#94a3b8; margin-bottom:1rem;">
+  Two logo variants designed for PhyLo: Physics in Logistics. Created using AI design tools.
+</p>
+
+<div class="logo-grid">
+  <div class="logo-card">
+    <img src="PART2_LOGO/20260523_205857.png" alt="PhyLo Logo Variant 1" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <p style="display:none; color:#475569;">Logo image: PhyLo text + Physics in Logistics tagline, navy blue on white with blueprint grid background</p>
+    <p><strong>Variant 1</strong>: PhyLo wordmark with tail-curved lowercase "y". Blueprint grid background. Navy blue. Clean professional finish.</p>
+  </div>
+  <div class="logo-card">
+    <img src="PART2_LOGO/image_5f44214b.png" alt="PhyLo Logo Variant 2" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <p style="display:none; color:#475569;">Logo image: PhyLo circular emblem with physics symbols, atom, calculus, exponential curve, gravitational constant annotations, navy blue with orange callout lines</p>
+    <p><strong>Variant 2 (Preferred)</strong>: Scientific emblem seal with 4 quadrants. Top: atom + Planck constant (physics). Left: calculus + circuit patterns. Right: exponential curve + speed of light. Bottom: gravitational constant core. Orange callouts label "Isometric Data," "System Integrity," "Precision Metrics."</p>
+  </div>
+</div>
+
+<div class="block">
+  <strong style="color:#f8fafc;">Brand Positioning:</strong><br>
+  "PhyLo = Physics in Logistics" deliberately chose science over software positioning. The logo variants communicate precision, engineering rigor, and data-driven accountability. Variant 2 (scientific emblem) is preferred for pitch decks and technical documentation. Variant 1 (clean wordmark) works better for mobile apps, reports, and social media.
+</div>
+
+<div class="link-box">
+  <div class="label">Logo Source Files</div>
+  <a href="#">https://github.com/kinglex1/PhyLo-Founder-Sprints/blob/main/AI-PROFICIENCY/PART2_LOGO/</a><br>
+  <span style="font-size:0.75rem; color:#475569;">Files: 20260523_205857.png (Variant 1), image_5f44214b.png (Variant 2)</span>
+</div>
+
+<h2>PART 3: Customer Survey / Interactive Quiz</h2>
+<p style="font-size:0.85rem; color:#94a3b8; margin-bottom:1rem;">
+  Interactive survey built using Builder tool + LLM to test interest, pain points, and willingness to pay. Survey designed using customer research best practices: concrete scenarios, quantified responses, and follow-up engagement opt-in.
+</p>
+
+<h3>Survey Questions (8 Questions)</h3>
+
+<div class="survey-q">
+  <div class="q-num">Q1 — Monthly Fuel Loss</div>
+  Approximately what percentage of your fleet fuel do you estimate is lost each month to unexplained causes?
+  <br><strong>Options:</strong> Under 3% | 3-5% | 6-10% | 11-15% | More than 15%
+</div>
+
+<div class="survey-q">
+  <div class="q-num">Q2 — Investigation Time</div>
+  On average, how many hours per week does your team spend investigating suspected fuel loss incidents that turn out to be false alarms?
+  <br><strong>Options:</strong> Open numeric input (hours/week)
+</div>
+
+<div class="survey-q">
+  <div class="q-num">Q3 — System Trust Score</div>
+  On a scale of 1 to 10, how much do you trust the accuracy of your current fuel theft alert system?
+  <br><strong>Options:</strong> Slider 1 (no trust) to 10 (fully trust)
+</div>
+
+<div class="survey-q">
+  <div class="q-num">Q4 — Biggest Frustration</div>
+  What is your biggest frustration with current methods of tracking fuel loss?
+  <br><strong>Options:</strong> Difficulty identifying root cause | Lack of definitive proof | High cost of existing solutions | Delayed alerts | Other
+</div>
+
+<div class="survey-q">
+  <div class="q-num">Q5 — Value of Audit-Grade Reports</div>
+  How valuable would a system be that provides an audit-grade report detailing exactly where fuel was lost (with physics-validated evidence)?
+  <br><strong>Options:</strong> Scale 1 (not valuable) to 10 (essential)
+</div>
+
+<div class="survey-q">
+  <div class="q-num">Q6 — Pricing Preference</div>
+  If a solution could significantly reduce your unexplained fuel loss, which pricing model would you prefer?
+  <br><strong>Options:</strong> Fixed monthly subscription | Per-incident report fee | Per-vehicle one-time license | Not sure
+</div>
+
+<div class="survey-q">
+  <div class="q-num">Q7 — Biggest Business Challenge</div>
+  What is the biggest challenge your company currently faces due to unexplained fuel loss?
+  <br><strong>Answer type:</strong> Free text
+</div>
+
+<div class="survey-q">
+  <div class="q-num">Q8 — Follow-up Interest</div>
+  Would you like to be contacted for a follow-up discussion about PhyLo fuel tracking?
+  <br><strong>Options:</strong> Yes (with email) | No
+</div>
+
+<h3>Survey Results Summary (8 Respondents)</h3>
+<table>
+  <tr><th>Metric</th><th>Finding</th></tr>
+  <tr><td>Monthly fuel loss estimated</td><td>75% report 6-10% per month</td></tr>
+  <tr><td>False alarm investigation time</td><td>Avg 7.75 hours/week (range 1-20 hrs)</td></tr>
+  <tr><td>Trust in current systems</td><td>Avg 5/10 — current solutions not trusted</td></tr>
+  <tr><td>Value of audit-grade reports</td><td>Avg 7.1/10 — strong unmet demand</td></tr>
+  <tr><td>Pricing preference</td><td>62.5% prefer fixed monthly subscription</td></tr>
+  <tr><td>Follow-up interest</td><td>50% (4/8) requested contact</td></tr>
+</table>
+
+<div class="link-box">
+  <div class="label">Survey Platform (forms.app)</div>
+  <a href="#">https://forms.app/phylo/survey</a><br>
+  <span style="font-size:0.75rem; color:#475569;">8 responses collected 2026-05-24 to 2026-05-26</span>
+</div>
+
+<h2>PART 4: Customer Call Synthesis</h2>
+<p style="font-size:0.85rem; color:#94a3b8; margin-bottom:1rem;">
+  Survey distributed via 5+ video calls with friends and potential customers. Each call recorded, transcribed, and synthesized into bulleted signals and concerns.
+</p>
+
+<h3>Call Participants</h3>
+
+<div class="call-card">
+  <div class="name">Call 1: Dheyaan Jogee</div>
+  <div class="date">2026-05-24, 18:51</div>
+  <div class="highlight-green">Key Signals: 6-10% monthly loss confirmed. Audit-grade reports rated 9/10. Prefers subscription. Frustrated by high cost of existing solutions. Margin erosion is primary pain. Requested follow-up.</div>
+  <div class="highlight-orange">Concern: Cannot afford enterprise-grade solutions right now. Needs proof of ROI before committing.</div>
+</div>
+
+<div class="call-card">
+  <div class="name">Call 2: Omphile Nkuna</div>
+  <div class="date">2026-05-26, 06:30</div>
+  <div class="highlight-green">Key Signals: 6-10% unaccounted monthly loss. 20 hours/week investigating false alarms (highest in survey). Root cause blindness is primary pain. Trust score 5/10. Sees potential but wants more detail.</div>
+  <div class="highlight-orange">Concern: Wants to understand exactly how physics differentiates PhyLo from normal tracking. Skeptical of marketing claims.</div>
+</div>
+
+<div class="call-card">
+  <div class="name">Call 3: Anonymous</div>
+  <div class="date">2026-05-26, 06:46</div>
+  <div class="highlight-green">Key Signals: Fleet in transportation sector. Strong conviction that fuel theft is organized. Audit-grade reports rated 9/10. Subscription preferred. Margins are the challenge.</div>
+  <div class="highlight-orange">Concern: Worried about false positives damaging relationships with drivers before evidence is solid.</div>
+</div>
+
+<div class="call-card">
+  <div class="name">Call 4: Erica Zandamela</div>
+  <div class="date">2026-05-26, 07:51</div>
+  <div class="highlight-green">Key Signals: 6-10% monthly loss. 10 hours/week investigating false alarms. Trust score 4/10 (very low). Root cause is biggest frustration. Not yet sure on pricing model.</div>
+  <div class="highlight-orange">Concern: System must work reliably on older diesel vehicles. Cannot replace entire fleet electronics overnight.</div>
+</div>
+
+<div class="call-card">
+  <div class="name">Call 5: Simon Zandamela</div>
+  <div class="date">2026-05-26, 08:35</div>
+  <div class="highlight-green">Key Signals: More than 15% loss (hardest hit). 15 hours/week on false alarms. Company experiencing recurring monthly loss from fuel theft + volatile prices. Subscription preferred. Requested follow-up.</div>
+  <div class="highlight-orange">Concern: Needs evidence that can be used in disciplinary proceedings against drivers. Legal defensibility is non-negotiable.</div>
+</div>
+
+<div class="call-card">
+  <div class="name">Call 6: Sanele Dlali</div>
+  <div class="date">2026-05-26, 09:06</div>
+  <div class="highlight-green">Key Signals: 6-10% monthly loss. Audit-grade reports rated 8/10. Prefers per-incident pricing. Financial impact is primary challenge.</div>
+  <div class="highlight-orange">Concern: Wants proof before payment. Skeptical of subscription without demonstrated results first.</div>
+</div>
+
+<div class="call-card">
+  <div class="name">Call 7: James Makuluba</div>
+  <div class="date">2026-05-26, 09:42</div>
+  <div class="highlight-green">Key Signals: 3-5% (lowest reported). Only 1 hour/week on false alarms. Trust score 4/10. Audit-grade reports rated 6/10. Subscription preferred. Requested follow-up. Focused on root cause navigation.</div>
+  <div class="highlight-orange">Concern: Small fleet. Needs affordable entry point. Does not want enterprise complexity.</div>
+</div>
+
+<div class="call-card">
+  <div class="name">Call 8: Tshegofatso Tau</div>
+  <div class="date">2026-05-26, 09:47</div>
+  <div class="highlight-green">Key Signals: 6-10% monthly loss. 5 hours/week on false alarms. Trust score 5/10. Audit-grade reports rated 8/10. Subscription preferred. Lack of real-time monitoring and actionable reporting is primary pain.</div>
+  <div class="highlight-orange">Concern: Needs system that works in areas with poor connectivity. Rural route coverage is a real constraint.</div>
+</div>
+
+<h3>Strongest Signals</h3>
+<div class="highlight-green">
+  <strong>Pain is real and quantified:</strong> Respondents track losses weekly (6-10%), waste hours on false alarms (avg 7.75 hrs/week). They are not guessing, they are managing an active crisis.<br><br>
+  <strong>Trust deficit is the market opportunity:</strong> Current systems score only 5/10 for trust. Fleet managers are actively looking for something better, not resistant to change.<br><br>
+  <strong>Root cause identification is the #1 unmet need:</strong> 50% of respondents cite root cause identification as their biggest frustration. They do not need another alert, they need a diagnosis.<br><br>
+  <strong>Legal defensibility wins enterprise deals:</strong> Multiple callers specifically mentioned needing evidence that holds up in disciplinary proceedings. Audit-grade reports are not a feature, they are the sale.<br><br>
+  <strong>Small fleet market is underserved:</strong> Small fleets are fastest-growing segment (15.70% CAGR) and more price-sensitive. Entry-point pricing and simplicity will determine success here.
+</div>
+
+<h3>Strongest Concerns</h3>
+<div class="highlight-orange">
+  <strong>Proof before payment:</strong> Some users want evidence of results before committing to subscription. Freemium or pay-per-incident option needed for trust-building.<br><br>
+  <strong>Technical constraints:</strong> Older diesel vehicles, poor rural connectivity, and limited IT infrastructure are real-world constraints PhyLo must design around.<br><br>
+  <strong>False positive risk:</strong> Wrongly accusing drivers destroys trust faster than doing nothing. A 0% false positive rate is not a goal, it is a requirement.
+</div>
+
+<h2>PART 5: Tool Reflection and Self-Assessment</h2>
+<p style="font-size:0.85rem; color:#94a3b8; margin-bottom:1rem;">
+  What worked, where each AI tool added the most value, and self-rated skill levels.
+</p>
+
+<h3>What Worked</h3>
+<div class="block">
+  <strong>Research tool + LLM:</strong> The web research pipeline was the most valuable single tool. Searching global and South Africa-specific market data, competitor information, and pricing benchmarks gave PhyLo a credible, cited market landscape in under 30 minutes of search. Without it, this research would have taken days or required a paid analyst report.<br><br>
+  <strong>Builder tool:</strong> Survey construction was fast and structured. LLM helped frame questions using customer research best practices: concrete scenarios, 1-10 scales, and free-text optional fields. Structure was ready in one draft.<br><br>
+  <strong>Transcription tool:</strong> Recording calls and having them transcribed automatically saved hours of note-taking. Caller data was captured accurately enough to pull quantitative answers from qualitative conversation.<br><br>
+  <strong>Design tool:</strong> Logo generation was genuinely creative. The two variants are different enough to serve different contexts without looking inconsistent. AI design freed Qhayiya from spending days iterating with graphic designers.<br><br>
+  <strong>LLM Synthesis:</strong> After data collection, the LLM was most valuable for distilling 8 call transcripts into bulleted signals and concerns. Raw transcripts exist; synthesis makes them actionable.
+</div>
+
+<h3>Tool Value by Stage</h3>
+<table>
+  <tr><th>Tool</th><th>Stage</th><th>Value Added</th><th>Gap</th></tr>
+  <tr><td>Research + LLM</td><td>Part 1</td><td>High — market data, competitors, sources</td><td>None significant</td></tr>
+  <tr><td>Design</td><td>Part 2</td><td>High — fast logo variants, creative options</td><td>Limited brand consistency guidance</td></tr>
+  <tr><td>Builder + LLM</td><td>Part 3</td><td>High — structured survey, good question framing</td><td>Survey platform requires separate tool</td></tr>
+  <tr><td>Transcription</td><td>Part 4</td><td>High — accurate call capture, fast</td><td>Audio quality varies by device</td></tr>
+  <tr><td>LLM Synthesis</td><td>Part 4</td><td>High — bulleted synthesis from raw transcripts</td><td>Requires structured input</td></tr>
+  <tr><td>Agent coordination</td><td>Parts 1-5</td><td>High — parallel work, structured output</td><td>Requires clear task decomposition</td></tr>
+</table>
+
+<h3>Tool Self-Assessment Scores (1-5, no 3's)</h3>
+<div class="score-grid">
+  <div class="score-card">
+    <div class="name">Research + Web Search</div>
+    <div class="val">5</div>
+    <div class="desc">Comfortable searching, filtering, and citing market data. Know how to validate sources.</div>
+  </div>
+  <div class="score-card">
+    <div class="name">LLM Writing</div>
+    <div class="val">5</div>
+    <div class="desc">Use LLM for drafting, editing, and synthesis. Prompt framing is strong. Know when LLM needs more direction.</div>
+  </div>
+  <div class="score-card">
+    <div class="name">Survey Builder</div>
+    <div class="val">4</div>
+    <div class="desc">Built survey structure with LLM. Can frame questions for best response rates. Platform-specific setup still improving.</div>
+  </div>
+  <div class="score-card">
+    <div class="name">Image / Design</div>
+    <div class="val">4</div>
+    <div class="desc">Generated logo variants. Can evaluate design quality and communicate revision direction to AI tools.</div>
+  </div>
+  <div class="score-card">
+    <div class="name">Transcription</div>
+    <div class="val">4</div>
+    <div class="desc">Comfortable with audio/video recording tools. Understand settings for best quality. Can use transcripts for synthesis.</div>
+  </div>
+  <div class="score-card">
+    <div class="name">Video Calls</div>
+    <div class="val">4</div>
+    <div class="desc">Coordinated 8 calls in 2 days. Comfortable with Zoom/Meet. Learned to send agenda in advance to improve call quality.</div>
+  </div>
+  <div class="score-card">
+    <div class="name">Data Synthesis</div>
+    <div class="val">4</div>
+    <div class="desc">Can take raw transcripts and survey data and produce bulleted synthesis. Charts and tables still improving.</div>
+  </div>
+  <div class="score-card">
+    <div class="name">Agent / Mavis</div>
+    <div class="val">5</div>
+    <div class="desc">Very comfortable delegating research, drafting, and file management tasks. Can give clear direction and evaluate outputs.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div style="font-size:0.8rem; color:#475569; text-align:center;">
+  PhyLo Truth Engine | FI Launch Track Sprint 1 | Set 6 AI Proficiency | 2026-05-26<br>
+  Research: Web Search + LLM | Logo: AI Design Tool | Survey: forms.app Builder + LLM<br>
+  Transcription: Video call recording | Synthesis: LLM + Mavis Agent<br>
+  <a href="https://github.com/kinglex1/PhyLo-Founder-Sprints" style="color:#60a5fa;">github.com/kinglex1/PhyLo-Founder-Sprints/AI-PROFICIENCY</a>
+</div>
+
+<div class="footer">
+  PhyLo Truth Engine | FI Launch Track Sprint 1 | 2026-05-26
+</div>
+
+</div>
+</body>
+</html>
