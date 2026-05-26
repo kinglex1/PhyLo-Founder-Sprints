@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Central Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .status-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .file-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .file-card:hover {
+            border-color: #667eea;
+            background: #f8fafc;
+        }
+        .file-card.active {
+            border-color: #667eea;
+            background: #eef2ff;
+        }
+        .file-content {
+            white-space: pre-wrap;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .tab-active {
+            background: #667eea;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8 px-6 shadow-lg">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold">Project Central Dashboard</h1>
+                    <p class="text-white/80 mt-2">Multi-Agent Collaboration Hub</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-white/60">Last Updated</p>
+                    <p class="text-lg font-semibold">2026-05-26</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Project Status Banner -->
+        <div class="bg-white rounded-2xl shadow-md p-6 mb-8 border-l-4 border-blue-500">
+            <div class="flex items-start justify-between">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Project Status</h2>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                        <span class="status-dot w-2 h-2 rounded-full bg-yellow-500 mr-2"></span>
+                        Initial Setup Phase
+                    </span>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500">7 files created</p>
+                    <p class="text-sm text-gray-500">3 agents configured</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Purpose Section -->
+        <div class="bg-white rounded-2xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                Project Purpose
+            </h2>
+            <p class="text-gray-600 leading-relaxed">
+                This is the <strong>single source of truth</strong> for all agent work across different chat sessions.
+                All agents working on this project should save their outputs here and read existing work before starting new tasks.
+            </p>
+        </div>
+
+        <!-- Agent Cards -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Agent Status</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- AGENT-001 -->
+            <div class="bg-white rounded-2xl shadow-md p-6 card-hover transition-all duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">AGENT-001</span>
+                    <span class="w-3 h-3 rounded-full bg-gray-300"></span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Research Agent</h3>
+                <p class="text-gray-500 text-sm mb-4">Discovery & Research Phase</p>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-gray-500">Folder:</span>
+                        <span class="font-mono text-gray-700">CHAT_A/</span>
+                    </div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-gray-500">Files:</span>
+                        <span class="font-semibold text-gray-700">0</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-500">Status:</span>
+                        <span class="text-yellow-600 font-medium">Awaiting Input</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AGENT-002 -->
+            <div class="bg-white rounded-2xl shadow-md p-6 card-hover transition-all duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">AGENT-002</span>
+                    <span class="w-3 h-3 rounded-full bg-gray-300"></span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Analysis Agent</h3>
+                <p class="text-gray-500 text-sm mb-4">Data Analysis & Processing</p>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-gray-500">Folder:</span>
+                        <span class="font-mono text-gray-700">CHAT_B/</span>
+                    </div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-gray-500">Files:</span>
+                        <span class="font-semibold text-gray-700">0</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-500">Status:</span>
+                        <span class="text-yellow-600 font-medium">Awaiting Input</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AGENT-003 -->
+            <div class="bg-white rounded-2xl shadow-md p-6 card-hover transition-all duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">AGENT-003</span>
+                    <span class="w-3 h-3 rounded-full bg-gray-300"></span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Production Agent</h3>
+                <p class="text-gray-500 text-sm mb-4">Writing & Content Production</p>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-gray-500">Folder:</span>
+                        <span class="font-mono text-gray-700">CHAT_C/</span>
+                    </div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-gray-500">Files:</span>
+                        <span class="font-semibold text-gray-700">0</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-500">Status:</span>
+                        <span class="text-yellow-600 font-medium">Awaiting Input</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Documents Section with File Viewer -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Project Documents</h2>
+
+        <!-- File Tabs -->
+        <div class="bg-white rounded-2xl shadow-md mb-4 overflow-hidden">
+            <div class="flex flex-wrap border-b">
+                <button onclick="showFile('overview')" id="tab-overview" class="px-6 py-3 text-sm font-medium border-b-2 border-transparent hover:bg-gray-50 tab-active">
+                    00_PROJECT_OVERVIEW.md
+                </button>
+                <button onclick="showFile('start')" id="tab-start" class="px-6 py-3 text-sm font-medium border-b-2 border-transparent hover:bg-gray-50">
+                    00_START_HERE.md
+                </button>
+                <button onclick="showFile('synthesis')" id="tab-synthesis" class="px-6 py-3 text-sm font-medium border-b-2 border-transparent hover:bg-gray-50">
+                    00_SYNTHESIS.md
+                </button>
+            </div>
+
+            <!-- File Contents -->
+            <div class="p-6">
+                <div id="file-overview" class="file-content">
+# Project Central — Shared Knowledge Base
+
+## Purpose
+This directory is the **single source of truth** for all agent work across different chat sessions. All agents working on this project should save their outputs here and read existing work before starting new tasks.
+
+---
+
+## Directory Structure
+
+```
+/memories/project_central/
+├── 00_PROJECT_OVERVIEW.md    ← Project goals, scope, current state
+├── 00_START_HERE.md          ← Instructions for new agents
+├── CHAT_A/                   ← Outputs from Chat A (research agent)
+│   └── README.md
+├── CHAT_B/                   ← Outputs from Chat B (analysis agent)
+│   └── README.md
+├── CHAT_C/                   ← Outputs from Chat C (writing agent)
+│   └── README.md
+├── SHARED_RESOURCES/          ← Shared files, data, templates
+└── 00_SYNTHESIS.md           ← Merged synthesis of all agent work
+```
+
+---
+
+## Usage Protocol
+
+### For Every Agent:
+1. **Start here** → Read `00_PROJECT_OVERVIEW.md` and `00_START_HERE.md`
+2. **Check for existing work** → Look in relevant CHAT_X/ folders
+3. **Save your work** → To your designated chat folder with date/timestamp
+4. **Update synthesis** → Add a summary to `00_SYNTHESIS.md`
+
+### Naming Convention for Output Files:
+```
+[CHAT_NAME]_[YYYY-MM-DD]_[task-name].md
+Example: CHAT_A_2026-05-26_research-findings.md
+```
+
+---
+
+## Agent IDs (Required for Tracking)
+
+Every chat/agent is assigned a unique ID. **Always include your ID in outputs.**
+
+| Chat | Agent ID | Role | Folder |
+|------|----------|------|--------|
+| This Chat | `AGENT-001` | (assign based on role) | `CHAT_A/` |
+| Chat B | `AGENT-002` | (assign based on role) | `CHAT_B/` |
+| Chat C | `AGENT-003` | (assign based on role) | `CHAT_C/` |
+
+**Your current Agent ID:** `AGENT-001`
+
+---
+
+## Last Updated
+Created: 2026-05-26
+Updated: 2026-05-26 (added Agent IDs)</div>
+
+                <div id="file-start" class="file-content hidden">
+# START HERE — Instructions for All Agents
+
+Welcome! Before starting any task on this project, please follow these steps:
+
+## Step 1: Identify Your Agent ID
+Find your assigned ID from `00_PROJECT_OVERVIEW.md`:
+
+| Agent ID | Chat | Folder |
+|----------|------|--------|
+| `AGENT-001` | This chat | `CHAT_A/` |
+| `AGENT-002` | Chat B | `CHAT_B/` |
+| `AGENT-003` | Chat C | `CHAT_C/` |
+
+**You are:** `AGENT-001` (unless otherwise assigned)
+
+## Step 2: Read the Project Overview
+Read `00_PROJECT_OVERVIEW.md` to understand the project goals and context.
+
+## Step 3: Check Existing Work
+Look in the relevant chat folder to see what has already been done. Avoid duplicating work.
+
+## Step 4: Save Your Work Properly
+When you complete a task:
+1. Save your main output to your folder: `CHAT_[X]/[AGENT-ID]_[filename].md`
+2. Include your **Agent ID** at the top of every file as a header
+3. Add a summary to `00_SYNTHESIS.md` with:
+   - **Agent ID:** (e.g., AGENT-001)
+   - What you did
+   - Key findings/decisions
+   - Any dependencies on other agents' work
+   - Next steps or open questions
+
+## Step 5: Cross-Reference
+If your work relates to another agent's output, mention their **Agent ID** in your summary and link to their file.
+
+---
+
+## Quick Reference
+
+| Agent ID | Role | Save to | Read first |
+|----------|------|---------|------------|
+| AGENT-001 | Research | `CHAT_A/` | `CHAT_B/`, `CHAT_C/` |
+| AGENT-002 | Analysis | `CHAT_B/` | `CHAT_A/` if research exists |
+| AGENT-003 | Production | `CHAT_C/` | `AGENT-001/`, `AGENT-002/` |
+
+---
+
+## Need Context from Another Chat?
+Ask the user to share the relevant file contents, or direct them to paste the output here.</div>
+
+                <div id="file-synthesis" class="file-content hidden">
+# 00_SYNTHESIS — Combined Work Summary
+
+This document aggregates key outputs from all agents. Updated after each major task completion.
+
+---
+
+## 📊 Current Project Status
+**Last Updated:** 2026-05-26
+**Phase:** Initial Setup
+
+---
+
+## 🔬 Research (CHAT_A / AGENT-001)
+*Summary from research agent*
+
+| Agent ID | Task | Date | Status | Key Output |
+|----------|------|------|--------|------------|
+| AGENT-001 | (none yet) | — | — | — |
+
+**Notes:**
+- Awaiting first research output
+
+---
+
+## 📈 Analysis (CHAT_B / AGENT-002)
+*Summary from analysis agent*
+
+| Agent ID | Task | Date | Status | Key Output |
+|----------|------|------|--------|------------|
+| AGENT-002 | (none yet) | — | — | — |
+
+**Notes:**
+- Awaiting first analysis output
+
+---
+
+## ✍️ Production (CHAT_C / AGENT-003)
+*Summary from writing/production agent*
+
+| Agent ID | Task | Date | Status | Key Output |
+|----------|------|------|--------|------------|
+| AGENT-003 | (none yet) | — | — | — |
+
+**Notes:**
+- Awaiting first production output
+
+---
+
+## 🔗 Cross-References
+Links between agent outputs:
+- (none yet)
+
+---
+
+## 🎯 Next Steps
+- [ ] Awaiting first inputs from agents
+
+---
+
+## 📝 Open Questions
+- (none yet)</div>
+            </div>
+        </div>
+
+        <!-- Agent Folder Documentation -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 mt-12">Agent Folder Documentation</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- CHAT_A -->
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl shadow-md border border-purple-200 overflow-hidden">
+                <div class="p-4 border-b border-purple-200 bg-purple-50">
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl">🔬</span>
+                        <span class="px-3 py-1 bg-purple-200 text-purple-800 rounded-full text-sm font-semibold">AGENT-001</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mt-2">CHAT_A/</h3>
+                    <p class="text-purple-700 text-sm">Research & Discovery Agent</p>
+                </div>
+                <div class="p-4">
+                    <div class="file-content text-xs max-h-60">
+# CHAT A — Research/Discovery Agent
+**Agent ID: AGENT-001**
+
+This folder contains outputs from the research and discovery phase.
+
+## Files in this folder
+
+| File | Agent ID | Date | Description |
+|------|----------|------|-------------|
+| (empty) | — | — | No work saved yet |
+
+## Required File Header
+Every file must include:
+```markdown
+---
+Agent ID: AGENT-001
+Agent Role: Research/Discovery
+Created: [YYYY-MM-DD]
+---
+```
+
+## Instructions
+- Save research findings with clear filenames: `AGENT-001_[topic]_[date].md`
+- Include sources/references in your files
+- Update `00_SYNTHESIS.md` after completing major tasks</div>
+                </div>
+            </div>
+
+            <!-- CHAT_B -->
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl shadow-md border border-blue-200 overflow-hidden">
+                <div class="p-4 border-b border-blue-200 bg-blue-50">
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl">📊</span>
+                        <span class="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-sm font-semibold">AGENT-002</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mt-2">CHAT_B/</h3>
+                    <p class="text-blue-700 text-sm">Analysis Agent</p>
+                </div>
+                <div class="p-4">
+                    <div class="file-content text-xs max-h-60">
+# CHAT B — Analysis Agent
+**Agent ID: AGENT-002**
+
+This folder contains outputs from the analysis phase.
+
+## Files in this folder
+
+| File | Agent ID | Date | Description |
+|------|----------|------|-------------|
+| (empty) | — | — | No work saved yet |
+
+## Required File Header
+Every file must include:
+```markdown
+---
+Agent ID: AGENT-002
+Agent Role: Analysis
+Created: [YYYY-MM-DD]
+---
+```
+
+## Instructions
+- Save analysis outputs with clear filenames: `AGENT-002_[topic]_[date].md`
+- Include methodology and key insights
+- Reference research from CHAT_A/ (AGENT-001) if available
+- Update `00_SYNTHESIS.md` after completing major tasks</div>
+                </div>
+            </div>
+
+            <!-- CHAT_C -->
+            <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl shadow-md border border-green-200 overflow-hidden">
+                <div class="p-4 border-b border-green-200 bg-green-50">
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl">✍️</span>
+                        <span class="px-3 py-1 bg-green-200 text-green-800 rounded-full text-sm font-semibold">AGENT-003</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mt-2">CHAT_C/</h3>
+                    <p class="text-green-700 text-sm">Writing & Production Agent</p>
+                </div>
+                <div class="p-4">
+                    <div class="file-content text-xs max-h-60">
+# CHAT C — Writing/Production Agent
+**Agent ID: AGENT-003**
+
+This folder contains outputs from the writing and production phase.
+
+## Files in this folder
+
+| File | Agent ID | Date | Description |
+|------|----------|------|-------------|
+| (empty) | — | — | No work saved yet |
+
+## Required File Header
+Every file must include:
+```markdown
+---
+Agent ID: AGENT-003
+Agent Role: Writing/Production
+Created: [YYYY-MM-DD]
+---
+```
+
+## Instructions
+- Save drafts and final outputs with clear filenames: `AGENT-003_[name]_[date].md`
+- Include version history if iterating
+- Reference analysis from CHAT_B/ (AGENT-002) and research from CHAT_A/ (AGENT-001)
+- Update `00_SYNTHESIS.md` after completing major tasks</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workflow Section -->
+        <div class="bg-white rounded-2xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                </svg>
+                Agent Workflow Protocol
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span class="text-purple-600 font-bold">1</span>
+                    </div>
+                    <p class="text-sm font-medium text-gray-700">Identify Agent ID</p>
+                    <p class="text-xs text-gray-500 mt-1">Check your assigned ID</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span class="text-purple-600 font-bold">2</span>
+                    </div>
+                    <p class="text-sm font-medium text-gray-700">Read Overview</p>
+                    <p class="text-xs text-gray-500 mt-1">Understand project goals</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span class="text-purple-600 font-bold">3</span>
+                    </div>
+                    <p class="text-sm font-medium text-gray-700">Check Existing Work</p>
+                    <p class="text-xs text-gray-500 mt-1">Avoid duplication</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span class="text-purple-600 font-bold">4</span>
+                    </div>
+                    <p class="text-sm font-medium text-gray-700">Save Work</p>
+                    <p class="text-xs text-gray-500 mt-1">To your chat folder</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span class="text-purple-600 font-bold">5</span>
+                    </div>
+                    <p class="text-sm font-medium text-gray-700">Update Synthesis</p>
+                    <p class="text-xs text-gray-500 mt-1">Add summary</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Required File Header -->
+        <div class="bg-gray-800 rounded-2xl shadow-md p-6 text-white">
+            <h2 class="text-xl font-semibold mb-4">Required File Header</h2>
+            <p class="text-gray-300 mb-4">Every output file must include this header:</p>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                <pre class="text-sm text-green-400"><code>---
+Agent ID: [YOUR-AGENT-ID]
+Agent Role: [YOUR-ROLE]
+Created: [YYYY-MM-DD]
+---</code></pre>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
+            <p>Project Central Dashboard — Multi-Agent Collaboration Hub</p>
+            <p class="mt-1">Memory Location: /memories/project_central/</p>
+        </div>
+    </footer>
+
+    <script>
+        function showFile(fileName) {
+            // Hide all file contents
+            document.querySelectorAll('.file-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('[id^="tab-"]').forEach(el => {
+                el.classList.remove('tab-active');
+                el.classList.add('border-transparent');
+            });
+
+            // Show selected file content
+            document.getElementById('file-' + fileName).classList.remove('hidden');
+
+            // Add active class to selected tab
+            const activeTab = document.getElementById('tab-' + fileName);
+            activeTab.classList.add('tab-active');
+            activeTab.classList.remove('border-transparent');
+        }
+    </script>
+
+<script>
+/**
+ * Iframe 元素高亮注入脚本
+ * 需要在目标网站中引入此脚本来支持跨域 iframe 高亮功能
+ *
+ * 使用方法：
+ * 1. 将此脚本添加到目标网站的 HTML 中
+ * 2. 或通过浏览器扩展、用户脚本等方式注入
+ */
+
+(function () {
+  "use strict";
+
+  // 检查是否在 iframe 中
+  if (window.self === window.top) {
+    return; // 不在 iframe 中，不执行
+  }
+
+  // 检查是否已经初始化过
+  if (window.__iframeHighlightInitialized) {
+    return;
+  }
+  window.__iframeHighlightInitialized = true;
+  console.log("Iframe 高亮脚本已加载");
+
+  // 创建高亮覆盖层
+  var overlay = document.createElement("div");
+  overlay.id = "iframe-highlight-overlay";
+  overlay.style.cssText = "\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    pointer-events: none;\n    z-index: 999999;\n    overflow: hidden;\n  ";
+
+  // 创建悬停高亮框（虚线边框）
+  var highlightBox = document.createElement("div");
+  highlightBox.id = "iframe-highlight-box";
+  highlightBox.style.cssText = "\n    position: absolute;\n    border: 2px dashed #007AFF;\n    background: rgba(0, 122, 255, 0.08);\n    pointer-events: none;\n    display: none;\n    transition: all 0.1s ease;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);\n    border-radius: 2px;\n  ";
+
+  // 创建选中节点的常驻高亮框（实线边框）
+  var selectedBox = document.createElement("div");
+  selectedBox.id = "iframe-selected-box";
+  selectedBox.style.cssText = "\n    position: absolute;\n    border: 2px solid #007AFF;\n    pointer-events: none;\n    display: none;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 107, 53, 0.4);\n    border-radius: 2px;\n    z-index: 1000000;\n  ";
+
+  // 创建悬停标签显示
+  var tagLabel = document.createElement("div");
+  tagLabel.id = "iframe-tag-label";
+  tagLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 2px 6px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 2px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000001;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);\n    font-weight: 500;\n  ";
+
+  // 创建选中节点标签
+  var selectedLabel = document.createElement("div");
+  selectedLabel.id = "iframe-selected-label";
+  selectedLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 3px 8px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 3px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000002;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);\n    font-weight: 600;\n  ";
+  overlay.appendChild(highlightBox);
+  overlay.appendChild(selectedBox);
+  overlay.appendChild(tagLabel);
+  overlay.appendChild(selectedLabel);
+  document.body.appendChild(overlay);
+
+  // 存储当前选中的元素
+  var selectedElement = null;
+  var highlightEnabled = false;
+
+  // 更新选中元素的高亮显示
+  function updateSelectedHighlight(element) {
+    console.log("updateSelectedHighlight called with:", element);
+    if (!element) {
+      selectedBox.style.display = "none";
+      selectedLabel.style.display = "none";
+      selectedElement = null;
+      console.log("Cleared selected highlight");
+      return;
+    }
+    selectedElement = element;
+    var rect = element.getBoundingClientRect();
+    console.log("Selected element rect:", rect);
+
+    // 更新选中高亮框位置
+    selectedBox.style.display = "block";
+    selectedBox.style.left = "".concat(rect.left - 2, "px");
+    selectedBox.style.top = "".concat(rect.top - 2, "px");
+    selectedBox.style.width = "".concat(rect.width + 4, "px");
+    selectedBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新选中标签位置和内容
+    selectedLabel.style.display = "block";
+    selectedLabel.textContent = "\u2713 <".concat(element.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 28;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 5) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    var labelWidth = selectedLabel.offsetWidth || 100; // 预估宽度
+    if (labelLeft + labelWidth > window.innerWidth - 10) {
+      labelLeft = window.innerWidth - labelWidth - 10;
+    }
+    selectedLabel.style.left = "".concat(Math.max(5, labelLeft), "px");
+    selectedLabel.style.top = "".concat(labelTop, "px");
+    console.log("Selected highlight positioned at:", {
+      left: selectedBox.style.left,
+      top: selectedBox.style.top,
+      width: selectedBox.style.width,
+      height: selectedBox.style.height
+    });
+  }
+  function getElementSelector(element) {
+    if (!(element instanceof Element)) throw new Error('Argument must be a DOM element');
+    var segments = [];
+    var current = element;
+    while (current !== document.documentElement) {
+      var selector = '';
+      // 优先检查唯一ID
+      if (current.id && document.querySelectorAll("#".concat(current.id)).length === 1) {
+        segments.unshift("#".concat(current.id));
+        break; // ID唯一，无需继续向上
+      }
+
+      // 生成类名选择器（取第一个有效类名）
+      var classes = Array.from(current.classList).filter(function (c) {
+        return !c.startsWith('js-');
+      });
+      var className = classes.length > 0 ? ".".concat(classes[0]) : '';
+
+      // 生成位置索引（nth-child）
+      var tag = current.tagName.toLowerCase();
+      if (!className) {
+        var siblings = Array.from(current.parentNode.children);
+        var index = siblings.findIndex(function (el) {
+          return el === current;
+        }) + 1;
+        selector = "".concat(tag, ":nth-child(").concat(index, ")");
+      } else {
+        selector = className;
+      }
+      segments.unshift(selector);
+      current = current.parentElement;
+    }
+
+    // 处理根元素
+    if (current === document.documentElement) {
+      segments.unshift('html');
+    }
+    return segments.join(' > ');
+  }
+
+  // 获取元素文本内容
+  function getElementText(element) {
+    var _element$textContent;
+    if (element.tagName === "INPUT") {
+      return element.value || element.placeholder || "";
+    }
+    if (element.tagName === "TEXTAREA") {
+      return element.value || element.placeholder || "";
+    }
+    var text = ((_element$textContent = element.textContent) === null || _element$textContent === void 0 ? void 0 : _element$textContent.trim()) || "";
+    return text.length > 50 ? text.substring(0, 50) + "..." : text;
+  }
+
+  // 获取元素属性信息
+  function getElementAttributes(element) {
+    var attrs = {};
+    for (var i = 0; i < element.attributes.length; i++) {
+      var attr = element.attributes[i];
+      attrs[attr.name] = attr.value;
+    }
+    return attrs;
+  }
+
+  // 鼠标悬停事件处理
+  function handleMouseOver(e) {
+    if (!highlightEnabled) return;
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免高亮 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 如果是已选中的元素，不显示悬停高亮
+    if (target === selectedElement) {
+      highlightBox.style.display = "none";
+      tagLabel.style.display = "none";
+      return;
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+
+    // 更新悬停高亮框位置
+    highlightBox.style.display = "block";
+    highlightBox.style.left = "".concat(rect.left - 2, "px");
+    highlightBox.style.top = "".concat(rect.top - 2, "px");
+    highlightBox.style.width = "".concat(rect.width + 4, "px");
+    highlightBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新标签位置和内容
+    tagLabel.style.display = "block";
+    tagLabel.textContent = "<".concat(target.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 22;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 0) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    if (labelLeft + tagLabel.offsetWidth > window.innerWidth) {
+      labelLeft = window.innerWidth - tagLabel.offsetWidth - 5;
+    }
+    tagLabel.style.left = "".concat(Math.max(0, labelLeft), "px");
+    tagLabel.style.top = "".concat(labelTop, "px");
+
+    // 发送消息到父窗口
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 鼠标离开事件处理
+  function handleMouseOut(e) {
+    if (!highlightEnabled) return;
+    var relatedTarget = e.relatedTarget;
+
+    // 如果鼠标移动到高亮相关元素上，不隐藏高亮
+    if (relatedTarget && (relatedTarget === highlightBox || relatedTarget === tagLabel || relatedTarget === overlay || relatedTarget === selectedBox || relatedTarget === selectedLabel)) {
+      return;
+    }
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: null,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 点击事件处理
+  function handleClick(e) {
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免处理 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 检查是否是交互元素，这些元素需要保留默认行为
+    var isInteractiveElement = ['input', 'textarea', 'select', 'button', 'a'].includes(target.tagName.toLowerCase());
+
+    // 如果高亮功能启用，对于非交互元素阻止默认行为和事件传播
+    if (highlightEnabled) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+    console.log("Element clicked:", {
+      tagName: target.tagName,
+      selector: selector,
+      rect: rect
+    });
+
+    // 立即更新选中高亮
+    updateSelectedHighlight(target);
+
+    // 隐藏悬停高亮，因为现在是选中状态
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-click",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 监听来自父窗口的消息
+  function handleParentMessage(event) {
+    console.log("Received message from parent:", event.data);
+    if (event.data.type === "iframe-highlight-toggle") {
+      var enabled = event.data.enabled;
+      console.log("Highlight toggle:", enabled);
+      if (enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "enable-iframe-highlight") {
+      console.log("Enable iframe highlight");
+      enableHighlight();
+    } else if (event.data.type === "disable-iframe-highlight") {
+      console.log("Disable iframe highlight");
+      disableHighlight();
+    } else if (event.data.type === "toggle-iframe-highlight") {
+      var _enabled = event.data.enabled !== undefined ? event.data.enabled : !highlightEnabled;
+      console.log("Toggle iframe highlight to:", _enabled);
+      if (_enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "update-selected-element") {
+      var selector = event.data.selector;
+      console.log("Update selected element with selector:", selector);
+      if (selector) {
+        try {
+          var element = document.querySelector(selector);
+          console.log("Found element by selector:", element);
+          updateSelectedHighlight(element);
+        } catch (error) {
+          console.warn("Failed to select element:", error);
+          updateSelectedHighlight(null);
+        }
+      } else {
+        updateSelectedHighlight(null);
+      }
+    } else if (event.data.type === "clear-selected-element") {
+      console.log("Clear selected element");
+      updateSelectedHighlight(null);
+    }
+  }
+
+  // 启用高亮功能
+  function enableHighlight() {
+    console.log("Enabling highlight");
+    document.addEventListener("mouseover", handleMouseOver, true);
+    document.addEventListener("mouseout", handleMouseOut, true);
+    document.addEventListener("click", handleClick, true);
+    highlightEnabled = true;
+    overlay.style.display = "block";
+  }
+
+  // 禁用高亮功能
+  function disableHighlight() {
+    console.log("Disabling highlight");
+    highlightEnabled = false;
+    // 保持事件监听器，但通过 highlightEnabled 变量控制行为
+    // 这样可以保留选中状态的显示
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    // 不隐藏 selectedBox 和 selectedLabel，保留选中状态
+  }
+
+  // 完全禁用高亮功能（移除所有监听器）
+  function fullyDisableHighlight() {
+    console.log("Fully disabling highlight");
+    highlightEnabled = false;
+    document.removeEventListener("mouseover", handleMouseOver, true);
+    document.removeEventListener("mouseout", handleMouseOut, true);
+    document.removeEventListener("click", handleClick, true);
+    overlay.style.display = "none";
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    selectedBox.style.display = "none";
+    selectedLabel.style.display = "none";
+  }
+
+  // 添加事件监听
+  enableHighlight();
+  window.addEventListener("message", handleParentMessage);
+
+  // 暴露全局函数供外部调用
+  window.__iframeHighlightControl = {
+    enable: enableHighlight,
+    disable: disableHighlight,
+    fullyDisable: fullyDisableHighlight,
+    isEnabled: function isEnabled() {
+      return highlightEnabled;
+    },
+    getSelectedElement: function getSelectedElement() {
+      return selectedElement;
+    },
+    updateSelected: updateSelectedHighlight,
+    // 通过消息发送开关控制
+    sendToggleMessage: function sendToggleMessage(enabled) {
+      window.parent.postMessage({
+        type: 'iframe-highlight-status',
+        enabled: enabled || highlightEnabled,
+        source: 'iframe-highlight-injector'
+      }, '*');
+    }
+  };
+
+  // 通知父窗口脚本已加载
+  try {
+    window.parent.postMessage({
+      type: "iframe-highlight-ready",
+      data: {
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: Date.now()
+      },
+      source: "iframe-highlight-injector"
+    }, "*");
+  } catch (error) {
+    console.warn("无法发送就绪消息到父窗口:", error);
+  }
+
+  // 清理函数
+  window.__iframeHighlightCleanup = function () {
+    fullyDisableHighlight();
+    window.removeEventListener("message", handleParentMessage);
+    if (overlay.parentElement) {
+      overlay.parentElement.removeChild(overlay);
+    }
+    delete window.__iframeHighlightInitialized;
+    delete window.__iframeHighlightCleanup;
+  };
+})();
+
+</script>
+</body>
+</html>
