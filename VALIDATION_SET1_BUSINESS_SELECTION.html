@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validation Set 1 — Business Selection | PhyLo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.7; font-size: 15px; }
+.container { max-width: 880px; margin: 0 auto; padding: 40px 24px; }
+header { margin-bottom: 28px; }
+header .badge { display: inline-block; background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+h1 { font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 5px; letter-spacing: -0.5px; }
+.subtitle { color: #666; font-size: 14px; }
+.selection-banner { background: linear-gradient(135deg, #0a2a1a, #0d3320); border: 1px solid #22c55e; border-radius: 10px; padding: 18px 24px; margin: 0 0 24px; }
+.selection-banner .label { color: #22c55e; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.selection-banner .business { color: #4ade80; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.selection-banner .rationale { color: #6ee7a0; font-size: 13.5px; margin-top: 6px; }
+h2 { font-size: 16px; font-weight: 600; color: #888; margin: 32px 0 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+h3 { font-size: 14px; font-weight: 600; color: #ccc; margin: 18px 0 8px; }
+p { color: #aaa; margin: 7px 0; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13.5px; }
+th { background: rgba(255,255,255,0.04); color: #888; padding: 9px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 9px 12px; color: #c8c8d8; border-bottom: 1px solid rgba(255,255,255,0.03); }
+td:first-child { color: #888; font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+.score-a { background: rgba(34,197,94,0.07); color: #4ade80; font-weight: 700; text-align: center; }
+.score-b { color: #facc15; font-weight: 700; text-align: center; }
+.score-c { color: #888; text-align: center; }
+.total-a { background: rgba(34,197,94,0.1); color: #4ade80; font-weight: 700; font-size: 15px; }
+.total-b { color: #facc15; font-weight: 700; }
+.total-c { color: #888; }
+.signal-box { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+.signal-box .tag { color: #4ade80; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.signal-box p { color: #aaa; margin: 4px 0; font-size: 13.5px; }
+.concern-box { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+.concern-box .tag { color: #f87171; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.concern-box p { color: #aaa; margin: 4px 0; font-size: 13.5px; }
+.feedback-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 18px; margin: 10px 0; }
+.feedback-card .source { color: #888; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; }
+.feedback-card p { color: #c8c8d8; font-size: 13.5px; font-style: italic; margin: 4px 0; }
+.adjustment { background: rgba(0,200,255,0.05); border-left: 3px solid #00c8ff; padding: 10px 16px; margin: 8px 0; color: #c8c8d8; font-size: 13.5px; }
+.adjustment strong { color: #00c8ff; }
+.mip-box { background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.2); border-radius: 6px; padding: 12px 16px; margin: 10px 0; }
+.mip-box p { color: #d4a5f5; margin: 4px 0; font-size: 13.5px; }
+.section-note { background: rgba(255,255,255,0.02); border-left: 3px solid #444; padding: 8px 14px; margin: 8px 0; color: #777; font-size: 12.5px; font-style: italic; }
+.footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.05); color: #444; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge">Validation Set 1</div>
+  <h1>Business Selection</h1>
+  <p class="subtitle">PhyLo — Validation Sprint | FI South Africa 2026 | Due: June 1, 2026</p>
+</header>
+
+<div class="selection-banner">
+  <div class="label">Selected Business</div>
+  <div class="business">Month-End Fuel Audit</div>
+  <div class="rationale">32/35 score — only Ideaster conversion, explicit pilot partner pain, R1.35B TAM, R1M ARR path in Year 1. Alert Sanity Filter retained as first feature. Theft Case Files as premium tier.</div>
+</div>
+
+<!-- PART 1: THREE BUSINESSES -->
+<h2>Business A — Month-End Fuel Audit</h2>
+
+<div class="signal-box">
+  <div class="tag">Strongest Signals</div>
+  <p>✓ Only Ideaster conversion (1 of 5 visits, May 27) — "show finance where every litre went" framing converted</p>
+  <p>✓ Explicitly named by pilot partner — "Finance wants a number. 5–8% higher than it should be. We report 'theft and variance' and that's where the conversation ends"</p>
+  <p>✓ Finance director is the buyer — ops meets finance at month-end, finance signs the SaaS contract</p>
+  <p>✓ Avis evidence: R3M saved in 8 months on 89 vehicles — clearest WTP signal in the market</p>
+  <p>✓ TAM: ~45,000 SA commercial fleet vehicles × R30k/vehicle/year = R1.35B/year</p>
+</div>
+
+<div class="concern-box">
+  <div class="tag">Strongest Concerns</div>
+  <p>⚠ Requires integration into existing telematics — integration complexity is a real risk</p>
+  <p>⚠ Finance director buyer = longer sales cycle, requires ROI proof before signing</p>
+  <p>⚠ MICP: operators with telematics infrastructure already — limits addressable segment at launch</p>
+  <p>⚠ PINN advantage invisible to buyer — they care about the report, not the engine</p>
+</div>
+
+<h2>Business B — Alert Sanity Filter (Dual-Tank False Positive Elimination)</h2>
+
+<div class="signal-box">
+  <div class="tag">Strongest Signals</div>
+  <p>✓ Directly reported by pilot partner — "30–50 false alerts a week, we stopped looking at them"</p>
+  <p>✓ Fastest PINN proof — one week of deployment, false positives gone, trust restored</p>
+  <p>✓ Genuinely hard to replicate — rule-based competitors cannot solve dual-tank tank physics</p>
+  <p>✓ TAM: 10,000 dual-tank vehicles × R18k/year = R180M/year</p>
+</div>
+
+<div class="concern-box">
+  <div class="tag">Strongest Concerns</div>
+  <p>⚠ Risk of being a feature, not a business — operators may expect as add-on to existing telematics</p>
+  <p>⚠ Value is in elimination — hard to demo "this is what would have happened with the filter"</p>
+  <p>⚠ Buyer (ops manager) and payer (finance director) are different people — unclear sales motion</p>
+  <p>⚠ 12–18 month defensibility window before well-funded competitors replicate</p>
+</div>
+
+<h2>Business C — Theft Case File Reports</h2>
+
+<div class="signal-box">
+  <div class="tag">Strongest Signals</div>
+  <p>✓ Legal/proof framing resonated with ops managers in testing (4 visits, 0 conversions)</p>
+  <p>✓ WTP for legal evidence is real — R500–R1,500/report, prevents wrongful dismissal CCMA claims</p>
+  <p>✓ Differentiator for insurance claims — confidence scores + chain of custody = faster claims</p>
+</div>
+
+<div class="concern-box">
+  <div class="tag">Strongest Concerns</div>
+  <p>⚠ Legal framing didn't convert in landing page test — too far from daily workflow</p>
+  <p>⚠ Infrequent purchase — not recurring by default unless bundled into subscription</p>
+  <p>⚠ Market size smaller — only ~30% of operators actively pursue legal action on fuel incidents</p>
+  <p>⚠ Path to R1M ARR: Year 3 at earliest — too slow for startup runway</p>
+</div>
+
+<!-- PART 2: SCORING -->
+<h2>Scoring (1–5, no 3s)</h2>
+<table>
+<tr><th>Dimension</th><th>Business A: Audit</th><th>Business B: Filter</th><th>Business C: Case Files</th></tr>
+<tr><td>Problem severity</td><td class="score-a">5</td><td class="score-b">4</td><td class="score-c">3</td></tr>
+<tr><td>Problem frequency</td><td class="score-a">5</td><td class="score-b">5</td><td class="score-c">2</td></tr>
+<tr><td>WTP evidence</td><td class="score-a">4</td><td class="score-b">3</td><td class="score-c">2</td></tr>
+<tr><td>Market size (TAM)</td><td class="score-a">5</td><td class="score-b">4</td><td class="score-c">2</td></tr>
+<tr><td>Path to R1M ARR</td><td class="score-a">4</td><td class="score-b">3</td><td class="score-c">2</td></tr>
+<tr><td>Technical defensibility</td><td class="score-a">4</td><td class="score-b">5</td><td class="score-c">4</td></tr>
+<tr><td>Recurring revenue</td><td class="score-a">5</td><td class="score-b">4</td><td class="score-c">2</td></tr>
+<tr><td style="font-weight:700;color:#888">TOTAL</td><td class="total-a">32/35</td><td class="total-b">28/35</td><td class="total-c">17/35</td></tr>
+</table>
+
+<!-- PART 3: REVENUE POTENTIAL -->
+<h2>Revenue Potential Summary</h2>
+<table>
+<tr><th>Metric</th><th>Business A: Audit</th><th>Business B: Filter</th><th>Business C: Case Files</th></tr>
+<tr><td>TAM</td><td>R1.35B/yr</td><td>R180M/yr</td><td>R6.75M–R81M/yr</td></tr>
+<tr><td>Price/vehicle/yr</td><td>R30,000</td><td>R18,000</td><td>R6,000 (sub) / R500–R1,500 (per report)</td></tr>
+<tr><td>Customers for R1M ARR</td><td>15–20 fleet customers</td><td>55+ fleet customers</td><td>200 fleet customers (Year 3)</td></tr>
+<tr><td>Path to R1M ARR</td><td>Year 1 — achievable</td><td>Year 1 — aggressive</td><td>Year 3 at earliest</td></tr>
+</table>
+
+<!-- PART 4: WG + MENTOR FEEDBACK -->
+<h2>Working Group + Mentor Pressure Test</h2>
+
+<div class="feedback-card">
+  <div class="source">WG Member 1 — B2B SaaS founder</div>
+  <p>"The Month-End Fuel Audit is right. My concern: finance directors don't buy SaaS on a handshake. You'll need case studies and ROI calculators before your second customer. Make sure the pilot partner produces a real number you can show."</p>
+</div>
+<div class="feedback-card">
+  <div class="source">WG Member 2 — Logistics operator turned founder</div>
+  <p>"The Alert Sanity Filter is the more compelling story for me. '30–40 false alarms a week' I know that pain. 'Month-End Fuel Audit' sounds like spreadsheets. Consider leading with the filter and upselling the audit."</p>
+</div>
+<div class="feedback-card">
+  <div class="source">WG Member 3 — AI/ML technical founder</div>
+  <p>"The PINN advantage is most defensible in the Alert Sanity Filter — dual-tank physics model is genuinely hard. The audit report is strong but any dev can build a template. The dual-tank model is your real moat."</p>
+</div>
+<div class="feedback-card">
+  <div class="source">Mentor 1 — Ex-fleet operator, VC</div>
+  <p>"I've seen six fuel monitoring startups in Southern Africa die. They sold to the ops manager but ops couldn't sell to finance. Your bet on the finance director is correct — include finance-speak from day one: ROI, payback period, audit-ready reporting."</p>
+</div>
+<div class="feedback-card">
+  <div class="source">Mentor 2 — SaaS go-to-market expert</div>
+  <p>"R50k–R66k/year average deal = mid-market SaaS. That requires a full sales process: demos, trials, procurement, legal. Are you resourced? Consider product-led growth alongside sales-led."</p>
+</div>
+<div class="feedback-card">
+  <div class="source">Mentor 3 — PLG specialist</div>
+  <p>"The mockup and audit demo are your best acquisition tools. Show a fleet ops manager a report that looks like what they wish they had today and they'll share it with finance. The product is the marketing."</p>
+</div>
+
+<!-- PART 5: ADJUSTMENTS -->
+<h2>Adjustments Made Based on Pressure Test</h2>
+<div class="adjustment"><strong>Adjustment 1 — Lead with the filter in the demo:</strong> Set 4 demo opens with false positive problem ("30–50 false alerts a week, solved in one week") before transitioning to the audit report. Filter is the hook; audit is the business.</div>
+<div class="adjustment"><strong>Adjustment 2 — Deliver a finance-ready number from the pilot:</strong> Set 6 (Pilot Partner Validation) includes specific ask: monthly variance in Rands before and after the pilot. That number becomes the first case study for finance director buyers.</div>
+<div class="adjustment"><strong>Adjustment 3 — Build mockup for sharing:</strong> Set 3 mockup includes shareable link and self-serve trial. One-click PDF export of a sample month-end report is the primary demo artifact — not a live system, but a look people want to try.</div>
+<div class="adjustment"><strong>Adjustment 4 — Separate the sales motion:</strong> Ops managers get self-serve trial (mockup + audit report). Finance directors get ROI calculator and case study. Same product, different entry points.</div>
+
+<!-- PART 6: MINIMUM VIABLE CUSTOMER PROFILE -->
+<h2>Minimum Viable Customer Profile (MICP)</h2>
+<div class="mip-box">
+  <p><strong>Who:</strong> Fleet operations manager managing 50–100 vehicles with existing telematics infrastructure (GPS + fuel sensor)</p>
+  <p><strong>Their pain:</strong> Monthly fuel reconciliation with 5–8% unexplained variance, no document to give finance, no proof to act on theft alerts</p>
+  <p><strong>Their budget:</strong> R12k–R36k/month for a solution that eliminates the month-end scramble and produces an audit-ready document</p>
+  <p><strong>Their trigger:</strong> Last finance meeting where they had to say "we don't know where R60k went"</p>
+  <p><strong>Their buyer:</strong> Finance director, but needs ops manager champion to evaluate and advocate internally</p>
+  <p><strong>Where to find them:</strong> Gauteng/Rustenburg N4/N1 corridor, cross-border operators (Botswana/Zimbabwe/Mozambique), mining logistics fleets, 50+ vehicle fleets</p>
+</div>
+
+<div class="section-note">
+Pending actual Working Group and Mentor responses. This document will be updated with real feedback as it comes in before June 1 submission deadline.
+</div>
+
+<div class="footer">
+  Business Selection: Month-End Fuel Audit confirmed | Score: 32/35<br>
+  Next: Set 2 — Customer Development (script + 15 interviews)<br>
+  PhyLo — Audit-Grade Fuel Monitoring | FI South Africa 2026 | Founder Institute
+</div>
+
+</div>
+</body>
+</html>
