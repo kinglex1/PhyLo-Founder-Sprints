@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FI Set 2 — Customer Problems | PhyLo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.7; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+header { margin-bottom: 32px; }
+header .badge { display: inline-block; background: rgba(168,85,247,0.12); color: #a855f7; border: 1px solid rgba(168,85,247,0.25); border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+h1 { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 6px; letter-spacing: -0.5px; }
+.subtitle { color: #666; font-size: 15px; }
+.note-banner { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.25); border-radius: 8px; padding: 12px 18px; margin: 0 0 28px; }
+.note-banner p { color: #fbbf24; font-size: 13.5px; margin: 0; }
+h2 { font-size: 18px; font-weight: 600; color: #a855f7; margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 1px solid rgba(168,85,247,0.15); }
+h3 { font-size: 14px; font-weight: 600; color: #ccc; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+p { color: #aaa; margin: 8px 0; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13.5px; }
+th { background: rgba(168,85,247,0.08); color: #a855f7; padding: 10px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(168,85,247,0.15); }
+td { padding: 9px 12px; color: #c8c8d8; border-bottom: 1px solid rgba(255,255,255,0.04); }
+td:first-child { color: #888; font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+.problem-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+.problem-card .problem-num { display: inline-block; background: #a855f7; color: #fff; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-weight: 700; font-size: 13px; margin-right: 10px; }
+.problem-card h4 { display: inline; color: #ddd; font-size: 15px; font-weight: 600; }
+.problem-card p { color: #999; font-size: 13.5px; margin-top: 6px; }
+.priority-tag { display: inline-block; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+.priority-high { background: rgba(239,68,68,0.15); color: #f87171; }
+.priority-med { background: rgba(245,158,11,0.15); color: #fbbf24; }
+.rank-badge { display: inline-block; background: rgba(34,197,94,0.15); color: #22c55e; border-radius: 4px; padding: 3px 10px; font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+blockquote { background: rgba(168,85,247,0.06); border-left: 3px solid #a855f7; margin: 14px 0; padding: 12px 18px; border-radius: 0 6px 6px 0; color: #d0d0e0; font-style: italic; font-size: 14px; }
+.lead-section { background: rgba(168,85,247,0.04); border: 1px solid rgba(168,85,247,0.1); border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+.lead-section h4 { color: #a855f7; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; }
+.lead-section .lead-name { color: #fff; font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.lead-section .lead-email { color: #888; font-size: 13px; font-family: monospace; }
+.lead-section .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+.status-active { background: #22c55e; }
+.status-pending { background: #facc15; }
+.question-block { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 10px 16px; margin: 6px 0; color: #c8c8d8; font-size: 13.5px; }
+.question-block strong { color: #a855f7; }
+.synthesis-table { margin: 0 0 8px; }
+.synthesis-table td:first-child { width: 50px; text-align: center; }
+.synthesis-table td:nth-child(2) { font-weight: 600; color: #4ade80; }
+.section-note { background: rgba(168,85,247,0.04); border-left: 3px solid #a855f7; padding: 10px 16px; margin: 10px 0; color: #888; font-size: 13px; font-style: italic; }
+.footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); color: #444; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge">FI Set 2</div>
+  <h1>Customer Problems</h1>
+  <p class="subtitle">Discovery Process, Synthesized Problems, and Warm Lead Interview Guides | PhyLo — FI South Africa 2026</p>
+</header>
+
+<div class="note-banner">
+  <p><strong>Note:</strong> Discovery was conducted before the pilot partner's compliance review. This document will be updated with interview findings and compliance team results as they come in.</p>
+</div>
+
+<!-- PART 1: DISCOVERY PROCESS -->
+<h2>Part 1 — Discovery Process</h2>
+
+<h3>1.1 The Pilot Partner Conversation</h3>
+<blockquote>"We have sensors. We have telematics. Nothing changes."</blockquote>
+<p>The foundational insight: fleet operators don't lack data — they lack <strong>actionable accountability</strong>. They can see fuel anomalies on dashboards. They cannot prove what happened, who was responsible, or what to do next. Every month, reconciliation shows 5–8% more fuel consumed than the route justifies. Finance wants a number. The number comes with no explanation.</p>
+
+<h3>1.2 Warm Lead Survey</h3>
+<table>
+<tr><th>Lead</th><th>Email</th><th>Response</th><th>Notable Context</th></tr>
+<tr><td>Dheyaan</td><td>dheyaan03@gmail.com</td><td><span class="status-dot status-active"></span> Confirmed interest</td><td>Transport & logistics operator</td></tr>
+<tr><td>Omphile</td><td>nkunaomphile3@gmail.com</td><td><span class="status-dot status-active"></span> Confirmed interest</td><td>Logistics sector</td></tr>
+<tr><td>Simon</td><td>simonzandamela@gmail.com</td><td><span class="status-dot status-pending"></span> Acknowledged, no follow-up</td><td>—</td></tr>
+<tr><td>James</td><td>aishamihle@gmail.com</td><td><span class="status-dot status-pending"></span> Acknowledged, no follow-up</td><td>—</td></tr>
+</table>
+<p class="section-note">Sparse response rate = data point. Fleet operators are overwhelmed by vendor outreach and cautious about engaging without clear proof of value.</p>
+
+<h3>1.3 Ideaster Landing Page Results</h3>
+<table>
+<tr><th>Page</th><th>Framing</th><th>Visits</th><th>Conversions</th><th>Insight</th></tr>
+<tr><td>Fuel Alert Sanity Layer</td><td>"Stop drowning in false fuel alerts"</td><td>3</td><td>0</td><td>Alert fatigue resonated but didn't convert — operators not yet convinced AI can solve it</td></tr>
+<tr><td>Theft Case File Reports</td><td>"Build a disciplinary case from your telematics data"</td><td>4</td><td>0</td><td>Legal/proof framing appealed to ops managers but felt too far from daily workflow</td></tr>
+<tr><td style="background:rgba(34,197,94,0.08);color:#4ade80;font-weight:700">Month-End Fuel Audit ★</td><td>"Show finance exactly where every litre went this month"</td><td>5</td><td style="color:#4ade80;font-weight:700">1</td><td><strong>The "show finance" framing converted — monthly reconciliation is the sharpest pain</strong></td></tr>
+<tr><td>Driver Exoneration Console</td><td>"Prove your innocent drivers are clean"</td><td>2</td><td>0</td><td>Exoneration framing tested well in concept but operators want to catch theft first</td></tr>
+</table>
+
+<h3>1.4 SA Fleet Industry Research (DigitFMS, Avis, FleetCheck, Landmark, 2025–2026)</h3>
+<table>
+<tr><th>Finding</th><th>Source</th></tr>
+<tr><td>73% of commercial fleets experience fuel theft annually</td><td>DigitFMS, 2026</td></tr>
+<tr><td>62% of incidents are internal — drivers, depot staff, fuel attendants</td><td>DigitFMS, 2026</td></tr>
+<tr><td>73% of operators identify the same three-part problem: can't detect, can't prove, can't act</td><td>DigitFMS composite</td></tr>
+<tr><td>Core failure is operationalization, not data collection — operators can't translate data into decisions</td><td>Landmark Tracking, 2026</td></tr>
+<tr><td>Cross-border routes compound the problem: 24–72hr dwell at Beitbridge, GSM gaps, organized crime demand</td><td>Industry research</td></tr>
+<tr><td>Avis: fraud patterns identified within 3 months; action within 48–96 hours of detection</td><td>Engineering News / Avis Fleet</td></tr>
+<tr><td>Theft escalation sequence: Setup → Execution → Concealment → Escalation</td><td>DigitFMS</td></tr>
+<tr><td>Theft patterns: ghost kilometres, phantom fills, siphoning, fuel line intercepts</td><td>DigitFMS</td></tr>
+<tr><td>SA diesel >R26/litre — financial impact proportionally higher than lower-cost markets</td><td>DigitFMS</td></tr>
+</table>
+
+<!-- PART 2: FIVE CUSTOMER PROBLEMS -->
+<h2>Part 2 — Five Customer Problems Synthesized</h2>
+
+<div class="problem-card">
+  <span class="problem-num">1</span>
+  <h4>The False Positive Avalanche</h4>
+  <span class="priority-tag priority-high">HIGH FREQUENCY, HIGH COST</span>
+  <p><strong>Who has it:</strong> Fleet managers running dual-tank vehicles on hilly terrain (N4 Platinum Corridor). Every time a vehicle parks on an incline, fuel shifts between tanks and triggers a theft alert. 30–50 false alerts per week per vehicle. The ops team stops trusting the system entirely.</p>
+  <p><strong>Why existing tools fail:</strong> Rule-based threshold alerts cannot distinguish a 50L siphoning event from a 30L dual-tank fuel shift on a 5° incline.</p>
+  <p><strong>PhyLo's angle:</strong> Physics-informed model accounting for tank geometry, vehicle angle, fuel density shift, and thermal effects — eliminates false positives at their source.</p>
+</div>
+
+<div class="problem-card">
+  <span class="problem-num">2</span>
+  <h4>The Accountability Gap at Month-End</h4>
+  <span class="priority-tag priority-high">HIGH SEVERITY</span>
+  <p><strong>Who has it:</strong> Every fleet manager who presents monthly fuel reconciliation to finance. The number is consistently 5–8% higher than it should justify. Finance asks "why?" The manager says "theft and variance." The conversation ends there.</p>
+  <p><strong>Why existing tools fail:</strong> Systems flag anomalies — they do not classify, attribute, or produce audit-grade evidence. A flag is not a case file.</p>
+  <p><strong>PhyLo's angle:</strong> Month-End Fuel Audit report — vehicle by vehicle, route-verified consumption, anomalies classified with confidence scores, alternative hypotheses eliminated, loss values in Rands. Finance-ready, audit-grade, legally defensible.</p>
+</div>
+
+<div class="problem-card">
+  <span class="problem-num">3</span>
+  <h4>Cross-Border Dwell Time and Organized Theft</h4>
+  <span class="priority-tag priority-high">HIGH SEVERITY, CONTEXTUAL</span>
+  <p><strong>Who has it:</strong> Fleet operators running SA-to-Zimbabwe, SA-to-Mozambique routes. Vehicles wait 24–72 hours at Beitbridge/Plumtree in open, unsecured areas. Organized siphoning events cause 600L+ losses per incident. Operators receive alerts. Drivers say nothing happened. No proof. No action.</p>
+  <p><strong>Why existing tools fail:</strong> GSM coverage gaps mean telematics drops offline. Extended dwell times create the longest high-risk stationary periods of any route segment. Organized crime networks create demand for stolen fuel (Zimbabwe currency constraints). Driver complicity may be coerced.</p>
+  <p><strong>PhyLo's angle:</strong> CAN bus + odometer fallback during GSM dropout. Border dwell-time attribution. Zone-specific risk scoring. Organized theft pattern detection.</p>
+</div>
+
+<div class="problem-card">
+  <span class="problem-num">4</span>
+  <h4>Phantom Fills and Ghost Kilometres</h4>
+  <span class="priority-tag priority-med">MEDIUM FREQUENCY, HIGH FINANCIAL IMPACT</span>
+  <p><strong>Who has it:</strong> Any fleet operating with fuel cards not integrated with tank sensor data. Phantom fill: card records 400L, sensor shows 280L increase — 120L diverted. Ghost kilometres: odometer inflated to mask siphoning by making litres-per-100km appear normal.</p>
+  <p><strong>The pain:</strong> Single phantom fill = R3,900–R6,500. Weekly phantom fill per driver = R202,800–R338,000/year. Driver siphons 50L, inflates odometer 200km — fleet pays twice.</p>
+  <p><strong>Why existing tools fail:</strong> Fuel card data and tank sensor data live in separate silos. Cross-reference never happens. Fraud is invisible.</p>
+  <p><strong>PhyLo's angle:</strong> Fuse card transactions + tank sensors + GPS location at every transaction. If card says 400L but sensor shows 280L — 120L to explain.</p>
+</div>
+
+<div class="problem-card">
+  <span class="problem-num">5</span>
+  <h4>The Skills Gap: Data Exists, Decisions Don't</h4>
+  <span class="priority-tag priority-med">SYSTEMIC</span>
+  <p><strong>Who has it:</strong> TMS and fleet management platform operators across South Africa. The primary implementation failure is not technology — it's the skills gap between data collection and data-driven decision making (Technology Innovation in Transport Forum, March 2026).</p>
+  <p><strong>The pain:</strong> A fleet manager cannot extract a monthly fuel audit report from their telematics system without a data analyst's help. Anomalies accumulate in dashboards no one reviews. By the time someone looks, the evidence is degraded, the driver has rotated, and the trail is cold.</p>
+  <p><strong>PhyLo's angle:</strong> Build the monthly review workflow into the product. The Month-End Fuel Audit is a decision-support system, not a report — output a finance director can use and an ops manager can act on, without data analysis skills required.</p>
+</div>
+
+<!-- PART 3: INTERVIEW GUIDES -->
+<h2>Part 3 — Warm Lead Interview Guides</h2>
+
+<div class="lead-section">
+  <h4>Lead A — Confirmed Interest</h4>
+  <div class="lead-name">Dheyaan</div>
+  <div class="lead-email">dheyaan03@gmail.com</div>
+  <p style="margin-top:10px;color:#999;font-size:13px">Focus: transport & logistics. Current fuel monitoring setup, monthly reconciliation process, cross-border experience, detection-to-action workflow.</p>
+</div>
+
+<div class="lead-section">
+  <h4>Lead B — Confirmed Interest</h4>
+  <div class="lead-name">Omphile</div>
+  <div class="lead-email">nkunaomphile3@gmail.com</div>
+  <p style="margin-top:10px;color:#999;font-size:13px">Focus: logistics sector. Depot vs vehicle-level fuel management, false positive noise, cross-border complexity, organizational impact of unexplained variance, technology trust requirements.</p>
+</div>
+
+<div class="lead-section">
+  <h4>Lead C — Pending Response</h4>
+  <div class="lead-name">Simon</div>
+  <div class="lead-email">simonzandamela@gmail.com</div>
+  <p style="margin-top:10px;color:#999;font-size:13px">Re-engagement message: 15-min version of the same conversation. Monthly reconciliation pain, unexplained variance percentage, evidence requirements for disciplinary action.</p>
+</div>
+
+<div class="lead-section">
+  <h4>Lead D — Pending Response</h4>
+  <div class="lead-name">James</div>
+  <div class="lead-email">aishamihle@gmail.com</div>
+  <p style="margin-top:10px;color:#999;font-size:13px">Same re-engagement approach. Focus on organizational impact (finance tension, driver disputes), technology trust thresholds, legal credibility requirements for AI-generated evidence.</p>
+</div>
+
+<h3>Universal Interview Structure</h3>
+<div class="question-block"><strong>Topic 1 — Current setup (5 min):</strong> Fleet size, routes, current fuel monitoring tools, daily/weekly/monthly process</div>
+<div class="question-block"><strong>Topic 2 — Biggest pain (10 min):</strong> Hardest part of fuel accountability right now, moments when data didn't help, month-end reconciliation walkthrough</div>
+<div class="question-block"><strong>Topic 3 — Decision-making (5 min):</strong> What happens when an anomaly is found, what evidence would justify disciplinary action, finance/insurance/law enforcement experiences</div>
+<div class="question-block"><strong>Topic 4 — Cross-border complexity (5 min):</strong> Cross-border operations, border dwell-time pain, organized theft exposure</div>
+<div class="question-block"><strong>Closing:</strong> Magic wand question, referral request</div>
+
+<!-- PART 4: SYNTHESIS -->
+<h2>Part 4 — Synthesis: The Sharpest Problems Ranked</h2>
+
+<table class="synthesis-table">
+<tr><th></th><th>Problem</th><th>Evidence Base</th><th>Why It Wins</th></tr>
+<tr><td><span class="rank-badge">#1</span></td><td>Month-End Fuel Audit</td><td>Only Ideaster conversion; pilot partner explicit pain; all industry sources confirm monthly reconciliation as sharpest friction</td><td>Frequent (monthly) × High severity (finance relationship) × Clear WTP (R3M saved in 8 months, Avis 89 vehicles)</td></tr>
+<tr><td><span class="rank-badge">#2</span></td><td>Dual-Tank False Positive Elimination</td><td>Pilot partner reported 30–50 false alerts/week; affects majority of SA long-haul dual-tank fleets</td><td>Fastest proof of PINN advantage; beachhead feature; trust rebuilt in one week</td></tr>
+<tr><td><span class="rank-badge">#3</span></td><td>Cross-Border Theft Attribution</td><td>Pilot partner primary route (Rustenburg→Harare); 600L+ incidents at Beitbridge/Plumtree; GSM dropout, organized crime context</td><td>Highest value per event; premium WTP on cross-border routes; PINN advantage most defensible here</td></tr>
+<tr><td><span class="rank-badge">#4</span></td><td>Phantom Fill Detection</td><td>Documented by DigitFMS, Avis (multi-card fraud top category), Webfleet</td><td>R202k–R338k/year per driver; detection technically straightforward; invisible to operators without cross-reference</td></tr>
+</table>
+
+<div class="footer">
+  Discovery: May 2026 | To be updated with warm lead interview findings and pilot partner compliance review results<br>
+  PhyLo — Audit-Grade Fuel Monitoring | FI South Africa 2026 | Founder Institute
+</div>
+
+</div>
+</body>
+</html>
