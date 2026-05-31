@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FI Set 7 — Audit Report Design | PhyLo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.7; font-size: 15px; }
+.container { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+header { margin-bottom: 32px; }
+header .badge { display: inline-block; background: rgba(0,200,255,0.12); color: #00c8ff; border: 1px solid rgba(0,200,255,0.25); border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+h1 { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 6px; letter-spacing: -0.5px; }
+.subtitle { color: #666; font-size: 15px; }
+h2 { font-size: 18px; font-weight: 600; color: #00c8ff; margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 1px solid rgba(0,200,255,0.15); }
+h3 { font-size: 14px; font-weight: 600; color: #ccc; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+p { color: #aaa; margin: 8px 0; }
+.verdict-banner { background: linear-gradient(135deg, #0a2a1a, #0d3320); border: 1px solid #22c55e; border-radius: 10px; padding: 20px 24px; margin: 24px 0 24px; }
+.verdict-banner .verdict-label { color: #22c55e; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.verdict-banner .verdict-main { color: #4ade80; font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.verdict-banner .verdict-sub { color: #6ee7a0; font-size: 14px; margin: 2px 0; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13.5px; }
+th { background: rgba(0,200,255,0.08); color: #00c8ff; padding: 10px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(0,200,255,0.15); }
+td { padding: 9px 12px; color: #c8c8d8; border-bottom: 1px solid rgba(255,255,255,0.04); }
+td:first-child { color: #888; font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+.highlight-row td { background: rgba(239,68,68,0.08); color: #fca5a5; font-weight: 600; }
+.score-green { color: #4ade80; font-weight: 700; }
+.score-yellow { color: #facc15; font-weight: 700; }
+.score-red { color: #f87171; font-weight: 700; }
+.signal-bar { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; }
+.signal-green { background: #22c55e; }
+.signal-yellow { background: #facc15; }
+.signal-red { background: #f87171; }
+.alert-row { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: 6px; padding: 8px 12px; margin: 4px 0; }
+.alert-row td { color: #fca5a5; }
+.legal-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25); border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+.legal-box .legal-title { color: #fbbf24; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.legal-box p { color: #d4a017; margin: 6px 0; font-size: 13px; }
+.section-note { background: rgba(0,200,255,0.04); border-left: 3px solid #00c8ff; padding: 10px 16px; margin: 10px 0; color: #888; font-size: 13px; font-style: italic; }
+.timeline-table td:first-child { color: #00c8ff; font-family: 'Courier New', monospace; font-size: 12px; white-space: nowrap; }
+.timeline-table td:nth-child(5) { color: #4ade80; font-weight: 600; }
+.status-chip { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+.status-pass { background: rgba(34,197,94,0.15); color: #22c55e; }
+.status-fail { background: rgba(239,68,68,0.15); color: #f87171; }
+.status-warn { background: rgba(245,158,11,0.15); color: #facc15; }
+.bayesian-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px 20px; margin: 16px 0; font-family: 'Courier New', monospace; font-size: 12px; color: #aaa; line-height: 1.9; }
+.bayesian-box .result { color: #4ade80; font-size: 18px; font-weight: 700; font-family: -apple-system, sans-serif; margin-top: 8px; }
+.footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); color: #444; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge">FI Set 7</div>
+  <h1>Audit Report Design</h1>
+  <p class="subtitle">PhyLo — Consolidated Final Report Template | FI South Africa 2026</p>
+</header>
+
+<!-- VERDICT BANNER -->
+<div class="verdict-banner">
+  <div class="verdict-label">Final Verdict</div>
+  <div class="verdict-main">CONFIRMED THEFT — 97.3% Confidence</div>
+  <div class="verdict-sub">100.1L lost @ R 778 | Plumtree Border Transit Zone | 2026-05-15 02:31–04:43 SAST</div>
+  <div style="margin-top:10px">
+    <span class="status-chip status-fail">GRADE A EVIDENCE</span>
+    <span class="status-chip status-fail">PROCEED TO DISCIPLINARY PROCESS</span>
+  </div>
+</div>
+
+<!-- SECTION 1: VERDICT TABLE -->
+<h2>Section 1 — Vehicle, Driver & Fleet Identification</h2>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Vehicle Registration</td><td>ZAN 123 GP</td></tr>
+<tr><td>Fleet Operator</td><td>Pilot Partner Fleet Services (42 vehicles)</td></tr>
+<tr><td>Transport Operating Licence</td><td>TOL-SA-2024-0084739</td></tr>
+<tr><td>Make / Model</td><td>Isuzu FVZ 1400 — Dual Tank (400L front + 300L rear)</td></tr>
+<tr><td>Tank Calibration Certificate</td><td>TC-2025-00411 (expires 2026-03-11)</td></tr>
+<tr><td>Sensor Calibration Certificate</td><td>SC-2025-00882 (expires 2026-04-01)</td></tr>
+<tr><td>GPS / CAN</td><td>TGD-4400 firmware v3.2.1 / J1939 ISO 15765-4</td></tr>
+<tr><td>Fuel Type</td><td>Diesel 50ppm</td></tr>
+<tr><td>Driver</td><td>Thabo Mkhize | ID: 8902155843085 | PrDP: PrDP-G-2025-003847 (expires 2027-02-15)</td></tr>
+<tr><td>Prior Fuel Anomalies (90d)</td><td class="score-green">0 — Clean record</td></tr>
+</table>
+
+<!-- SECTION 2: TIMELINE -->
+<h2>Section 2 — Incident Timeline (Microsecond Precision)</h2>
+<table class="timeline-table">
+<tr><th>Timestamp (ISO 8601)</th><th>Event</th><th>Fuel</th><th>Odometer</th><th>Source</th></tr>
+<tr><td>2026-05-14 23:45</td><td>Loaded at Rustenburg depot</td><td>701.0L</td><td>347,401 km</td><td>GPS + Tank</td></tr>
+<tr><td>2026-05-15 01:30</td><td>Departed Rustenburg → Skilpadshek</td><td>—</td><td>—</td><td>GPS</td></tr>
+<tr><td>2026-05-15 02:14</td><td>Crossed Skilpadshek Border (Botswana)</td><td>—</td><td>—</td><td>GPS</td></tr>
+<tr class="alert-row"><td>2026-05-15 02:31</td><td>Vehicle parked — Plumtree Border Transit Zone. Engine OFF.</td><td>687.3L <span class="signal-green">STABLE</span></td><td>—</td><td>GPS+CAN+Tank</td></tr>
+<tr class="alert-row"><td>2026-05-15 02:31</td><td>CAN confirms: Engine OFF, RPM 0, ignition inactive</td><td>—</td><td>—</td><td>CAN bus</td></tr>
+<tr class="alert-row"><td>2026-05-15 03:47</td><td>Fuel still stable — vehicle still stationary</td><td>687.3L <span class="signal-green">STABLE</span></td><td>—</td><td>Tank sensor</td></tr>
+<tr class="highlight-row"><td>2026-05-15 04:43</td><td>⚠ FUEL DROP EVENT — Engine OFF, GPS stationary, no movement</td><td>587.2L <span class="signal-red">−100.1L</span></td><td>347,892 km</td><td>Tank+CAN+GPS</td></tr>
+<tr class="highlight-row"><td>2026-05-15 04:43</td><td>CAN cross-reference: Engine OFF throughout loss window — no fuel burn event</td><td>—</td><td>—</td><td>CAN bus</td></tr>
+<tr><td>2026-05-15 05:12</td><td>Post-incident stable reading</td><td>587.2L</td><td>—</td><td>System log</td></tr>
+<tr><td>2026-05-15 06:15</td><td>Vehicle departs transit zone</td><td>—</td><td>—</td><td>GPS</td></tr>
+<tr><td>2026-05-15 09:45</td><td>Crossed Plumtree Border into Zimbabwe</td><td>—</td><td>—</td><td>GPS</td></tr>
+<tr><td>2026-05-16 14:00</td><td>Arrived Harare depot</td><td>581.4L</td><td>348,892 km</td><td>GPS + Tank</td></tr>
+</table>
+<div class="section-note">All timestamps GPS-synchronized, UTC+02:00 (SAST). Loss window: 56 min 33 sec. Loss rate: 106.3 L/hr.</div>
+
+<!-- SECTION 3: FUEL LOSS -->
+<h2>Section 3 — Fuel Loss Analysis</h2>
+<table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>Fuel at last stable reading</td><td>687.3 L</td></tr>
+<tr><td>Fuel after loss event</td><td>587.2 L</td></tr>
+<tr><td>Total fuel lost</td><td><strong style="color:#f87171">100.1 L</strong></td></tr>
+<tr><td>Loss window</td><td>56 min 33 sec</td></tr>
+<tr><td>Rate of loss</td><td>106.3 L/hr</td></tr>
+<tr><td>Thermal correction applied</td><td>−0.8L (ambient 7°C below baseline, open border parking)</td></tr>
+<tr><td>Net fuel loss after correction</td><td>99.3 L</td></tr>
+<tr><td>Dual-tank correction</td><td>Not applicable — flat ground confirmed, both tanks stable</td></tr>
+<tr><td>Evaporation baseline</td><td>&lt;1 L/hr — well below 106.3 L/hr rate</td></tr>
+<tr><td>Signal-to-noise ratio</td><td><strong class="score-green">50.6× above noise floor (2.1 L/hr)</strong></td></tr>
+<tr><td>Diesel price at incident (May 2026)</td><td>R 7.77/litre</td></tr>
+<tr><td>Estimated loss value</td><td><strong style="color:#f87171">R 778</strong></td></tr>
+</table>
+
+<!-- SECTION 4: GEOSPATIAL -->
+<h2>Section 4 — Geospatial Reconstruction</h2>
+<table>
+<tr><th>Source</th><th>Position / Finding</th><th>Accuracy</th><th>Status</th></tr>
+<tr><td>Primary GPS (WGS84)</td><td>−21.9873°S, 27.5432°E | Plumtree Border Transit Zone, Botswana</td><td>±15m</td><td><span class="status-chip status-pass">VERIFIED</span></td></tr>
+<tr><td>Cellular Triangulation</td><td>BTC Mobile BW-2847-PLUM | 2.3km from tower</td><td>±400m</td><td><span class="status-chip status-pass">CONFIRMED</span></td></tr>
+<tr><td>CAN Bus (odometer)</td><td>491km from Skilpadshek — route consistent with N14/R488</td><td>Route verified</td><td><span class="status-chip status-pass">PASS</span></td></tr>
+<tr><td>Route Deviation Check</td><td>No deviation from standard corridor — on-route throughout</td><td>—</td><td><span class="status-chip status-pass">PASS</span></td></tr>
+<tr><td>Geo-fence Status</td><td>Outer route fence ACTIVE — inner/middle safe-zone fences NOT TRIGGERED</td><td>—</td><td><span class="status-chip status-warn">BOUNDARY CONDITION</span></td></tr>
+</table>
+<div class="section-note">Vehicle was inside the route corridor fence but outside any active safe-zone fence — elevated risk weighting applied. See Appendix A for geo-fence definitions.</div>
+
+<!-- SECTION 5: CONFIDENCE SCORECARD -->
+<h2>Section 5 — Confidence Scorecard (6 Independent Channels)</h2>
+<table>
+<tr><th>Evidence Channel</th><th>Finding</th><th>Confidence</th></tr>
+<tr><td>Fuel Volume</td><td>100.1L lost at 106.3L/hr — 50.6× above noise floor</td><td><span class="score-green">99.1%</span></td></tr>
+<tr><td>Vehicle State</td><td>CAN confirmed engine OFF; zero GPS movement throughout</td><td><span class="score-green">99.8%</span></td></tr>
+<tr><td>Temporal</td><td>02:14–04:43 (early morning); 1h16m extended dwell; border zone</td><td><span class="score-green">96.4%</span></td></tr>
+<tr><td>Geospatial</td><td>Border Transit Zone HIGH risk; outside safe-zone fence; 12km from border</td><td><span class="score-green">94.7%</span></td></tr>
+<tr><td>Behavioural</td><td>0 prior flags in 90 days; clean driver record</td><td><span class="score-green">91.3%</span></td></tr>
+<tr><td>Sensor Integrity</td><td>Primary + secondary sensors confirmed; CAN cross-verified; no fault codes</td><td><span class="score-green">97.4%</span></td></tr>
+</table>
+
+<div class="bayesian-box">
+P(Theft | All Evidence) = 1 − [(0.009)(0.002)(0.036)(0.053)(0.087)(0.026)]<br>
+P(Theft | All Evidence) = 1 − [5.73 × 10⁻¹¹]<br>
+<div class="result">→ COMPOSITE CONFIDENCE: 97.3% | GRADE A EVIDENCE</div>
+</div>
+
+<h3>Alternative Hypothesis Testing</h3>
+<table>
+<tr><th>Hypothesis</th><th>Probability</th><th>Evidence Against</th><th>Ruling</th></tr>
+<tr><td>Sensor malfunction</td><td>1.8%</td><td>Dual sensors confirmed; no fault codes; CAN cross-verified</td><td><span class="status-chip status-fail">ELIMINATED</span></td></tr>
+<tr><td>Thermal contraction</td><td>0.6%</td><td>Model applied; −0.8L corrected; loss (99.3L) exceeds thermal range ±5L</td><td><span class="status-chip status-fail">ELIMINATED</span></td></tr>
+<tr><td>Dual-tank fuel shift</td><td>0.2%</td><td>Vehicle on flat ground (altimeter); both tanks stable</td><td><span class="status-chip status-fail">ELIMINATED</span></td></tr>
+<tr><td>Fuel burn during idle</td><td>0.1%</td><td>CAN confirms engine OFF throughout incident window</td><td><span class="status-chip status-fail">ELIMINATED</span></td></tr>
+<tr><td>GPS / telemetry error</td><td>0.3%</td><td>12-satellite GPS; cellular confirmed; no signal dropout</td><td><span class="status-chip status-fail">ELIMINATED</span></td></tr>
+<tr class="highlight-row"><td>Deliberate theft</td><td>97.0%</td><td>All alternatives eliminated; 106.3 L/hr consistent with siphon pump rate</td><td><span class="status-chip status-pass">ACCEPTED</span></td></tr>
+</table>
+
+<!-- SECTION 6: LEGAL DISCLAIMER -->
+<div class="legal-box">
+  <div class="legal-title">⚠ Legal Notice — Read Before Using This Report</div>
+  <p>This report is generated by PhyLo Engine v2.3.1 (Confidence Model v1.2). The 97.3% confidence score is a <strong>statistical assessment</strong> — it does NOT constitute legal proof of guilt under South African law.</p>
+  <p>Intended to support investigator judgment — not replace it. Must not be submitted as legal exhibit without review by a qualified South African transport law practitioner.</p>
+  <p><strong>Right to independent verification:</strong> Fleet operator and/or driver retain the right to commission an independent physics analysis and/or sensor calibration audit.</p>
+  <p><strong>Liability:</strong> PhyLo accepts no liability for decisions made solely on the basis of this report. PhyLo is liable only if the system produced a materially incorrect report due to a known and undisclosed system failure or data integrity breach.</p>
+  <p><strong>Jurisdiction:</strong> Republic of South Africa. For CCMA: attach alongside witness statements, physical inspection records, National Road Traffic Act 93 of 1996, Cross-Border Transport Act 4 of 1998, Criminal Procedure Act 51 of 1977.</p>
+</div>
+
+<!-- SECTION 7: RECOMMENDED ACTIONS -->
+<h2>Section 6 — Recommended Actions</h2>
+<table>
+<tr><th>Timeframe</th><th>Action</th><th>Owner</th></tr>
+<tr><td>Immediate</td><td>Suspend driver pending formal disciplinary hearing</td><td>Fleet Ops Manager</td></tr>
+<tr><td>24 hours</td><td>Notify insurance underwriter of confirmed theft event</td><td>Compliance Officer</td></tr>
+<tr><td>72 hours</td><td>File criminal charge at nearest SAPS station; attach GPS trace and timeline</td><td>Compliance Officer</td></tr>
+<tr><td>1 week</td><td>Physical inspection of vehicle fuel system (tank, cap seal, siphon access) — Addendum A</td><td>Fleet Engineer</td></tr>
+<tr><td>90 days</td><td>Flag vehicle for enhanced monitoring; review border dwell procedures</td><td>Fleet Ops Manager</td></tr>
+</table>
+
+<!-- APPENDIX A: GEO-FENCE -->
+<h2>Appendix A — Geo-Fence Definitions</h2>
+<table>
+<tr><th>Geo-Fence</th><th>Definition</th><th>Status at Incident</th></tr>
+<tr><td>Inner Safe Zone</td><td>Depot / secure parking — 50m radius from structure</td><td><span class="status-chip status-fail">NOT TRIGGERED — open transit zone</span></td></tr>
+<tr><td>Middle Zone</td><td>Border post perimeter — 500m radius from gate</td><td><span class="status-chip status-fail">NOT TRIGGERED — 380m from post</span></td></tr>
+<tr><td>Outer Route Fence</td><td>Border transit corridor — 5km buffer on N14/R488</td><td><span class="status-chip status-pass">ACTIVE</span></td></tr>
+<tr><td>Route Corridor</td><td>N4→Skilpadshek→N14→R488→Plumtree→Harare</td><td><span class="status-chip status-pass">ACTIVE — no deviation</span></td></tr>
+</table>
+<div class="section-note">Geo-fence definitions stored in: fleet-config-v2.3.1-gf-v1.0.json — updated 2026-05-01.</div>
+
+<div class="footer">
+  Document ID: PHYLO-AUDIT-2026-0731-FINAL-001 | PhyLo Engine v2.3.1 | Confidence Model v1.2<br>
+  Tank Cal: TC-2025-00411 | Sensor Cal: SC-2025-00882 | Generated: 2026-05-31T10:50:00 SAST<br>
+  PhyLo — Audit-Grade Fuel Monitoring | FI South Africa 2026 | Founder Institute
+</div>
+
+</div>
+</body>
+</html>
