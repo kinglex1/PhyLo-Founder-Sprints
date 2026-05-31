@@ -15,42 +15,45 @@
 
 ---
 
-## Part 2: Landing Page Testing Results (Top 3 Ideas)
+## Part 2: Landing Page Testing & Market Response Evidence
 
-Three product variations were built as live landing pages and shared with friends and on social media. Response data was collected via Ideaster's visitor and conversion tracking.
+Three product variations were built as live landing pages and shared with friends and on social media via Ideaster.ai (application code FI-2026). In parallel, South African fleet industry data was gathered to validate the demand signals from the market itself.
 
-| Product Variation | Landing Page Status | Visits | Conversions (Sign-ups) |
+**Ideaster Landing Page Results:**
+
+| Product Variation | Status | Visits | Conversions |
 |---|---|---|---|
 | Fuel Alert Sanity Layer | Published | 4 | 0 |
 | Theft Case File Reports | Published | 4 | 0 |
-| Month End Fuel Audit | Published | ~10 (cumulative) | **1** |
+| Month End Fuel Audit | Published | ~10 | **1** (botsitson@gmail.com) |
+
+**Market Response Evidence (web research — SA fleet sector):**
+- Gauteng logistics company, 80 trucks: unexplained losses of **R250,000/month** — they deployed real-time fuel monitoring and recovered most of it
+- Avis Fleet client, 89 vehicles: saved **R3 million in 8 months** with structured fuel management
+- DigitFMS industry data: most fleets achieve **15–28% savings within 90 days** of deployment
+- Single truck losing 50 litres/week = **R65,000/year** at current diesel prices
+- 50-vehicle fleet losing 1 litre/truck/day = **R500,000/year**
+
+The Ideaster conversion signal (1 on Month End Fuel Audit) is small but directionally confirmed by the market evidence — the pain is real, documented, and quantifiable across the SA fleet sector. Customer development remains ongoing as per PhyLo's continuous discovery approach.
 
 ### **Winning Idea: Month End Fuel Audit**
 
-The Month End Fuel Audit was the clear winner with **1 conversion out of ~10 visits** — a conversion rate of approximately 10%. While the raw numbers are small (appropriate for early-stage testing), the signal is unambiguous: the audience converted on the monthly reconciliation pain point and ignored the alert-filter and forensic-report angles.
-
-The winning idea is: **Month-End Fuel Audit** — a monthly recurring audit product that reviews unexplained fuel losses and delivers a finance-ready exception pack, shortening month-end reconciliation and replacing write-offs with auditable cause attribution.
-
-**Why it won over the others:**
-- Targets the **recurring, predictable pain** of month-end reconciliation — not a one-off event
-- Finance directors are the buyer; they have budget and authority to approve subscriptions
-- The monthly cadence means the product can demonstrate ongoing value, making it stickier than a one-off report
-- No other tool targets this specific workflow — it sits in the gap between telematics alerts and ERP reconciliation
+The market evidence is unambiguous. The winning idea is: **Month-End Fuel Audit** — a monthly recurring audit product that reviews unexplained fuel losses, delivers a finance-ready exception pack, and replaces the "write it off" reflex with auditable cause attribution.
 
 ---
 
 ## Part 3: Why This Idea Area Works Now
 
-**The AI capability shift is the opening.** Physics-informed neural networks (PINNs) — models that encode physical laws as constraints — have moved from academic literature to production-ready open-source frameworks (NVIDIA Modulus, DeepXDE) at a fraction of their cost three years ago. This means a startup can now build domain-validated models without a team of PhD physicists, using transfer learning and pre-built physics layers. The same shift that made computer vision accessible to any company with labelled data has now arrived for physics-constrained AI.
+**The AI capability shift is real and accessible.** Physics-informed neural networks (PINNs) — models that encode physical laws as constraints — have moved from academic literature to production-ready open-source frameworks (NVIDIA Modulus, DeepXDE) at a fraction of their cost three years ago. A startup can now build domain-validated models without a PhD physics team, using transfer learning and pre-built physics layers. The same shift that made computer vision accessible has now arrived for physics-constrained AI — and the market for it in SA fleet operations is documented and urgent.
 
-**Telematics data is finally clean enough to use.** South African commercial fleets have digitised at scale — GPS, fuel sensors, CAN bus data, and fuel card integrations are now standard on mid-size fleets. The raw material for physics-based validation exists at a density and quality that was unavailable five years ago. Combined with the cost of compute dropping and LLM-based data extraction maturing, the infrastructure stack for PhyLo is now buildable at startup cost.
+**Diesel price shock created an immediate forcing function.** On 1 April 2026, diesel prices in South Africa jumped R7.51 per litre — a 32.5% operating cost shock. The Road Freight Association warned that smaller operators could face closure within weeks. For fleets where fuel already represents 35–55% of total operating costs, this leaves zero room for hidden losses. Fuel theft costs SA fleets an estimated R1.5 billion annually. Every unexplained litre is now impossible to ignore.
 
-**Regulatory tailwind is building.** SARS (South African Revenue Service) has intensified scrutiny on diesel rebate claims, and the Road Traffic Management Corporation (RTMC) is pushing for greater telematics compliance on heavy vehicles. Fleets that cannot produce auditable fuel records are increasingly exposed — legally and financially. An audit-grade fuel monitoring layer converts this regulatory pressure into a buying trigger.
+**The infrastructure is built and the gap is clear.** GPS, fuel sensors, CAN bus data, and fuel card integrations are now standard on mid-size SA commercial fleets. The raw data exists at a density and quality unavailable five years ago. But every major fleet company and telematics vendor is solving detection — not explanation. Up to 40% of AI alerts are routinely ignored due to alert fatigue. Fleets describe single trucks triggering 50+ fuel theft alerts overnight, with over 90% being false. The gap between "alert" and "proof" is the unserved market — and it has never been more financially painful to ignore.
 
 ---
 
 ## Part 4: Why the Winning Idea Will Be Big
 
-The South African commercial fleet market represents approximately **USD 230 million annually in fuel monitoring and telematics spend**, with 15–18% CAGR driven by rising diesel prices, expanding regulatory requirements, and growing fleet sizes in mining and logistics. Within that, the monthly reconciliation pain — unexplained fuel write-offs of 5–10% of total diesel spend — represents a quantifiable, recurring loss that fleet operators cannot currently explain or recover. For a 100-truck fleet, that is R15,000–R30,000 in monthly unexplained losses, against a monitoring cost of R20,000/month. The unit economics are obvious.
+The SA commercial fleet telematics market represents approximately **USD 230 million annually**, with 15–18% CAGR driven by rising diesel prices, expanding regulatory requirements, and growing fleet sizes in mining and logistics. Within that, the month-end reconciliation pain — unexplained fuel write-offs of 5–10% of total diesel spend — is a quantifiable, recurring loss that fleet operators cannot currently explain or recover. For a 100-truck fleet, that is R15,000–R30,000 in monthly unexplained losses, against a monthly monitoring cost of R20,000. The unit economics pay for themselves immediately.
 
-**Now is the right time because** the market has reached a tipping point: fleets have digitised their telematics (data exists), AI validation has become affordable (models are accessible), competitors have created alert fatigue (pain is acute), and regulatory pressure is creating urgency (compliance is a forcing function). The window between "AI is finally good enough" and "incumbents have caught up" is open right now — and a focused, physics-validated wedge into monthly fuel auditing is the smallest viable entry point that scales.
+**Now is the right time for three compounding reasons.** First, the April 2026 diesel price shock eliminated any remaining margin for invisible losses — the pain is at peak acute. Second, telematics infrastructure is fully deployed across mid-size fleets but the analytical layer above it is broken by alert fatigue and lack of attribution — creating the exact gap PhyLo fills. Third, regulatory momentum from SARS and RTMC is forcing audit-grade record-keeping, turning what was an operational choice into a compliance requirement. The window between "AI is finally good enough" and "incumbents have caught up" is open right now — and the Month-End Fuel Audit is the smallest, stickiest wedge into a R1.5 billion annual problem.
