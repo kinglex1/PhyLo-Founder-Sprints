@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FI Set 5 — Supply Chain Risk Mapping | PhyLo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.7; font-size: 16px; }
+.container { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+header { margin-bottom: 48px; }
+header .badge { display: inline-block; background: rgba(255,140,0,0.15); color: #ff8c00; border: 1px solid rgba(255,140,0,0.3); border-radius: 6px; padding: 4px 12px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+h1 { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 8px; letter-spacing: -0.5px; }
+.subtitle { color: #888; font-size: 18px; }
+.corridor-banner { background: rgba(255,140,0,0.08); border: 1px solid rgba(255,140,0,0.25); border-radius: 8px; padding: 14px 20px; margin-bottom: 32px; }
+.corridor-banner p { color: #ffcc80; margin: 0; font-size: 15px; }
+.corridor-banner strong { color: #ff8c00; }
+h2 { font-size: 22px; font-weight: 600; color: #ff8c00; margin: 48px 0 20px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,140,0,0.2); }
+h3 { font-size: 17px; font-weight: 600; color: #ddd; margin: 24px 0 10px; }
+p { color: #b0b0c0; margin: 14px 0; }
+blockquote { background: rgba(255,140,0,0.06); border-left: 3px solid #ff8c00; margin: 16px 0; padding: 14px 18px; border-radius: 0 6px 6px 0; color: #d0d0e0; font-style: italic; }
+.zone-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px 24px; margin: 20px 0; position: relative; overflow: hidden; }
+.zone-box .label { color: #ff8c00; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+.zone-box .number { font-size: 72px; font-weight: 700; color: rgba(255,140,0,0.1); position: absolute; right: 16px; top: 8px; line-height: 1; }
+.zone-box .stat { color: #ff8c00; font-weight: 600; }
+.zone-box .route-tag { display: inline-block; background: rgba(255,140,0,0.15); color: #ff8c00; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; }
+ul { list-style: none; padding-left: 0; }
+ul li { padding: 6px 0; padding-left: 20px; position: relative; color: #c8c8d8; }
+ul li::before { content: '→'; position: absolute; left: 0; color: #ff8c00; font-weight: bold; }
+.priority-box { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
+.priority-box .label { color: #22c55e; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+.priority-box p { color: #b0f0c8; margin: 0; }
+.priority-number { display: inline-block; background: #22c55e; color: #000; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 700; font-size: 14px; margin-right: 8px; }
+.footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); color: #555; font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge">FI Set 5</div>
+  <h1>Supply Chain Risk Mapping</h1>
+  <p class="subtitle">Founder Institute South Africa 2026 — PhyLo</p>
+</header>
+
+<div class="corridor-banner">
+  <p><strong>⚠ Note:</strong> This analysis is specific to the pilot partner's primary route: <strong>Rustenburg → Harare (Zimbabwe)</strong>. Route includes N4 Platinum Highway through North West Province, transit through Botswana, and entry via Plumtree/Beitbridge into Zimbabwe.</p>
+</div>
+
+<h2>Part 1: AI-Mapped Risk Zones — Pilot Partner Corridor</h2>
+
+<div class="zone-box">
+  <span class="label">Zone 1 — Rustenburg N4 Origin Corridor</span>
+  <span class="number">01</span>
+  <span class="route-tag">Rustenburg → Skilpadshek / Botswana Border</span>
+  <h3>Platinum Highway — Depot Siphoning and Overnight Risk</h3>
+  <p>The route originates in Rustenburg, the heart of South Africa's platinum mining belt. Heavy commercial vehicles, contractor fleets, and mining support trucks create a crowded operating environment with frequent unsecured stops. Documented risk: overnight siphoning at depots, industrial yards, and along the R104 alternative route (bypasses N4 toll gates). Single truck losing 50L/week in this zone = <span class="stat">R65,000/year</span>. North West Province has flagged fuel theft as a growing operational risk for mining-sector fleet operators.</p>
+</div>
+
+<div class="zone-box">
+  <span class="label">Zone 2 — Botswana Transit Corridor</span>
+  <span class="number">02</span>
+  <span class="route-tag">Skilpadshek → Plumtree Border (Botswana Transit to Zimbabwe)</span>
+  <h3>900km+ Transit Leg — GSM Gaps, Fuel Card Fraud, Detour Risk</h3>
+  <p>Many Rustenburg-to-Harare routes transit Botswana to bypass Beitbridge congestion. This introduces: limited cellular coverage in sections (edge buffering required), driver collusion risk (siphon at depots along corridor, submit fraudulent fuel receipts), and reduced telematics visibility when crossing SA-Botswana network boundaries. Fuel theft here is lower frequency but higher volume per event. Organized criminal activity along this transit corridor has been documented.</p>
+</div>
+
+<div class="zone-box">
+  <span class="label">Zone 3 — Zimbabwe Border Entry and Harare Destination</span>
+  <span class="number">03</span>
+  <span class="route-tag">Plumtree / Beitbridge → Harare, Zimbabwe</span>
+  <h3>Border Crossing + Destination Risk — Highest Severity</h3>
+  <p>Trucks wait 24–72 hours at Zimbabwe border crossings. During this time, vehicles are parked in open areas with limited security — vulnerable to organized siphoning. Operators report single-event losses of <span class="stat">up to 600 litres</span> at these crossings. Zimbabwe is a preferred destination for smuggled fuel due to high local prices and currency constraints — creating organized demand for stolen diesel. Inside Zimbabwe, vehicles face additional risk at Harare destination depots and during customs clearance. SA-to-Zimbabwe fuel smuggling is well-documented by Zimbabwe Revenue Authority.</p>
+</div>
+
+<h2>Part 2: Logistics Manager Pain Points</h2>
+
+<blockquote>"We get the alert. Fuel dropped while the truck was parked at the border. That's all we know. We can't report it, we can't act on it, and we definitely can't use it in a disciplinary hearing. The driver says nothing happened. We're left guessing."</blockquote>
+
+<p>The core pain is not detection — it's proof. Fleet managers with sensors and telematics still cannot distinguish real theft from sensor malfunction, temperature-related tank contraction, or dual-tank fuel shift on a grade.</p>
+
+<p><strong>On dual-tank N4 operations:</strong> "Our trucks run dual tanks through Rustenburg and up the N4. When they park on any kind of incline — and there are plenty on that route — the fuel shifts between tanks and sets off every theft alert we have. We get 30–50 false alerts a week just from that. After a while, the team stops looking at the alerts entirely. That's when real theft slips through."</p>
+
+<p><strong>On month-end reconciliation:</strong> "Finance wants a number. The number keeps being 5–8% higher than it should be. We report 'theft and variance' and that's where the conversation ends. Nobody can explain it. We need a document we can hand to someone and say 'this is what happened.'"</p>
+
+<h2>Part 3: Risk Zone Prioritization for PhyLo's Detection Engine</h2>
+
+<div class="priority-box">
+  <span class="label">Priority 1 — Highest Immediate Value</span>
+  <p><span class="priority-number">1</span><strong> Dual-Tank Grade Attribution (Engine Foundation Model)</strong> — Manager pain is immediate: 30–50 false alerts per week from dual-tank fuel shift on parked inclines. Build the dual-tank, parked-on-grade physics model first. If PhyLo eliminates these false alerts while maintaining theft detection, the ops team adopts it within the first week of the pilot. This is the clearest demonstration of what physics-informed means vs rule-based systems.</p>
+</div>
+
+<div class="priority-box">
+  <span class="label">Priority 2 — Highest Severity Per Event</span>
+  <p><span class="priority-number">2</span><strong> Cross-Border Stationary Attribution (Zone 3)</strong> — Extended stationary periods at the Zimbabwe border (24–72 hours). Single events cause 600L+ losses = R17,000+ per incident. Engine must: flag fuel drops during extended stationary periods with high confidence, attribute drops outside geofenced safe zones, and account for thermal tank contraction overnight. Botswana transit leg: use CAN bus and odometer data to substitute for GPS when cellular coverage drops.</p>
+</div>
+
+<div class="priority-box">
+  <span class="label">Priority 3 — Full Corridor Model</span>
+  <p><span class="priority-number">3</span><strong> Route-Level Consumption Validation (Full Rustenburg → Harare Corridor)</strong> — 800km+ route requires physics-based fuel burn modeling: expected consumption = f(grade profile, distance, load, temperature). Replace threshold alerts with a calibrated model. Deviations are classified, not just flagged. The <strong>Month-End Fuel Audit</strong> — the winning product from Ideaster testing — is the output of this model. Finance directors are the primary buyer.</p>
+</div>
+
+<div class="footer">
+  PhyLo — Audit-Grade Fuel Monitoring — Founder Institute South Africa 2026
+</div>
+
+</div>
+</body>
+</html>
