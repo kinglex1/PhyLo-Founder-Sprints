@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validation Set 2 — Customer Development | PhyLo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.7; font-size: 15px; }
+.container { max-width: 880px; margin: 0 auto; padding: 40px 24px; }
+header { margin-bottom: 28px; }
+header .badge { display: inline-block; background: rgba(0,200,255,0.12); color: #00c8ff; border: 1px solid rgba(0,200,255,0.25); border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+h1 { font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 5px; letter-spacing: -0.5px; }
+.subtitle { color: #666; font-size: 14px; }
+.context-box { background: rgba(0,200,255,0.05); border: 1px solid rgba(0,200,255,0.2); border-radius: 8px; padding: 12px 18px; margin: 0 0 24px; }
+.context-box p { color: #80e0ff; font-size: 13px; margin: 0; }
+h2 { font-size: 16px; font-weight: 600; color: #00c8ff; margin: 32px 0 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(0,200,255,0.15); text-transform: uppercase; letter-spacing: 0.5px; }
+h3 { font-size: 14px; font-weight: 600; color: #ccc; margin: 18px 0 8px; }
+p { color: #aaa; margin: 7px 0; }
+.scenario { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 18px; margin: 8px 0; }
+.scenario .label { color: #00c8ff; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+.scenario p { color: #d0d0e0; margin: 4px 0; font-size: 13.5px; font-style: italic; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13.5px; }
+th { background: rgba(0,200,255,0.08); color: #00c8ff; padding: 9px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(0,200,255,0.15); font-size: 12px; }
+td { padding: 9px 12px; color: #c8c8d8; border-bottom: 1px solid rgba(255,255,255,0.04); }
+td:first-child { color: #888; font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+.question-block { background: rgba(0,200,255,0.04); border-left: 3px solid #00c8ff; padding: 10px 16px; margin: 6px 0; color: #c8c8d8; font-size: 13.5px; }
+.question-block strong { color: #00c8ff; }
+.numbered-list { padding-left: 20px; color: #c8c8d8; }
+.numbered-list li { margin: 6px 0; font-size: 13.5px; }
+.tip-box { background: rgba(168,85,247,0.05); border: 1px solid rgba(168,85,247,0.2); border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+.tip-box .label { color: #c084fc; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.tip-box p { color: #aaa; margin: 4px 0; font-size: 13.5px; }
+.email-template { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 12px 16px; margin: 8px 0; font-family: monospace; font-size: 12px; color: #999; line-height: 1.8; white-space: pre-wrap; }
+.checklist { padding-left: 0; list-style: none; }
+.checklist li { padding: 4px 0 4px 24px; position: relative; color: #c8c8d8; font-size: 13.5px; }
+.checklist li::before { content: '☐'; position: absolute; left: 0; color: #00c8ff; font-size: 16px; }
+.template-cell { background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.1); border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+.template-cell h4 { color: #4ade80; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+.synthesis-cell { background: rgba(245,158,11,0.04); border: 1px dashed rgba(245,158,11,0.2); border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+.synthesis-cell p { color: #999; font-size: 13px; font-style: italic; margin: 4px 0; }
+.footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.05); color: #444; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge">Validation Set 2</div>
+  <h1>Customer Development</h1>
+  <p class="subtitle">PhyLo — Validation Sprint | FI South Africa 2026 | Selected Business: Month-End Fuel Audit</p>
+</header>
+
+<div class="context-box">
+  <p><strong>Goal:</strong> Recruit 15 potential customers, conduct 15 interviews, synthesize patterns. Confirms or revises the assumptions underpinning the Month-End Fuel Audit business.</p>
+</div>
+
+<!-- PART 1: SCRIPT -->
+<h2>Part 1 — Customer Development Script</h2>
+
+<div class="scenario">
+  <div class="label">Opening (60 sec)</div>
+  <p>"Thanks for taking the time. I'm Qhayiya from PhyLo — we're building a fuel monitoring system for South African fleet operators. The reason I'm calling is to understand the operational challenges around fuel accountability. There's no pitch today — I just want to learn what you're dealing with. Mind if I record this so I can review my notes later? Everything you share stays anonymous and won't be shared outside the team."</p>
+</div>
+
+<h3>Block 1 — Context (5 min)</h3>
+<div class="question-block"><strong>1.</strong> "Can you tell me about your fleet operation — how many vehicles, what routes, what are you moving?"</div>
+<div class="question-block"><strong>2.</strong> "Walk me through how fuel accountability works in your operation today. From the moment a driver gets diesel to the moment you reconcile at month-end — what does that process look like?"</div>
+<div class="question-block"><strong>3.</strong> "What fuel monitoring tools are you using right now? Fuel cards, sensors, GPS, manual processes?"</div>
+<div class="question-block"><strong>4.</strong> "Who handles the month-end fuel reconciliation? What does finance typically ask for, and what do you have to give them?"</div>
+<p style="color:#888;font-size:12px;margin-left:8px"><em>Listen for: existing infrastructure gaps, who owns the problem, monthly pain frequency.</em></p>
+
+<h3>Block 2 — Problem Exploration (10 min)</h3>
+<div class="question-block"><strong>5.</strong> "Walk me through the last time you had to explain a fuel loss to finance. What happened?"</div>
+<div class="question-block"><strong>6.</strong> "When you get a fuel theft alert on a vehicle — what actually happens next? What do you do with that information?"</div>
+<div class="question-block"><strong>7.</strong> "Have you ever not taken action on a fuel anomaly because you couldn't prove what happened? What was that situation like?"</div>
+<div class="question-block"><strong>8.</strong> "Tell me about the false positive situation. How many false alerts do you get per week? What do you do with them?"</div>
+<div class="question-block"><strong>9.</strong> "What does your best month look like? What does your worst month look like in terms of fuel variance?"</div>
+<p style="color:#888;font-size:12px;margin-left:8px"><em>Listen for: decision paralysis, evidence gaps, false positive volume, variance range.</em></p>
+
+<h3>Block 3 — Current Solutions and Spending (5 min)</h3>
+<div class="question-block"><strong>10.</strong> "What are you currently paying for fuel monitoring — sensors, software, telematics? What's working, what's not?"</div>
+<div class="question-block"><strong>11.</strong> "If I could show you a system that produced a month-end report with vehicle-by-vehicle fuel accountability — confidence scores, alternative hypotheses eliminated, loss values in Rands — what would that be worth to your operation?"</div>
+<div class="question-block"><strong>12.</strong> "Who would write the cheque for a tool like that? You, your finance director, the owner, someone else?"</div>
+<p style="color:#888;font-size:12px;margin-left:8px"><em>Listen for: price sensitivity, decision-making chain, evaluation criteria.</em></p>
+
+<h3>Block 4 — Decision Process (5 min)</h3>
+<div class="question-block"><strong>13.</strong> "If you were to evaluate something like this, what would you need to see in a demo or trial to commit to buying?"</div>
+<div class="question-block"><strong>14.</strong> "Have you ever bought a SaaS product for your fleet operation before? What was that process like?"</div>
+<div class="question-block"><strong>15.</strong> "What's the biggest reason you'd hesitate to buy something like this — what concerns would you have?"</div>
+
+<h3>Block 5 — Cross-Border Specifics (3 min, if relevant)</h3>
+<div class="question-block"><strong>16.</strong> "Do you operate any cross-border routes — Zimbabwe, Mozambique, Botswana?"</div>
+<div class="question-block"><strong>17.</strong> "How does cross-border travel change the fuel picture for you? What gets harder?"</div>
+
+<h3>Closing (2 min)</h3>
+<div class="question-block"><strong>18.</strong> "Is there anything I didn't ask that you think I should know about fuel accountability in your operation?"</div>
+<div class="question-block"><strong>19.</strong> "Is there anyone else in your network managing a similar fleet who would want to have this conversation? Anyone you'd recommend I speak with?"</div>
+
+<div class="scenario" style="margin-top:14px">
+  <div class="label">Wrap-up</div>
+  <p>"Really appreciate the time. If we end up building something that addresses what you described, I'd love to show it to you in a few weeks. No pressure — just want to keep you in the loop."</p>
+</div>
+
+<!-- PART 2: REHEARSAL -->
+<h2>Part 2 — Rehearsal Notes</h2>
+
+<div class="tip-box">
+  <div class="label">Tools to use</div>
+  <p><strong>Poised or Yoodli</strong> — for practicing delivery, pacing, and clarity</p>
+  <p><strong>AI speaking models</strong> (Grok, ChatGPT voice mode) — to simulate a skeptical customer</p>
+</div>
+
+<div class="tip-box">
+  <div class="label">Key things to nail before live calls</div>
+  <p><strong>Don't pitch in the first 5 minutes.</strong> Most founders start explaining their solution before the customer has finished describing the problem. Practice asking the question, then shutting up. Wait for the answer.</p>
+  <p><strong>Follow-up probes, not new questions.</strong> "Tell me more about that." "What happened next?" "What was the cost of that?"</p>
+  <p><strong>Don't confirm what they say.</strong> "Right" and "exactly" are conversation-closers. They signal "I'm done with this topic." Use "Tell me more" or silence instead.</p>
+  <p><strong>Don't argue if they say the pain is small.</strong> Probe with: "When you sit down with finance, what does that conversation actually look like?"</p>
+  <p><strong>Don't ask about WTP too early.</strong> Get pain first, cost second, WTP third.</p>
+</div>
+
+<div class="email-template">
+SAMPLE AI REHEARSAL PROMPT:
+"I'm a South African fleet operations manager with 60 vehicles, mostly 
+cross-border. We have GPS, fuel sensors, and use fuel cards. I get a 
+lot of false alerts from dual-tank vehicles. I have to explain 
+unexplained fuel losses to finance every month. Interview me about my 
+fuel monitoring challenges. Be skeptical but realistic. Take the 
+conversation in unexpected directions."
+</div>
+
+<!-- PART 3: RECRUITMENT -->
+<h2>Part 3 — Recruitment Plan (15 Customers)</h2>
+
+<table>
+<tr><th>Source</th><th>Target</th><th>Conversion Estimate</th><th>Notes</th></tr>
+<tr><td>Warm leads from Sprint 1</td><td>4 contacts</td><td>4 interviews</td><td>Dheyaan, Omphile, Simon, James</td></tr>
+<tr><td>Working Group (FI community)</td><td>3–5 contacts</td><td>3 interviews</td><td>FI peers, shared context</td></tr>
+<tr><td>LinkedIn (Gauteng/Rustenburg corridor)</td><td>8–10 contacts</td><td>4–5 interviews</td><td>Transport corridor operators</td></tr>
+<tr><td>Industry associations (RFA, SATCC)</td><td>5 contacts</td><td>2 interviews</td><td>Road Freight Association, SA Transport Chamber</td></tr>
+<tr><td>Referrals from warm leads</td><td>2–3 contacts</td><td>2–3 interviews</td><td>Warm intros — highest conversion</td></tr>
+<tr><td>Cross-border route operators</td><td>5 contacts</td><td>2–3 interviews</td><td>Mozambique, Zimbabwe, Botswana operators</td></tr>
+<tr style="background:rgba(34,197,94,0.06)"><td><strong>Total outreach</strong></td><td><strong>~30 contacts</strong></td><td><strong>15 interviews</strong></td><td><strong>50% conversion target</strong></td></tr>
+</table>
+
+<h3>Recruitment Tracker (Spreadsheet Format)</h3>
+<table>
+<tr><th>#</th><th>Name</th><th>Source</th><th>Status</th><th>Date Booked</th><th>Notes</th></tr>
+<tr><td>1</td><td>Dheyaan</td><td>Warm lead</td><td>Pending</td><td>—</td><td>Re-engagement email sent</td></tr>
+<tr><td>2</td><td>Omphile</td><td>Warm lead</td><td>Pending</td><td>—</td><td>Re-engagement email sent</td></tr>
+<tr><td>3</td><td>Simon</td><td>Warm lead</td><td>Pending</td><td>—</td><td>Shorter 15-min version</td></tr>
+<tr><td>4</td><td>James</td><td>Warm lead</td><td>Pending</td><td>—</td><td>Same re-engagement approach</td></tr>
+<tr><td>5–15</td><td>TBD</td><td>Various</td><td>TBD</td><td>—</td><td>To be recruited from sources above</td></tr>
+</table>
+
+<h3>Outreach Email Templates</h3>
+
+<div class="template-cell">
+  <h4>Template 1 — Warm lead re-engagement (Dheyaan, Omphile)</h4>
+  <div class="email-template">Subject: 15 minutes on fuel accountability in your fleet?
+
+Hi [Name],
+
+Following up on my earlier message about PhyLo's work on fuel 
+monitoring for South African fleet operators.
+
+We're running customer interviews this week to understand the real 
+operational challenges around fuel accountability — false alerts, 
+month-end reconciliation, the gap between what the data says and 
+what finance believes.
+
+Would 15 minutes work this week? I'm not pitching a product — just 
+trying to learn what you're dealing with. If you don't have time, no 
+worries at all.
+
+Best,
+Qhayiya
+PhyLo</div>
+</div>
+
+<div class="template-cell">
+  <h4>Template 2 — LinkedIn cold outreach</h4>
+  <div class="email-template">Subject: Quick question about your fuel monitoring process
+
+Hi [Name],
+
+I'm researching fuel accountability in SA commercial fleet 
+operations. I came across your work at [Company] and wanted to ask — 
+what does your month-end fuel reconciliation look like today? 
+Specifically, how do you explain unexplained variance to finance?
+
+I work with fleet operators building tools for this exact problem 
+and would love 15 minutes of your time to learn from your experience. 
+No pitch — just research.
+
+If you're not the right person, would you mind pointing me to 
+whoever handles this at [Company]?
+
+Thanks,
+Qhayiya</div>
+</div>
+
+<div class="template-cell">
+  <h4>Template 3 — Industry association outreach (RFA, SATCC)</h4>
+  <div class="email-template">Subject: Research request — fuel accountability in SA fleets
+
+Dear [Association contact],
+
+I'm a Founder Institute accelerator participant researching fuel 
+accountability challenges in the South African commercial transport 
+sector. As part of my work I'm conducting 15 customer interviews 
+with fleet operators in the 30–100 vehicle range.
+
+Could you help me reach 3–5 members who manage fuel-intensive 
+fleets? The interviews are 15–20 minutes, no product pitch, full 
+anonymity, and participants receive a copy of the synthesized 
+findings.
+
+If you can point me to specific contacts or a community channel 
+where I can post, I'd appreciate it.
+
+Best,
+Qhayiya
+PhyLo | Founder Institute South Africa 2026</div>
+</div>
+
+<h3>Reminder Sequence</h3>
+<table>
+<tr><th>Time</th><th>Action</th></tr>
+<tr><td>T-7 days</td><td>Initial outreach email</td></tr>
+<tr><td>T-3 days</td><td>First follow-up if no response</td></tr>
+<tr><td>T-1 day</td><td>Calendar invite + confirmation email</td></tr>
+<tr><td>T-2 hours</td><td>Final reminder with call/Zoom link</td></tr>
+<tr><td>T+1 day</td><td>Thank you + status update</td></tr>
+<tr><td>T+1 week</td><td>Share synthesized insights (builds relationship)</td></tr>
+</table>
+
+<!-- PART 4: CONDUCT -->
+<h2>Part 4 — Interview Conduct Process</h2>
+
+<table>
+<tr><th>Stage</th><th>Tool / Action</th></tr>
+<tr><td>Transcription</td><td>Otter.ai, Fireflies.ai, or Zoom built-in</td></tr>
+<tr><td>CRM tracking</td><td>Google Sheet, Notion database, or HubSpot free</td></tr>
+<tr><td>Calendar</td><td>Calendly for self-serve booking</td></tr>
+<tr><td>Recording</td><td>Zoom (with permission) or phone (with consent)</td></tr>
+</table>
+
+<h3>Pre-Interview Checklist</h3>
+<ul class="checklist">
+<li>Confirm recording permission in writing (email confirmation)</li>
+<li>Test transcription software</li>
+<li>Read previous interview notes for this contact (avoid repeating questions)</li>
+<li>Have the script open but don't read it verbatim</li>
+<li>Have water, quiet space, working mic</li>
+</ul>
+
+<h3>During Interview</h3>
+<div class="tip-box">
+  <p><strong>First 60 seconds:</strong> Set context, ask for recording permission, give them permission to skip questions.</p>
+  <p><strong>Take notes on what they don't say</strong> — gaps in their story are often more revealing than what they volunteer.</p>
+  <p><strong>If they go off-script, follow them</strong> — the most valuable insights come from unexpected tangents.</p>
+  <p><strong>Don't try to close the sale</strong> — your only job is to understand their world.</p>
+  <p><strong>At minute 18, signal wrap-up:</strong> "I have one or two more questions and then I want to respect your time."</p>
+</div>
+
+<h3>Post-Interview Checklist (within 2 hours)</h3>
+<ul class="checklist">
+<li>Stop the recording and save the file</li>
+<li>Run transcription through LLM to extract themes</li>
+<li>Write 3 verbatim quotes in the tracker</li>
+<li>Note the WTP signal</li>
+<li>Note any red flags or contradictions</li>
+<li>Send thank-you email within 24 hours</li>
+</ul>
+
+<!-- PART 5: SYNTHESIS (PENDING) -->
+<h2>Part 5 — Synthesis Template (Pending Interviews)</h2>
+
+<div class="synthesis-cell">
+  <p><em>Strongest Validations: To be completed after 15 interviews</em></p>
+  <p><em>Most Concerning Signals: To be completed after 15 interviews</em></p>
+  <p><em>New Problems Uncovered: To be completed after 15 interviews</em></p>
+  <p><em>Patterns Across Roles: To be completed after 15 interviews</em></p>
+  <p><em>Implications for the Business: To be completed after 15 interviews</em></p>
+</div>
+
+<!-- PART 6: ASSUMPTIONS -->
+<h2>Part 6 — Key Assumptions Being Tested</h2>
+
+<table>
+<tr><th>#</th><th>Assumption</th><th>Validation Signal</th></tr>
+<tr><td>1</td><td>Month-end reconciliation is the sharpest pain</td><td>Customer describes this pain unprompted</td></tr>
+<tr><td>2</td><td>Finance director is the buyer, ops manager is the champion</td><td>Customer names a different person as decision maker</td></tr>
+<tr><td>3</td><td>5–8% monthly fuel variance is the typical range</td><td>Customer reports higher or lower variance</td></tr>
+<tr><td>4</td><td>False positive alerts are 30–50/week per vehicle</td><td>Customer reports this range</td></tr>
+<tr><td>5</td><td>Cross-border routes are the highest-severity risk</td><td>Cross-border operators describe different pain than local-only</td></tr>
+<tr><td>6</td><td>Operators would pay R12k–R36k/month</td><td>Customer states specific WTP</td></tr>
+<tr><td>7</td><td>Filter pilot builds trust for full audit subscription</td><td>Customer asks to start with one feature, not the other</td></tr>
+<tr><td>8</td><td>Pilot partner is representative of broader market</td><td>Pilot partner responses match market pattern</td></tr>
+</table>
+
+<!-- PART 7: TIMELINE -->
+<h2>Part 7 — Interview Targets Per Week</h2>
+
+<table>
+<tr><th>Week</th><th>Target</th></tr>
+<tr><td>Week 1 (May 25–31)</td><td>Recruit 15 contacts, book 5–7 interviews</td></tr>
+<tr><td>Week 2 (Jun 1–7)</td><td>Conduct 7–10 interviews, transcribe and analyze</td></tr>
+<tr><td>Week 3 (Jun 8–14)</td><td>Final 3–5 interviews, complete synthesis, write patterns</td></tr>
+</table>
+<p style="color:#888;font-size:13px;margin-top:8px"><em>Pace: 3–4 interviews per week, allowing time for follow-up and analysis.</em></p>
+
+<div class="footer">
+  Customer Development for Month-End Fuel Audit | Recruit → Interview → Synthesize<br>
+  Synthesis will be completed after 15 interviews are conducted<br>
+  PhyLo — Audit-Grade Fuel Monitoring | FI South Africa 2026 | Founder Institute
+</div>
+
+</div>
+</body>
+</html>
