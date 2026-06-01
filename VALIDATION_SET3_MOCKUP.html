@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhyLo — Month-End Fuel Audit</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.6; font-size: 14px; }
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.topbar { background: #14141c; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-logo { width: 32px; height: 32px; background: linear-gradient(135deg, #00c8ff, #0080ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 14px; }
+.brand-name { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+.brand-sub { color: #666; font-size: 12px; }
+.month-picker { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 8px 14px; }
+.month-picker label { color: #888; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.month-picker select { background: transparent; color: #fff; border: none; font-size: 14px; font-weight: 600; outline: none; cursor: pointer; }
+.export-btn { background: linear-gradient(135deg, #00c8ff, #0080ff); color: #000; border: none; border-radius: 6px; padding: 10px 18px; font-weight: 700; font-size: 13px; cursor: pointer; }
+.export-btn:hover { opacity: 0.9; }
+.main { flex: 1; padding: 24px 32px; max-width: 1400px; margin: 0 auto; width: 100%; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.metric-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 18px 20px; }
+.metric-label { color: #888; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.metric-value { color: #fff; font-size: 26px; font-weight: 700; }
+.metric-value.green { color: #4ade80; }
+.metric-value.red { color: #f87171; }
+.metric-value.yellow { color: #facc15; }
+.metric-sub { color: #666; font-size: 12px; margin-top: 4px; }
+.section-title { color: #fff; font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+.vehicle-table { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+th { background: rgba(255,255,255,0.04); color: #888; padding: 12px 16px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+td { padding: 14px 16px; color: #d0d0e0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 13.5px; }
+tr:last-child td { border-bottom: none; }
+tr.vehicle-row { cursor: pointer; transition: background 0.15s; }
+tr.vehicle-row:hover { background: rgba(0,200,255,0.04); }
+.reg-plate { font-family: 'Courier New', monospace; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.route-tag { display: inline-block; background: rgba(0,200,255,0.1); color: #00c8ff; border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: 600; }
+.status-pill { display: inline-block; border-radius: 12px; padding: 3px 10px; font-size: 11px; font-weight: 700; }
+.status-clean { background: rgba(34,197,94,0.15); color: #4ade80; }
+.status-warn { background: rgba(245,158,11,0.15); color: #fbbf24; }
+.status-flag { background: rgba(239,68,68,0.15); color: #f87171; }
+.variance-good { color: #4ade80; font-weight: 600; }
+.variance-warn { color: #fbbf24; font-weight: 600; }
+.variance-bad { color: #f87171; font-weight: 600; }
+
+/* Modal */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; padding: 20px; overflow-y: auto; }
+.modal-overlay.active { display: flex; align-items: flex-start; justify-content: center; padding-top: 30px; }
+.modal { background: #14141c; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; max-width: 980px; width: 100%; margin-bottom: 30px; overflow: hidden; }
+.modal-header { padding: 20px 28px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); }
+.modal-header h2 { color: #fff; font-size: 18px; font-weight: 700; }
+.modal-header .close { background: rgba(255,255,255,0.06); border: none; color: #888; width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 16px; }
+.modal-header .close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.modal-body { padding: 28px; }
+.audit-banner { background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(0,200,255,0.05)); border: 1px solid rgba(34,197,94,0.3); border-radius: 8px; padding: 18px 22px; margin-bottom: 22px; display: flex; align-items: center; gap: 18px; }
+.audit-banner-flag { font-size: 36px; }
+.audit-banner-text h3 { color: #4ade80; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.audit-banner-text p { color: #aaa; font-size: 13px; margin: 0; }
+.audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 22px; }
+.audit-block { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 16px 20px; }
+.audit-block h4 { color: #00c8ff; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+.audit-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 13px; }
+.audit-row:last-child { border-bottom: none; }
+.audit-row .label { color: #888; }
+.audit-row .value { color: #d0d0e0; font-weight: 600; }
+.audit-row .value.green { color: #4ade80; }
+.audit-row .value.red { color: #f87171; }
+.audit-row .value.mono { font-family: 'Courier New', monospace; font-size: 12px; }
+.timeline-block { background: rgba(0,0,0,0.3); border-left: 3px solid #00c8ff; padding: 16px 20px; border-radius: 0 6px 6px 0; margin-bottom: 22px; }
+.timeline-block h4 { color: #00c8ff; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+.timeline-row { display: grid; grid-template-columns: 130px 1fr auto; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); align-items: center; font-size: 13px; }
+.timeline-row:last-child { border-bottom: none; }
+.timeline-row .time { color: #00c8ff; font-family: 'Courier New', monospace; font-size: 12px; font-weight: 600; }
+.timeline-row .event { color: #d0d0e0; }
+.timeline-row .delta { font-weight: 700; }
+.delta-stable { color: #4ade80; }
+.delta-drop { color: #f87171; }
+.confidence-block { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 18px 22px; margin-bottom: 22px; }
+.confidence-bar-wrap { background: rgba(0,0,0,0.4); border-radius: 100px; height: 14px; overflow: hidden; margin: 12px 0 18px; }
+.confidence-bar { background: linear-gradient(90deg, #4ade80, #22c55e); height: 100%; transition: width 0.5s; }
+.confidence-channels { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+.confidence-channel { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12.5px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.confidence-channel .name { color: #888; }
+.confidence-channel .pct { color: #4ade80; font-weight: 700; }
+.hypotheses-block { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 18px 22px; margin-bottom: 22px; }
+.hypotheses-block h4 { color: #00c8ff; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+.hypothesis { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 13px; }
+.hypothesis:last-child { border-bottom: none; }
+.hypothesis .h-name { color: #d0d0e0; }
+.hypothesis .h-pct { color: #888; font-weight: 600; font-size: 12px; }
+.hypothesis .h-ruling { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
+.h-eliminated { background: rgba(239,68,68,0.15); color: #f87171; }
+.h-accepted { background: rgba(34,197,94,0.15); color: #4ade80; }
+.narrative { background: rgba(0,200,255,0.05); border-left: 3px solid #00c8ff; padding: 16px 20px; border-radius: 0 6px 6px 0; margin-bottom: 22px; }
+.narrative h4 { color: #00c8ff; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.narrative p { color: #c8c8d8; font-size: 14px; line-height: 1.7; margin: 0; }
+.audit-footer { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06); }
+.audit-footer-cell { text-align: center; }
+.audit-footer-cell .label { color: #888; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.audit-footer-cell .value { color: #fff; font-size: 16px; font-weight: 700; }
+.audit-footer-cell .value.red { color: #f87171; }
+.audit-footer-cell .value.green { color: #4ade80; }
+.actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 18px; }
+.btn { border: none; border-radius: 6px; padding: 10px 18px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn-primary { background: linear-gradient(135deg, #00c8ff, #0080ff); color: #000; }
+.btn-secondary { background: rgba(255,255,255,0.06); color: #d0d0e0; border: 1px solid rgba(255,255,255,0.1); }
+
+/* PDF Export view */
+.pdf-view { background: #fff; color: #111; max-width: 850px; margin: 0 auto; padding: 40px 48px; border-radius: 8px; }
+.pdf-view h1 { color: #111; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.pdf-view h2 { color: #444; font-size: 14px; font-weight: 600; margin-top: 24px; margin-bottom: 10px; }
+.pdf-view .pdf-sub { color: #666; font-size: 13px; margin-bottom: 20px; }
+.pdf-view .pdf-meta { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+.pdf-view .pdf-meta-cell { padding: 10px 14px; background: #f7f7f9; border-radius: 6px; }
+.pdf-view .pdf-meta-cell .label { color: #666; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.pdf-view .pdf-meta-cell .value { color: #111; font-size: 14px; font-weight: 700; }
+.pdf-view table { border-collapse: collapse; }
+.pdf-view th { background: #f0f0f3; color: #333; padding: 9px 12px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #ddd; }
+.pdf-view td { padding: 10px 12px; color: #222; border-bottom: 1px solid #eee; font-size: 12.5px; }
+.pdf-view .flag-pill { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+.pdf-view .fp-clean { background: #d1fae5; color: #065f46; }
+.pdf-view .fp-warn { background: #fef3c7; color: #92400e; }
+.pdf-view .fp-flag { background: #fee2e2; color: #991b1b; }
+.pdf-view .totals-row td { background: #f7f7f9; font-weight: 700; color: #111; }
+.pdf-view .footer { margin-top: 32px; padding-top: 18px; border-top: 1px solid #ddd; color: #666; font-size: 11px; text-align: center; }
+.legal-note { background: #fafaf5; border: 1px solid #e6e6d4; border-radius: 6px; padding: 12px 16px; margin-top: 18px; }
+.legal-note p { color: #555; font-size: 11px; line-height: 1.6; margin: 0; }
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-logo">Φ</div>
+    <div>
+      <div class="brand-name">PhyLo</div>
+      <div class="brand-sub">Audit-Grade Fuel Monitoring</div>
+    </div>
+  </div>
+  <div class="month-picker">
+    <label>Reporting Period</label>
+    <select>
+      <option>May 2026</option>
+      <option>April 2026</option>
+      <option>March 2026</option>
+    </select>
+  </div>
+  <button class="export-btn" onclick="openPdf()">Export for Finance →</button>
+</div>
+
+<div class="main">
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="metric-label">Total Fleet Variance</div>
+      <div class="metric-value">3,847 L</div>
+      <div class="metric-sub">Across 60 vehicles</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Variance Value (R)</div>
+      <div class="metric-value red">R 78,440</div>
+      <div class="metric-sub">R 7.77/litre × variance</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Anomalies Detected</div>
+      <div class="metric-value yellow">3</div>
+      <div class="metric-sub">2 confirmed theft · 1 dual-tank false positive (filtered)</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Clean Vehicles</div>
+      <div class="metric-value green">57</div>
+      <div class="metric-sub">95% of fleet on baseline</div>
+    </div>
+  </div>
+
+  <div class="section-title">Vehicle-by-Vehicle Audit</div>
+  <div class="vehicle-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Reg</th>
+          <th>Route</th>
+          <th>Driver</th>
+          <th>Expected</th>
+          <th>Actual</th>
+          <th>Variance (L)</th>
+          <th>Variance (R)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="vehicle-row" onclick="openTheft()">
+          <td><span class="reg-plate">ZAN 123 GP</span></td>
+          <td><span class="route-tag">Rustenburg → Harare</span></td>
+          <td>Thabo Mkhize</td>
+          <td>3,200 L</td>
+          <td>3,300 L</td>
+          <td><span class="variance-bad">+100.1 L</span></td>
+          <td><span class="variance-bad">+R 778</span></td>
+          <td><span class="status-pill status-flag">⚠ Confirmed Theft</span></td>
+        </tr>
+        <tr class="vehicle-row" onclick="openFalsePos()">
+          <td><span class="reg-plate">JHB 882 GP</span></td>
+          <td><span class="route-tag">N4 Corridor</span></td>
+          <td>Sipho Dlamini</td>
+          <td>2,850 L</td>
+          <td>2,883 L</td>
+          <td><span class="variance-warn">+33 L</span></td>
+          <td><span class="variance-warn">+R 256</span></td>
+          <td><span class="status-pill status-warn">⊘ False Positive (filtered)</span></td>
+        </tr>
+        <tr class="vehicle-row" onclick="openTheft()">
+          <td><span class="reg-plate">FPK 441 NW</span></td>
+          <td><span class="route-tag">Rustenburg → Bulawayo</span></td>
+          <td>Mandla Ncube</td>
+          <td>3,400 L</td>
+          <td>3,490 L</td>
+          <td><span class="variance-bad">+90 L</span></td>
+          <td><span class="variance-bad">+R 699</span></td>
+          <td><span class="status-pill status-flag">⚠ Confirmed Theft</span></td>
+        </tr>
+        <tr class="vehicle-row">
+          <td><span class="reg-plate">DRG 567 GP</span></td>
+          <td><span class="route-tag">Johannesburg Local</span></td>
+          <td>Lebo Mahlangu</td>
+          <td>1,200 L</td>
+          <td>1,205 L</td>
+          <td><span class="variance-good">+5 L</span></td>
+          <td><span class="variance-good">+R 39</span></td>
+          <td><span class="status-pill status-clean">✓ Clean</span></td>
+        </tr>
+        <tr class="vehicle-row">
+          <td><span class="reg-plate">PTA 234 GP</span></td>
+          <td><span class="route-tag">Pretoria → Polokwane</span></td>
+          <td>Neo van Wyk</td>
+          <td>1,850 L</td>
+          <td>1,858 L</td>
+          <td><span class="variance-good">+8 L</span></td>
+          <td><span class="variance-good">+R 62</span></td>
+          <td><span class="status-pill status-clean">✓ Clean</span></td>
+        </tr>
+        <tr class="vehicle-row">
+          <td><span class="reg-plate">NLR 891 MP</span></td>
+          <td><span class="route-tag">Nelspruit → Maputo</span></td>
+          <td>Carlos Tembe</td>
+          <td>2,100 L</td>
+          <td>2,108 L</td>
+          <td><span class="variance-good">+8 L</span></td>
+          <td><span class="variance-good">+R 62</span></td>
+          <td><span class="status-pill status-clean">✓ Clean</span></td>
+        </tr>
+        <tr class="vehicle-row">
+          <td><span class="reg-plate">RBN 456 NW</span></td>
+          <td><span class="route-tag">Rustenburg → Mafikeng</span></td>
+          <td>Tshepo Modise</td>
+          <td>2,400 L</td>
+          <td>2,406 L</td>
+          <td><span class="variance-good">+6 L</span></td>
+          <td><span class="variance-good">+R 47</span></td>
+          <td><span class="status-pill status-clean">✓ Clean</span></td>
+        </tr>
+        <tr class="vehicle-row">
+          <td><span class="reg-plate">VDB 789 LP</span></td>
+          <td><span class="route-tag">Polokwane → Beitbridge</span></td>
+          <td>Fumani Mathebula</td>
+          <td>2,700 L</td>
+          <td>2,712 L</td>
+          <td><span class="variance-good">+12 L</span></td>
+          <td><span class="variance-good">+R 93</span></td>
+          <td><span class="status-pill status-clean">✓ Clean</span></td>
+        </tr>
+        <tr class="vehicle-row">
+          <td><span class="reg-plate">BCT 654 GP</span></td>
+          <td><span class="route-tag">JHB → Durban</span></td>
+          <td>Jason Reddy</td>
+          <td>2,950 L</td>
+          <td>2,958 L</td>
+          <td><span class="variance-good">+8 L</span></td>
+          <td><span class="variance-good">+R 62</span></td>
+          <td><span class="status-pill status-clean">✓ Clean</span></td>
+        </tr>
+        <tr class="vehicle-row">
+          <td><span class="reg-plate">KDP 102 GP</span></td>
+          <td><span class="route-tag">Sandton → OR Tambo</span></td>
+          <td>Naledi Khumalo</td>
+          <td>1,400 L</td>
+          <td>1,402 L</td>
+          <td><span class="variance-good">+2 L</span></td>
+          <td><span class="variance-good">+R 16</span></td>
+          <td><span class="status-pill status-clean">✓ Clean</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align:center;color:#666;font-size:12px;margin-top:14px">Showing 10 of 60 vehicles. <span style="color:#00c8ff">View all →</span></div>
+</div>
+
+<!-- Audit Modal -->
+<div class="modal-overlay" id="auditModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>📄 PhyLo Fuel Incident Audit — <span style="color:#00c8ff">ZAN 123 GP</span></h2>
+      <button class="close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="audit-banner">
+        <div class="audit-banner-flag">🚨</div>
+        <div class="audit-banner-text">
+          <h3>CONFIRMED THEFT — 97.3% Confidence</h3>
+          <p>Physics-informed analysis confirms deliberate siphoning. Evidence suitable for CCMA, SAPS, and insurance claim.</p>
+        </div>
+      </div>
+
+      <div class="audit-grid">
+        <div class="audit-block">
+          <h4>Vehicle & Incident</h4>
+          <div class="audit-row"><span class="label">Vehicle</span><span class="value">ZAN 123 GP</span></div>
+          <div class="audit-row"><span class="label">Make / Model</span><span class="value">Isuzu FVZ 1400</span></div>
+          <div class="audit-row"><span class="label">Tank Config</span><span class="value">Dual (400L + 300L)</span></div>
+          <div class="audit-row"><span class="label">Driver</span><span class="value">Thabo Mkhize</span></div>
+          <div class="audit-row"><span class="label">PrDP</span><span class="value">PrDP-G-2025-003847</span></div>
+          <div class="audit-row"><span class="label">Route</span><span class="value">Rustenburg → Harare</span></div>
+        </div>
+        <div class="audit-block">
+          <h4>Loss Summary</h4>
+          <div class="audit-row"><span class="label">Fuel Lost</span><span class="value red">100.1 L</span></div>
+          <div class="audit-row"><span class="label">Loss Rate</span><span class="value">106.3 L/hr</span></div>
+          <div class="audit-row"><span class="label">Loss Value (R)</span><span class="value red">R 778</span></div>
+          <div class="audit-row"><span class="label">Loss Date</span><span class="value">2026-05-15</span></div>
+          <div class="audit-row"><span class="label">Loss Window</span><span class="value">56 min 33 sec</span></div>
+          <div class="audit-row"><span class="label">Classification</span><span class="value green">Grade A Evidence</span></div>
+        </div>
+      </div>
+
+      <div class="timeline-block">
+        <h4>Incident Timeline (ISO 8601, SAST UTC+02:00)</h4>
+        <div class="timeline-row"><span class="time">02:14:03</span><span class="event">Crossed Skilpadshek border into Botswana</span><span class="delta delta-stable">—</span></div>
+        <div class="timeline-row"><span class="time">02:31:17</span><span class="event">Vehicle parked at Plumtree Border Transit Zone. Engine OFF (CAN confirmed).</span><span class="delta delta-stable">687.3L</span></div>
+        <div class="timeline-row"><span class="time">02:31:18</span><span class="event">CAN: RPM 0, ignition inactive. GPS: 0 km/h, stationary.</span><span class="delta delta-stable">—</span></div>
+        <div class="timeline-row"><span class="time">03:47:22</span><span class="event">Fuel stable. Vehicle still stationary. (1h 16m elapsed)</span><span class="delta delta-stable">687.3L</span></div>
+        <div class="timeline-row"><span class="time">04:43:55</span><span class="event">⚠ FUEL DROP. Engine OFF. GPS stationary. Loss of 100.1L in 56m 33s.</span><span class="delta delta-drop">−100.1L</span></div>
+        <div class="timeline-row"><span class="time">05:12:00</span><span class="event">Post-incident stable reading. Vehicle remains parked.</span><span class="delta delta-stable">587.2L</span></div>
+        <div class="timeline-row"><span class="time">06:15:00</span><span class="event">Vehicle departs transit zone toward Plumtree Border Post.</span><span class="delta delta-stable">—</span></div>
+      </div>
+
+      <div class="audit-grid">
+        <div class="audit-block">
+          <h4>Geospatial Evidence</h4>
+          <div class="audit-row"><span class="label">GPS Coords</span><span class="value mono">−21.9873°S, 27.5432°E</span></div>
+          <div class="audit-row"><span class="label">Location</span><span class="value">Plumtree Border Transit Zone</span></div>
+          <div class="audit-row"><span class="label">GPS Accuracy</span><span class="value">±15m horizontal</span></div>
+          <div class="audit-row"><span class="label">Cellular Verify</span><span class="value green">✓ Confirmed (BTC Mobile)</span></div>
+          <div class="audit-row"><span class="label">Route Deviation</span><span class="value green">None — on-route</span></div>
+          <div class="audit-row"><span class="label">Safe-Zone Status</span><span class="value red">Outside (high-risk zone)</span></div>
+        </div>
+        <div class="audit-block">
+          <h4>Sensor Integrity</h4>
+          <div class="audit-row"><span class="label">Primary Sensor</span><span class="value green">✓ Operational</span></div>
+          <div class="audit-row"><span class="label">Secondary Sensor</span><span class="value green">✓ Confirms primary</span></div>
+          <div class="audit-row"><span class="label">CAN Bus</span><span class="value green">✓ Engine OFF confirmed</span></div>
+          <div class="audit-row"><span class="label">GPS Quality</span><span class="value green">✓ 12 satellites</span></div>
+          <div class="audit-row"><span class="label">Tamper Detection</span><span class="value green">✓ No tampering</span></div>
+          <div class="audit-row"><span class="label">Chain Hash</span><span class="value mono">8f2a3c9d1e7b...</span></div>
+        </div>
+      </div>
+
+      <div class="confidence-block">
+        <h4 style="color:#00c8ff;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Composite Confidence Score</h4>
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:8px">
+          <div style="color:#4ade80;font-size:36px;font-weight:700">97.3%</div>
+          <div style="color:#888;font-size:13px">— Grade A Evidence, Confirmed Theft</div>
+        </div>
+        <div class="confidence-bar-wrap"><div class="confidence-bar" style="width:97.3%"></div></div>
+        <div class="confidence-channels">
+          <div class="confidence-channel"><span class="name">Fuel Volume</span><span class="pct">99.1%</span></div>
+          <div class="confidence-channel"><span class="name">Vehicle State</span><span class="pct">99.8%</span></div>
+          <div class="confidence-channel"><span class="name">Temporal Pattern</span><span class="pct">96.4%</span></div>
+          <div class="confidence-channel"><span class="name">Geospatial</span><span class="pct">94.7%</span></div>
+          <div class="confidence-channel"><span class="name">Behavioural</span><span class="pct">91.3%</span></div>
+          <div class="confidence-channel"><span class="name">Sensor Integrity</span><span class="pct">97.4%</span></div>
+        </div>
+      </div>
+
+      <div class="hypotheses-block">
+        <h4>Alternative Hypotheses Eliminated</h4>
+        <div class="hypothesis">
+          <span class="h-name">Sensor malfunction</span>
+          <span class="h-pct">1.8%</span>
+          <span class="h-ruling h-eliminated">ELIMINATED</span>
+        </div>
+        <div class="hypothesis">
+          <span class="h-name">Thermal contraction (cold overnight)</span>
+          <span class="h-pct">0.6%</span>
+          <span class="h-ruling h-eliminated">ELIMINATED</span>
+        </div>
+        <div class="hypothesis">
+          <span class="h-name">Dual-tank fuel shift on grade</span>
+          <span class="h-pct">0.2%</span>
+          <span class="h-ruling h-eliminated">ELIMINATED</span>
+        </div>
+        <div class="hypothesis">
+          <span class="h-name">Fuel burn during idle</span>
+          <span class="h-pct">0.1%</span>
+          <span class="h-ruling h-eliminated">ELIMINATED</span>
+        </div>
+        <div class="hypothesis">
+          <span class="h-name">GPS / telemetry error</span>
+          <span class="h-pct">0.3%</span>
+          <span class="h-ruling h-eliminated">ELIMINATED</span>
+        </div>
+        <div class="hypothesis" style="background:rgba(34,197,94,0.05);padding-left:12px;margin-left:-12px;border-radius:4px">
+          <span class="h-name" style="color:#fff;font-weight:600">Deliberate theft (siphoning)</span>
+          <span class="h-pct" style="color:#4ade80">97.0%</span>
+          <span class="h-ruling h-accepted">ACCEPTED</span>
+        </div>
+      </div>
+
+      <div class="narrative">
+        <h4>Plain-English Narrative</h4>
+        <p>On 15 May 2026 between 02:31 and 04:43 SAST, vehicle ZAN 123 GP lost 100.1 litres of diesel while stationary at the Plumtree Border Transit Zone in Botswana. The engine was confirmed OFF via CAN bus throughout the loss window. The loss rate of 106.3 litres/hour is consistent with deliberate siphoning, not natural evaporation, sensor noise, or thermal contraction. The vehicle was outside any safe-zone geo-fence. Estimated value of the loss: R 778 (Diesel 50ppm at R 7.77/litre). Confidence: 97.3%. Recommended action: proceed to formal disciplinary process; this report is suitable for CCMA arbitration, SAPS criminal charge, and insurance claim submission.</p>
+      </div>
+
+      <div class="audit-footer">
+        <div class="audit-footer-cell">
+          <div class="label">Fuel Lost</div>
+          <div class="value red">100.1 L</div>
+        </div>
+        <div class="audit-footer-cell">
+          <div class="label">Loss Value</div>
+          <div class="value red">R 778</div>
+        </div>
+        <div class="audit-footer-cell">
+          <div class="label">Confidence</div>
+          <div class="value green">97.3%</div>
+        </div>
+        <div class="audit-footer-cell">
+          <div class="label">Status</div>
+          <div class="value" style="color:#f87171">CONFIRMED</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="closeModal()">Back to Fleet</button>
+        <button class="btn btn-primary" onclick="openPdf()">Export for Finance →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- False Positive Modal -->
+<div class="modal-overlay" id="falsePosModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>📄 PhyLo Analysis — <span style="color:#facc15">JHB 882 GP</span> (Filtered Alert)</h2>
+      <button class="close" onclick="closeFalsePos()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:linear-gradient(135deg, rgba(245,158,11,0.12), rgba(0,200,255,0.05));border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:18px 22px;margin-bottom:22px">
+        <div style="color:#fbbf24;font-size:18px;font-weight:700;margin-bottom:4px">⊘ FALSE POSITIVE — Filtered, Not Theft</div>
+        <div style="color:#aaa;font-size:13px">Telematics flagged a 33L drop. PhyLo's physics model identified it as a dual-tank fuel shift on a 4.7° incline. No action required.</div>
+      </div>
+
+      <div class="audit-grid">
+        <div class="audit-block">
+          <h4>Reading That Triggered Alert</h4>
+          <div class="audit-row"><span class="label">Telematics Alert</span><span class="value red">⚠ 33L drop</span></div>
+          <div class="audit-row"><span class="label">Time</span><span class="value">2026-05-22 14:18</span></div>
+          <div class="audit-row"><span class="label">Location</span><span class="value">N4 near Sun City</span></div>
+          <div class="audit-row"><span class="label">Speed at Drop</span><span class="value">0 km/h (parked)</span></div>
+        </div>
+        <div class="audit-block">
+          <h4>PhyLo Physics Verdict</h4>
+          <div class="audit-row"><span class="label">Verdict</span><span class="value green">✓ Dual-tank shift, not theft</span></div>
+          <div class="audit-row"><span class="label">Tank Config</span><span class="value">Dual (400L + 300L)</span></div>
+          <div class="audit-row"><span class="label">Vehicle Angle</span><span class="value">4.7° (incline)</span></div>
+          <div class="audit-row"><span class="label">Tank 1 (Front)</span><span class="value">−33L (drained to rear)</span></div>
+          <div class="audit-row"><span class="label">Tank 2 (Rear)</span><span class="value">+33L (received from front)</span></div>
+          <div class="audit-row"><span class="label">Net Loss</span><span class="value green">0 L (no fuel actually lost)</span></div>
+        </div>
+      </div>
+
+      <div class="narrative">
+        <h4>Plain-English Narrative</h4>
+        <p>The 33L drop your telematics system flagged is a physics artifact, not theft. The vehicle is parked on a 4.7° incline on the N4 corridor near Sun City. Fuel from the front tank (slightly higher) has drained to the rear tank (slightly lower) until they equalize. The total fuel in the system is unchanged — your tank gauge just reads differently because the fuel is now in a different tank. This is one of the false positive patterns PhyLo filters out automatically. Your telematics vendor cannot distinguish this from a real theft — PhyLo can. This alert would have been a 30-second investigation before PhyLo. With PhyLo, it's filtered silently.</p>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="closeFalsePos()">Back to Fleet</button>
+        <button class="btn btn-primary" onclick="openPdf()">Export for Finance →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PDF Export View -->
+<div class="modal-overlay" id="pdfModal">
+  <div class="modal" style="background:transparent;border:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding:0 8px">
+      <div style="color:#fff;font-weight:600">Finance Export — PDF Preview</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-secondary" onclick="closePdf()">Back</button>
+        <button class="btn btn-primary" onclick="window.print()">Download as PDF</button>
+      </div>
+    </div>
+    <div class="pdf-view">
+      <h1>PHyLO MONTH-END FUEL AUDIT</h1>
+      <div class="pdf-sub">Pilot Partner Fleet Services (Pty) Ltd · Reporting Period: May 2026</div>
+
+      <div class="pdf-meta">
+        <div class="pdf-meta-cell">
+          <div class="label">Total Vehicles Audited</div>
+          <div class="value">60</div>
+        </div>
+        <div class="pdf-meta-cell">
+          <div class="label">Total Variance</div>
+          <div class="value">3,847 litres (R 78,440)</div>
+        </div>
+        <div class="pdf-meta-cell">
+          <div class="label">Anomalies Confirmed</div>
+          <div class="value">2 theft events (R 1,477)</div>
+        </div>
+      </div>
+
+      <h2>Vehicle-by-Vehicle Reconciliation</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Reg</th>
+            <th>Route</th>
+            <th>Driver</th>
+            <th>Variance (L)</th>
+            <th>Variance (R)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ZAN 123 GP</strong></td>
+            <td>Rustenburg → Harare</td>
+            <td>Thabo Mkhize</td>
+            <td>+100.1</td>
+            <td>+R 778</td>
+            <td><span class="flag-pill fp-flag">⚠ Confirmed Theft (97.3%)</span></td>
+          </tr>
+          <tr>
+            <td><strong>FPK 441 NW</strong></td>
+            <td>Rustenburg → Bulawayo</td>
+            <td>Mandla Ncube</td>
+            <td>+90.0</td>
+            <td>+R 699</td>
+            <td><span class="flag-pill fp-flag">⚠ Confirmed Theft (94.8%)</span></td>
+          </tr>
+          <tr>
+            <td>JHB 882 GP</td>
+            <td>N4 Corridor</td>
+            <td>Sipho Dlamini</td>
+            <td>+33.0</td>
+            <td>+R 256</td>
+            <td><span class="flag-pill fp-warn">⊘ Dual-Tank Shift (filtered)</span></td>
+          </tr>
+          <tr>
+            <td>DRG 567 GP</td>
+            <td>Johannesburg Local</td>
+            <td>Lebo Mahlangu</td>
+            <td>+5.0</td>
+            <td>+R 39</td>
+            <td><span class="flag-pill fp-clean">✓ Within tolerance</span></td>
+          </tr>
+          <tr>
+            <td>PTA 234 GP</td>
+            <td>Pretoria → Polokwane</td>
+            <td>Neo van Wyk</td>
+            <td>+8.0</td>
+            <td>+R 62</td>
+            <td><span class="flag-pill fp-clean">✓ Within tolerance</span></td>
+          </tr>
+          <tr>
+            <td>NLR 891 MP</td>
+            <td>Nelspruit → Maputo</td>
+            <td>Carlos Tembe</td>
+            <td>+8.0</td>
+            <td>+R 62</td>
+            <td><span class="flag-pill fp-clean">✓ Within tolerance</span></td>
+          </tr>
+          <tr>
+            <td>RBN 456 NW</td>
+            <td>Rustenburg → Mafikeng</td>
+            <td>Tshepo Modise</td>
+            <td>+6.0</td>
+            <td>+R 47</td>
+            <td><span class="flag-pill fp-clean">✓ Within tolerance</span></td>
+          </tr>
+          <tr>
+            <td>VDB 789 LP</td>
+            <td>Polokwane → Beitbridge</td>
+            <td>Fumani Mathebula</td>
+            <td>+12.0</td>
+            <td>+R 93</td>
+            <td><span class="flag-pill fp-clean">✓ Within tolerance</span></td>
+          </tr>
+          <tr>
+            <td>BCT 654 GP</td>
+            <td>JHB → Durban</td>
+            <td>Jason Reddy</td>
+            <td>+8.0</td>
+            <td>+R 62</td>
+            <td><span class="flag-pill fp-clean">✓ Within tolerance</span></td>
+          </tr>
+          <tr class="totals-row">
+            <td colspan="3"><strong>TOTAL — 60 VEHICLES (this report shows 9)</strong></td>
+            <td><strong>+3,847 L</strong></td>
+            <td><strong>+R 78,440</strong></td>
+            <td><strong>57 clean · 2 theft · 1 filtered</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Recommended Actions</h2>
+      <p style="font-size:13px;color:#222;line-height:1.7">
+      <strong>1. Disciplinary:</strong> Initiate formal disciplinary process for Thabo Mkhize and Mandla Ncube. Attached audit reports are suitable evidence for CCMA arbitration.<br><br>
+      <strong>2. Insurance:</strong> File insurance claim for R 1,477 in confirmed theft losses. Reports meet RTIC data standards.<br><br>
+      <strong>3. Process:</strong> Review cross-border dwell procedures for Rustenburg → Harare route. Consider escorts or geo-fenced rest areas for overnight parking.<br><br>
+      <strong>4. Monitoring:</strong> Continue PhyLo monitoring. Re-run month-end audit on June 30, 2026 to validate that disciplinary action and process changes reduce confirmed theft events.
+      </p>
+
+      <div class="legal-note">
+        <p><strong>Important:</strong> This report is generated by PhyLo Engine v2.3.1 (Confidence Model v1.2). Confidence scores represent statistical assessments based on sensor data, physics-based modeling, and multi-source evidence triangulation. A 97.3% confidence score does not constitute legal proof of guilt under South African law. This report is intended to support, not replace, investigator judgment. For legal proceedings, consult a qualified transport law practitioner. Right to independent verification retained by fleet operator and driver.</p>
+      </div>
+
+      <div class="footer">
+        Generated by PhyLo Engine v2.3.1 · Document ID: PHYLO-AUDIT-2026-05-FINAL-001 · Generated: 2026-05-31T10:50:00 SAST<br>
+        Pilot Partner Fleet Services (Pty) Ltd · Transport Operating Licence: TOL-SA-2024-0084739
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openTheft() { document.getElementById('auditModal').classList.add('active'); }
+function closeModal() { document.getElementById('auditModal').classList.remove('active'); }
+function openFalsePos() { document.getElementById('falsePosModal').classList.add('active'); }
+function closeFalsePos() { document.getElementById('falsePosModal').classList.remove('active'); }
+function openPdf() { document.getElementById('pdfModal').classList.add('active'); }
+function closePdf() { document.getElementById('pdfModal').classList.remove('active'); }
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeFalsePos(); closePdf(); } });
+</script>
+</body>
+</html>
