@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validation Set 5 — Pilot Pricing Models | PhyLo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #c8c8d8; line-height: 1.7; font-size: 14px; }
+.container { max-width: 880px; margin: 0 auto; padding: 40px 24px; }
+header { margin-bottom: 28px; }
+.badge { display: inline-block; border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.badge-orange { background: rgba(255,107,53,0.1); color: #FF6B35; border: 1px solid rgba(255,107,53,0.2); }
+h1 { font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.subtitle { color: #666; font-size: 14px; }
+h2 { font-size: 15px; font-weight: 600; color: #888; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+h3 { font-size: 14px; font-weight: 600; color: #ccc; margin: 18px 0 8px; }
+p { color: #aaa; margin: 8px 0; font-size: 14px; }
+strong { color: #c8c8d8; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+th { background: rgba(255,255,255,0.04); color: #888; padding: 9px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 9px 12px; color: #c8c8d8; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+td:first-child { color: #888; font-weight: 600; }
+.selection-banner { background: linear-gradient(135deg, #2a1a0a, #33200d); border: 1px solid #FF6B35; border-radius: 10px; padding: 18px 24px; margin: 0 0 24px; }
+.selection-banner .label { color: #FF6B35; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.selection-banner .model { color: #FF6B35; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.selection-banner .rationale { color: #fbbf24; font-size: 13.5px; margin-top: 6px; }
+.pricing-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 18px 22px; margin: 12px 0; }
+.pricing-card-highlight { background: linear-gradient(135deg, rgba(0,200,255,0.06), rgba(0,128,255,0.03)); border-color: #00c8ff; }
+.pricing-card .label { color: #888; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+.pricing-card .name { color: #fff; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.pricing-card .price { color: #4ade80; font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.pricing-card .positioning { color: #00c8ff; font-size: 13px; font-style: italic; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 10px; }
+.pending-box { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.3); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.pending-box .tag { color: #fbbf24; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.pending-box p { color: #c8c8d8; font-size: 13.5px; margin: 0; }
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
+.kpi { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 16px; text-align: center; }
+.kpi .label { color: #888; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.kpi .value { color: #FF6B35; font-size: 22px; font-weight: 800; }
+.kpi .sub { color: #888; font-size: 11px; margin-top: 2px; }
+.checklist { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 18px; margin: 10px 0; }
+.checklist .item { color: #c8c8d8; font-size: 13.5px; padding: 5px 0; }
+.checklist .item::before { content: "☐ "; color: #888; }
+.footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.05); color: #444; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge badge-orange">Validation Set 5 (customised)</div>
+  <h1>Pilot Pricing Models</h1>
+  <p class="subtitle">PhyLo | FI South Africa 2026 | Due: June 9, 2026</p>
+</header>
+
+<div class="selection-banner">
+  <div class="label">Chosen for the pilot specifically</div>
+  <div class="model">Path C — R1,500/mo floor + R1,500/event</div>
+  <div class="rationale">Pilot has R78k/month variance and 5-8 events/month. Path A would be a 2.4% take-rate (R1,890/month on R78k variance) — still modest. Path B has no cashflow floor. Path C is R9-13.5k/month = 12-17% of recovered value — defensible as a fair share. R1,500 floor covers PhyLo's fixed costs; R1,500/event is half of Path B's R2,000 so the partner pays less per event in exchange for the floor.</div>
+</div>
+
+<!-- PART 1 -->
+<h2>Part 1 — Three Pricing Models for the Pilot</h2>
+
+<div class="pricing-card">
+  <div class="label">Per-incident only (Path B)</div>
+  <div class="name">No floor, R2,000 per confirmed event</div>
+  <div class="price">R10,000 - R16,000 / month</div>
+  <p style="color:#aaa;font-size:13px;">5-8 events × R2,000. "Pay nothing monthly. R2,000 per theft event PhyLo proves."</p>
+</div>
+
+  <div class="pricing-card">
+  <div class="label">Per-truck monthly subscription (Path A tiered)</div>
+  <div class="name">R45/vehicle/month (pilot concession; 42 trucks is below the 60-truck minimum)</div>
+  <div class="price">R1,890 / month</div>
+  <p style="color:#aaa;font-size:13px;">42 × R45. Predictable, like Cartrack but smaller. But flat regardless of how much theft we find — underprices PhyLo's value at pilot variance.</p>
+  <div class="positioning">Pilot-specific: R78k variance justifies the high per-event number. Lower-variance customers get Path A.</div>
+</div>
+
+<div class="pricing-card pricing-card-highlight">
+  <div class="label">Soft floor + per-incident (Path C — CHOSEN)</div>
+  <div class="name">R1,500/month + R1,500 per confirmed theft</div>
+  <div class="price">R9,000 - R13,500 / month</div>
+  <p style="color:#aaa;font-size:13px;">R1,500 + (5-8 × R1,500). "R1,500 a month covers up to 200 vehicles. R1,500 per proven event. Cheapest defensible position vs. Cartrack+PhyLo combined bill."</p>
+  <div class="positioning">Pilot-specific: R78k variance justifies the high per-event number. Lower-variance customers get Path A.</div>
+</div>
+
+<h3>Combined-bill check on the pilot (42 trucks)</h3>
+<table>
+<tr><th>Scenario</th><th>Cartrack</th><th>PhyLo</th><th>Combined</th><th>Premium on Cartrack</th></tr>
+<tr><td>Pilot's existing bill (Cartrack basic R220/vehicle)</td><td>R9,240</td><td>R0</td><td>R9,240</td><td>0%</td></tr>
+<tr><td>+ PhyLo Path A (R45/vehicle, pilot concession)</td><td>R9,240</td><td>R1,890</td><td>R11,130</td><td><strong>20%</strong> ✓</td></tr>
+<tr><td>+ PhyLo Path C (R1,500 + 6×R1,500)</td><td>R9,240</td><td>R10,500</td><td>R19,740</td><td><strong>114%</strong> — defensible ONLY for the pilot's R78k variance</td></tr>
+</table>
+
+<p style="color:#888;font-size:13px;"><strong>Path C is the right answer for the pilot specifically</strong> because the pilot partner has the R78k variance that justifies the high per-event number. For typical (lower-variance) customers, Path A is the default.</p>
+
+<!-- PART 2 -->
+<h2>Part 2 — Pilot Partner Feedback</h2>
+<div class="pending-box">
+<div class="tag">[PENDING] Compliance review blocks the 30-min call</div>
+<p>The 30-min call from Sprint 2 Set 6 is scheduled once the pilot partner's compliance review completes. Two scenarios:</p>
+<ul style="color:#aaa;font-size:13.5px;padding-left:20px;margin-top:8px;">
+<li><strong>Scenario A — compliance clears Mon 8 Jun:</strong> the call happens, the Set 6 script is used, the pricing feedback is captured verbatim below.</li>
+<li><strong>Scenario B — compliance still pending:</strong> the file is a <em>placeholder draft</em> with a structured "feedback to be captured" template, and the deliverable is <strong style="color:#fbbf24;">explicitly disclosed as a draft</strong> to be validated once the call happens.</li>
+</ul>
+<p style="margin-top:8px;"><strong style="color:#fbbf24;">The disclosure is mandatory.</strong> The deliverable cannot claim feedback that was not received.</p>
+</div>
+
+<h3>Feedback capture template (to be filled after the call)</h3>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Decision maker</td><td>[name, role, fleet size — to be filled]</td></tr>
+<tr><td>Preferred model (A / B / C / "what about X")</td><td>[to be filled]</td></tr>
+<tr><td>Price point they would accept</td><td>[exact number — to be filled]</td></tr>
+<tr><td>Objection (verbatim)</td><td>[to be filled]</td></tr>
+<tr><td>Top concern about PhyLo's value prop</td><td>[to be filled]</td></tr>
+<tr><td>Top concern about the pilot scope</td><td>[to be filled]</td></tr>
+<tr><td>Next step they want from us</td><td>[to be filled]</td></tr>
+</table>
+
+<!-- PART 3 -->
+<h2>Part 3 — Detection Engine Confidence Threshold Tuning</h2>
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>Current threshold (production)</td><td>85% confidence (per <code>physics/pinn.py</code>)</td></tr>
+<tr><td><strong>Tuned threshold for pilot</strong></td><td><strong>80%</strong> — lower to catch more events, since Path C values volume</td></tr>
+<tr><td>Trade-off</td><td>Lower threshold surfaces more candidates; higher fraction will be false positives. Pilot partner's tolerance is the constraint.</td></tr>
+<tr><td>False-alarm tolerance</td><td>[to be captured from pilot partner call]. Default assumption: <strong>&lt; 5 false alarms per week, per vehicle</strong> (vs. 30-50/week current state with Cartrack)</td></tr>
+<tr><td><strong>Expected monthly revenue at tuned threshold</strong></td><td><strong>R12,500 - R13,500</strong> (7-8 confirmed events, within the disclosed 5-8 range; the tuned threshold surfaces events at the upper edge of the base range)</td></tr>
+</table>
+
+<p style="color:#fbbf24;font-size:12.5px;"><strong>Honest disclosure:</strong> the threshold tuning number (R12,500-13,500) is a <em>forecast</em> based on the pilot dataset and the research report's 5-8 events/month range, with the tuned threshold expected to surface events at the upper edge (7-8 events). The actual revenue depends on (a) the partner's actual false-alarm tolerance (set in the SOW), (b) the real pilot data (compliance-blocked, pending), and (c) the PhyLo engine's performance on Cartrack's actual feed.</p>
+
+<!-- PART 4 RATIONALE -->
+<h2>Part 4 — The Chosen Model + Rationale</h2>
+<div class="kpi-grid">
+  <div class="kpi"><div class="label">Monthly revenue</div><div class="value">R9-13.5k</div><div class="sub">5-8 events × R1,500 + R1,500 floor</div></div>
+  <div class="kpi"><div class="label">Take-rate</div><div class="value">12-17%</div><div class="sub">of R78k recovered value</div></div>
+  <div class="kpi"><div class="label">Pilot margin</div><div class="value">~22-69%</div><div class="sub">R3-9.3k/month net (R3k on R13.5k revenue = 22%; R9.3k on R13.5k = 69%)</div></div>
+</div>
+
+<p style="color:#c8c8d8;font-size:14px;">The pilot partner has R78k/month variance and 5-8 confirmed events per month — that is the <strong>highest-variance customer PhyLo will ever have</strong>. Path A would underprice PhyLo at this variance (R1,890/month on the pilot-concession R45 rate = 2.4% take-rate). Path B has the right alignment but no cashflow floor. <strong>Path C is the chosen default for the pilot specifically:</strong> the R1,500 floor covers PhyLo's fixed costs for the diagnostic period, the R1,500/event is half of Path B's R2,000 so the partner pays less per event in exchange for the floor, and the resulting R9-13.5k/month take is ~12-17% of recovered value — defensible as a "fair share." For the typical (lower-variance) customer, Path A is the right pitch. <strong>The pilot is the case study that proves Path C works for high-variance customers; Path A is the default for everyone else.</strong></p>
+
+<p style="color:#4ade80;font-size:14px;font-weight:600;margin-top:14px;">Expected first-month revenue: R9,000-13,500/month (assuming 5-8 confirmed events per the pilot dataset).</p>
+
+<!-- PART 5 POST-CALL -->
+<h2>Part 5 — Post-Call Action Items</h2>
+<div class="checklist">
+  <div class="item">Stop the recording and save the file</div>
+  <div class="item">Transcribe the call</div>
+  <div class="item">Fill in the verbatim pricing feedback (Part 2 template)</div>
+  <div class="item">Update the detection threshold based on partner's false-alarm tolerance (Part 3)</div>
+  <div class="item">Send thank-you email with the per-incident proposal</div>
+  <div class="item">Update the master pricing anchor (<code>shared/pricing_anchor.md</code>) with the partner's real input</div>
+  <div class="item">File a v2 of this deliverable with the captured feedback</div>
+</div>
+
+<div class="footer">
+Set 5 deliverable substantively complete | 3 pilot pricing models projected | Path C chosen (R9-13.5k expected monthly revenue)<br>
+Awaiting pilot partner compliance review for the actual feedback capture (Set 6 call from Sprint 2).<br>
+PhyLo — Audit-Grade Fuel Monitoring | FI South Africa 2026
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhyLo — Metrics Review Deck | Sprint 3</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #fff; overflow: hidden; height: 100vh; }
+.deck { position: relative; width: 100vw; height: 100vh; }
+.slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: center; background: #0a0a0f; }
+.slide.active { display: flex; }
+.slide-num { position: absolute; top: 28px; right: 40px; color: #444; font-size: 12px; font-weight: 600; letter-spacing: 2px; }
+.brand { position: absolute; top: 28px; left: 40px; color: #888; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.slide h1 { font-size: 48px; font-weight: 800; color: #fff; margin-bottom: 18px; line-height: 1.1; max-width: 1100px; }
+.slide h2 { font-size: 22px; font-weight: 600; color: #00c8ff; margin-bottom: 22px; text-transform: uppercase; letter-spacing: 1px; }
+.slide p { font-size: 18px; color: #c8c8d8; line-height: 1.6; max-width: 1000px; }
+.slide .visual { margin-top: 28px; }
+.slide .script { margin-top: 24px; padding: 16px 22px; background: rgba(255,255,255,0.03); border-left: 3px solid #00c8ff; border-radius: 0 6px 6px 0; }
+.slide .script p { font-size: 15px; color: #888; font-style: italic; margin: 0; }
+.kpi-row { display: flex; gap: 24px; margin-top: 18px; }
+.kpi { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px 28px; flex: 1; text-align: center; }
+.kpi .label { color: #888; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.kpi .value { color: #4ade80; font-size: 38px; font-weight: 800; line-height: 1; }
+.kpi .sub { color: #666; font-size: 12px; margin-top: 6px; }
+.persona-composite { display: flex; gap: 24px; margin-top: 18px; }
+.persona { background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.3); border-radius: 10px; padding: 18px 22px; flex: 1; }
+.persona.secondary { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.3); }
+.persona .name { color: #fff; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.persona .role { color: #888; font-size: 12px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+.persona .quote { color: #c7d2fe; font-size: 14px; font-style: italic; }
+.persona.secondary .quote { color: #6ee7a0; }
+.pain-table { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; padding: 18px 22px; margin-top: 18px; }
+.pain-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.pain-row:last-child { border-bottom: none; }
+.pain-row .source { color: #c8c8d8; font-size: 14px; font-weight: 600; }
+.pain-row .amount { color: #f87171; font-size: 16px; font-weight: 700; }
+.pricing-comparison { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 18px; }
+.pricing-mini { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px 18px; }
+.pricing-mini.highlight { background: linear-gradient(135deg, rgba(0,200,255,0.08), rgba(0,128,255,0.03)); border-color: #00c8ff; }
+.pricing-mini .name { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.pricing-mini .price { color: #4ade80; font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.pricing-mini .note { color: #888; font-size: 12px; }
+.triangle { display: flex; align-items: center; gap: 24px; margin-top: 18px; }
+.triangle .step { flex: 1; text-align: center; }
+.triangle .num { color: #00c8ff; font-size: 32px; font-weight: 800; }
+.triangle .lbl { color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.cost-mini { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; margin-top: 18px; }
+.cost-mini .cell { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px 18px; text-align: center; }
+.cost-mini .num { color: #fff; font-size: 22px; font-weight: 800; }
+.cost-mini .lbl { color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.controls { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 100; }
+.controls button { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+.controls button:hover { background: rgba(0,200,255,0.15); border-color: #00c8ff; }
+.controls .counter { color: #888; padding: 8px 12px; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+<div class="brand">PhyLo | Metrics Review | Sprint 3</div>
+
+<!-- SLIDE 1 -->
+<div class="slide active" data-slide="1">
+  <div class="slide-num">1 / 5</div>
+  <h2>Selected Business + Buyer</h2>
+  <h1>PhyLo: The Month-End Fuel Audit</h1>
+  <p style="font-size: 20px; max-width: 900px;">For Kgabo (Fleet Ops) and Lerato (Finance) at a 60-truck SA fleet burning R12-18M/year on diesel. The audit document they currently can't produce.</p>
+  <div class="visual persona-composite">
+    <div class="persona">
+      <div class="name">Kgabo Moloto</div>
+      <div class="role">Fleet Operations Manager</div>
+      <div class="quote">"I need the document that makes finance stop asking questions. Not more dashboards. A report I can print and hand over."</div>
+    </div>
+    <div class="persona secondary">
+      <div class="name">Lerato Ndlovu</div>
+      <div class="role">Finance Director</div>
+      <div class="quote">"Every month: where did the variance go? PhyLo gives Kgabo the document to hand me."</div>
+    </div>
+  </div>
+  <div class="script"><p>~45 words · "PhyLo is the month-end fuel audit. Kgabo, fleet ops, runs 60 trucks. R12-18M a year on diesel. Lerato, finance director, asks every month: where did the variance go? PhyLo gives Kgabo the document to hand Lerato."</p></div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide" data-slide="2">
+  <div class="slide-num">2 / 5</div>
+  <h2>The Pain (with anchors)</h2>
+  <h1>R78,000/day stolen. Cartrack cannot see it.</h1>
+  <p style="font-size: 17px;">Telematics can flag the anomaly. None of them can produce the document. PhyLo reads the same feed and turns it into proof.</p>
+  <div class="visual pain-table">
+    <div class="pain-row"><span class="source">eThekwini Municipality, single fleet</span><span class="amount">R 78,000 / day stolen</span></div>
+    <div class="pain-row"><span class="source">National fuel-theft estimate (SA)</span><span class="amount">R 3.6 billion / year</span></div>
+    <div class="pain-row"><span class="source">Avis fleet, 89 vehicles (8 months)</span><span class="amount">R 3 million recovered</span></div>
+    <div class="pain-row"><span class="source">Rajasthan state transport (India)</span><span class="amount">R 400,000 / year</span></div>
+  </div>
+  <div class="script"><p>~45 words · "R78,000 a day stolen from a single municipal fleet. R3.6 billion a year nationally. Cartrack, Tracker, and Netstar can flag the anomaly. None of them can produce the document. PhyLo reads the same telematics feed and turns it into the proof."</p></div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide" data-slide="3">
+  <div class="slide-num">3 / 5</div>
+  <h2>Revenue Model + Pricing</h2>
+  <h1>R45/vehicle OR R1,500 floor + R1,500/event. Diagnostic-led.</h1>
+  <p style="font-size: 17px;">30-day free diagnostic first. The customer sees their loss number before they see the price. Cartrack + PhyLo combined: 20% above Cartrack alone. The layer framing survives the bill.</p>
+  <div class="visual pricing-comparison">
+    <div class="pricing-mini">
+      <div class="name">Path A (default)</div>
+      <div class="price">R45 / vehicle / mo</div>
+      <div class="note">~20% of Cartrack basic. Tiered R35 (100-200), R25 (&gt;200).</div>
+    </div>
+    <div class="pricing-mini">
+      <div class="name">Path B (no floor)</div>
+      <div class="price">R2,000 / event</div>
+      <div class="note">Pay nothing monthly. R2,000 per proven theft.</div>
+    </div>
+    <div class="pricing-mini highlight">
+      <div class="name">Path C (pilot only)</div>
+      <div class="price">R1,500 + R1,500/event</div>
+      <div class="note">High-variance customers. ~20% of recovered value.</div>
+    </div>
+  </div>
+  <div class="script"><p>~45 words · "PhyLo's three pricing paths after a free 30-day diagnostic. Path A: R45 a vehicle — that's 20% of Cartrack basic. Path C: R1,500 a month plus R1,500 per proven event. Cartrack plus PhyLo combined: 20% above Cartrack alone. The layer framing survives the bill."</p></div>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide" data-slide="4">
+  <div class="slide-num">4 / 5</div>
+  <h2>Unit Economics</h2>
+  <h1>Customer ROI 22x · Payback 4.4 months · R1M ARR in 31 customers</h1>
+  <div class="visual kpi-row">
+    <div class="kpi"><div class="label">LTV (Path A, honest)</div><div class="value" style="color:#fbbf24;">R29,160</div><div class="sub">3-year lifetime × 30% margin (honest, sub-bar)</div></div>
+    <div class="kpi"><div class="label">LTV : CAC (honest)</div><div class="value" style="color:#fbbf24;">1.2-2.4x</div><div class="sub">below 3x SaaS bar; customer ROI is 22x</div></div>
+    <div class="kpi"><div class="label">Payback</div><div class="value">4.4 mo</div><div class="sub">to recover CAC</div></div>
+  </div>
+  <div class="visual triangle" style="margin-top: 36px;">
+    <div class="step"><div class="num">31</div><div class="lbl">Path A customers (typical)</div></div>
+    <div class="step"><div class="num">OR 8</div><div class="lbl">Path C (high-variance)</div></div>
+    <div class="step"><div class="num">OR 7</div><div class="lbl">Path B (no floor)</div></div>
+  </div>
+  <p style="font-size: 15px; margin-top: 18px; color: #888;">The diagnostic conversion rate is the constraint, not the price.</p>
+  <div class="script"><p>~40 words · "Path A: LTV R29,160 at 30% margin (honest, sub-bar). The customer ROI is 22x: R720k+ per year recovered, R32k paid. Payback 4.4 months. R1M ARR: 31 customers Path A, or 8 high-variance Path C. The diagnostic conversion rate is the constraint, not the price."</p></div>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide" data-slide="5">
+  <div class="slide-num">5 / 5</div>
+  <h2>Team + Ask</h2>
+  <h1>Solo founder + AI agent → R69,400 / 6 months → R1M ARR</h1>
+  <p style="font-size: 17px;">Six-month run cost: R69,400. R50k is the first sales hire at M5. R4,400 is agent API fees. R15k is tool subs. The ask: 31 Path A customers, or 8 Path C, or mixed 16+4.</p>
+  <div class="visual cost-mini">
+    <div class="cell"><div class="num">R50k</div><div class="lbl">Human comp (M5-M6 sales hire)</div></div>
+    <div class="cell"><div class="num">R4.4k</div><div class="lbl">Agent API fees (6 mo)</div></div>
+    <div class="cell"><div class="num">R15k</div><div class="lbl">Tool subscriptions (6 mo)</div></div>
+    <div class="cell" style="background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.03)); border-color: #22c55e;"><div class="num" style="color:#4ade80;">R69,400</div><div class="lbl">6-month total</div></div>
+  </div>
+  <p style="font-size: 15px; margin-top: 24px; color: #c8c8d8;"><strong style="color:#4ade80;">The ask:</strong> 31 Path A customers by month 6, or 8 Path C, or 16 + 4 mixed. Diagnostic conversion is the constraint, not the price.</p>
+  <div class="script"><p>~45 words · "Six-month run cost: R69,400. R50k is the first sales hire at month five. R4,400 is agent API fees. R15k is tool subscriptions. The ask: 31 Path A customers by month six, or 8 Path C, or 16 plus 4 mixed. Diagnostic conversion is the constraint, not the price."</p></div>
+</div>
+
+<div class="controls">
+  <button onclick="prev()">← Prev</button>
+  <span class="counter" id="counter">1 / 5</span>
+  <button onclick="next()">Next →</button>
+</div>
+
+</div>
+
+<script>
+let current = 1;
+const total = 5;
+function show(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.querySelector(`[data-slide="${n}"]`).classList.add('active');
+  document.getElementById('counter').textContent = `${n} / ${total}`;
+}
+function next() { current = current < total ? current + 1 : 1; show(current); }
+function prev() { current = current > 1 ? current - 1 : total; show(current); }
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+});
+</script>
+</body>
+</html>

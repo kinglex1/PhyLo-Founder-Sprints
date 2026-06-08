@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validation Set 3 — Team | PhyLo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #c8c8d8; line-height: 1.7; font-size: 14px; }
+.container { max-width: 880px; margin: 0 auto; padding: 40px 24px; }
+header { margin-bottom: 28px; }
+.badge { display: inline-block; border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.badge-indigo { background: rgba(99,102,241,0.1); color: #818cf8; border: 1px solid rgba(99,102,241,0.2); }
+h1 { font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.subtitle { color: #666; font-size: 14px; }
+h2 { font-size: 15px; font-weight: 600; color: #888; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+h3 { font-size: 14px; font-weight: 600; color: #ccc; margin: 18px 0 8px; }
+p { color: #aaa; margin: 8px 0; font-size: 14px; }
+strong { color: #c8c8d8; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+th { background: rgba(255,255,255,0.04); color: #888; padding: 9px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 9px 12px; color: #c8c8d8; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+td:first-child { color: #888; font-weight: 600; }
+.selection-banner { background: linear-gradient(135deg, #1a1a3a, #0d0d2a); border: 1px solid #818cf8; border-radius: 10px; padding: 18px 24px; margin: 0 0 24px; }
+.selection-banner .label { color: #818cf8; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.selection-banner .role { color: #c7d2fe; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.selection-banner .rationale { color: #c7d2fe; font-size: 13.5px; margin-top: 6px; }
+.role-pill { display: inline-block; border-radius: 4px; padding: 2px 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; }
+.pill-human { background: rgba(255,107,53,0.15); color: #FF6B35; }
+.pill-agent { background: rgba(0,200,255,0.15); color: #00c8ff; }
+.pill-combined { background: rgba(168,85,247,0.15); color: #c084fc; }
+.cost-table th { text-align: right; }
+.cost-table td { text-align: right; }
+.cost-table td:first-child { text-align: left; }
+.cost-table .total-row { background: rgba(34,197,94,0.06); font-weight: 700; }
+.cost-table .total-row td { color: #4ade80; }
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
+.kpi { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 16px; text-align: center; }
+.kpi .label { color: #888; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.kpi .value { color: #fff; font-size: 22px; font-weight: 800; }
+.kpi .sub { color: #888; font-size: 11px; margin-top: 2px; }
+.footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.05); color: #444; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge badge-indigo">Validation Set 3</div>
+  <h1>Team — Human + Agent Roles</h1>
+  <p class="subtitle">PhyLo | FI South Africa 2026 | Due: June 9, 2026</p>
+</header>
+
+<div class="selection-banner">
+  <div class="label">Top Hire (the constraint that breaks the next 6 months)</div>
+  <div class="role">Sales Lead / Founding Account Executive</div>
+  <div class="rationale">R25-35k/month base + 5% closed ARR. Why this role: 15 customer interviews + 5 customer sessions in 6 weeks is a one-person ceiling. Qhayiya cannot do customer dev, pilot management, AND engineering once the e-hailing gig starts June 2026. The sales hire in M5 unlocks the unit-economics-positive path.</div>
+</div>
+
+<!-- PART 1 ROLES -->
+<h2>Part 1 — Every Role Required</h2>
+<table>
+<tr><th>#</th><th>Role</th><th>Type</th><th>Why</th><th>Agent skills</th></tr>
+<tr><td>1</td><td>Sales / customer development</td><td><span class="role-pill pill-combined">Combined</span></td><td>15 interviews + 5 sessions is human work; scheduling, prep, follow-up are agent work</td><td>Web search, LinkedIn automation, audio-transcription, doc generation</td></tr>
+<tr><td>2</td><td>Detection engine maintenance</td><td><span class="role-pill pill-combined">Combined</span></td><td>PINN retraining is human; CI/CD and bug triage are agent</td><td>Code execution, TDD, deployment (GitHub Actions), model retraining</td></tr>
+<tr><td>3</td><td>Customer onboarding</td><td><span class="role-pill pill-combined">Combined</span></td><td>First 3 are human (edge cases define the product); rest can be SOP'd</td><td>Document generation, video scripting, Loom upload, calendar automation</td></tr>
+<tr><td>4</td><td>Customer support / dispute packs</td><td><span class="role-pill pill-combined">Combined</span></td><td>Dispute packs are legal-adjacent; need human sign-off</td><td>PDF generation, document templating, evidence-pack assembly</td></tr>
+<tr><td>5</td><td>Marketing / content</td><td><span class="role-pill pill-agent">Agent-first</span></td><td>Solo founder's voice is the moat; agent produces drafts</td><td>Content writing, image generation, scheduling (Buffer / LinkedIn API)</td></tr>
+<tr><td>6</td><td>Finance / accounting</td><td><span class="role-pill pill-human">Human</span></td><td>Tax compliance is non-negotiable</td><td>n/a (bookkeeper uses Xero / Sage)</td></tr>
+<tr><td>7</td><td>Compliance / legal</td><td><span class="role-pill pill-human">Human</span></td><td>SOW + dispute-pack liability is real</td><td>n/a (attorney + SaaS contract templates)</td></tr>
+<tr><td>8</td><td>Pilot partner account mgmt</td><td><span class="role-pill pill-human">Human</span></td><td>The pilot partner is the proof point; relationship is the product</td><td>n/a</td></tr>
+<tr><td>9</td><td>Connector maintenance (6 providers)</td><td><span class="role-pill pill-combined">Combined</span></td><td>Connector health is 24/7; humans can't watch all 6 dashboards</td><td>API monitoring, code execution, alert routing</td></tr>
+<tr><td>10</td><td>Investor relations / fundraising</td><td><span class="role-pill pill-human">Human</span></td><td>R15M seed raise needs a founder's voice, not an agent's</td><td>Deck generation (assisted), financial model maintenance</td></tr>
+</table>
+
+<p style="color:#888;font-size:13px;"><strong>Summary:</strong> 10 roles total. 4 are human-only. 6 are combined human + agent. The top hire is a combined human role (sales), because sales is a relationship + iteration loop, not a one-shot task.</p>
+
+<!-- PART 2 TOP HIRE -->
+<h2>Part 2 — Top Hire Detail</h2>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Role title</td><td><strong>Sales Lead / Founding Account Executive</strong></td></tr>
+<tr><td>Skills required</td><td>SA B2B SaaS sales experience (fleet/logistics/industrial buyers ideal); R50-200k ACV deals; 1-page proposal without legal review; RFP response for parastatals; cold-call resilience (30 calls/day in M1-3)</td></tr>
+<tr><td>Compensation</td><td><strong>R25,000-35,000/month base + 5% of closed ARR for year 1 (uncapped)</strong></td></tr>
+<tr><td>At R1M ARR scenario</td><td>5% commission on R1M = <strong>R50,000</strong> — doubles the base</td></tr>
+<tr><td>Equity</td><td>None in year 1 (Qhayiya is keeping founder equity for the eventual CTO hire)</td></tr>
+<tr><td>Probation</td><td>3 months, then permanent</td></tr>
+<tr><td>Three known candidates (Candidate 1)</td><td><em>[TO BE FILLED — name, current role, why a fit, how I know them]</em></td></tr>
+<tr><td>Three known candidates (Candidate 2)</td><td><em>[TO BE FILLED — name, current role, why a fit, how I know them]</em></td></tr>
+<tr><td>Three known candidates (Candidate 3)</td><td><em>[TO BE FILLED — name, current role, why a fit, how I know them]</em></td></tr>
+</table>
+
+<!-- PART 3 6-MONTH COST -->
+<h2>Part 3 — 6-Month Cost Estimate</h2>
+
+<div class="kpi-grid">
+  <div class="kpi"><div class="label">Human comp</div><div class="value">R50,000</div><div class="sub">sales hire M5-M6</div></div>
+  <div class="kpi"><div class="label">Agent APIs</div><div class="value">R4,400</div><div class="sub">M1 R500 → M6 R1,200</div></div>
+  <div class="kpi"><div class="label">Tool subs</div><div class="value">R15,000</div><div class="sub">M1 R2,000 → M6 R3,500</div></div>
+  <div class="kpi"><div class="label">6-mo total</div><div class="value" style="color:#4ade80;">R69,400</div><div class="sub">July 2026 → Dec 2026</div></div>
+</div>
+
+<table class="cost-table">
+<tr><th>Month</th><th>Human comp</th><th>Agent API fees</th><th>Tool subs</th><th>Total</th></tr>
+<tr><td>M1 (Jul 2026)</td><td>R0 (Qhayiya only)</td><td>R500</td><td>R2,000</td><td>R2,500</td></tr>
+<tr><td>M2 (Aug 2026)</td><td>R0</td><td>R500</td><td>R2,000</td><td>R2,500</td></tr>
+<tr><td>M3 (Sep 2026)</td><td>R0</td><td>R500</td><td>R2,000</td><td>R2,500</td></tr>
+<tr><td>M4 (Oct 2026)</td><td>R0</td><td>R700</td><td>R2,500</td><td>R3,200</td></tr>
+<tr><td>M5 (Nov 2026)</td><td>R25,000 (first sales hire month)</td><td>R1,000</td><td>R3,000</td><td>R29,000</td></tr>
+<tr><td>M6 (Dec 2026)</td><td>R25,000</td><td>R1,200</td><td>R3,500</td><td>R29,700</td></tr>
+<tr class="total-row"><td><strong>6-month total</strong></td><td><strong>R50,000</strong></td><td><strong>R4,400</strong></td><td><strong>R15,000</strong></td><td><strong>R69,400</strong></td></tr>
+</table>
+
+<h3>Cost line item assumptions</h3>
+<ul style="color:#aaa;font-size:13.5px;padding-left:20px;">
+<li><strong>Human comp:</strong> M1-M4 Qhayiya only (no salary — founder doesn't pay himself in year 1). M5-M6 first sales hire at R25k/month base. Commission is paid in arrears (after M7+ when first deals close), so M5-M6 commissions are not in this window.</li>
+<li><strong>Agent API fees:</strong> M1-M3 R500/month = ~5M tokens at LLM-as-judge, transcript synthesis, draft generation, code review. M4 +40% as sales-prep workload scales. M5-M6 +60-80% with the sales hire's prep + onboarding.</li>
+<li><strong>Tool subscriptions:</strong> GitHub Pro R100, Sentry R500, Hetzner VPS R500, Vercel/Render R200, LinkedIn Premium R1,000, Calendly Pro R200, Loom Business R300, Notion R100, domain + email R200 = base R3,100 from M5. M1-M4 lighter (no LinkedIn Premium, smaller VPS) = R2,000-2,500. M5-M6 full stack + CRM (HubSpot free → R800/month at M6) + Zoom R200/month.</li>
+</ul>
+
+<!-- PART 4 DECISION FRAMEWORK -->
+<h2>Part 4 — Human vs Agent Decision Framework</h2>
+<div class="selection-banner" style="background: linear-gradient(135deg, rgba(0,200,255,0.06), rgba(0,128,255,0.03)); border-color: #00c8ff;">
+<div class="label" style="color:#00c8ff;">For every M6+ role, ask:</div>
+<ol style="color:#c8c8d8;font-size:13.5px;padding-left:20px;margin-top:8px;">
+<li><strong>One-off, low-volume, relationship-driven?</strong> → <span class="role-pill pill-human">Human</span> (pilot account mgmt, fundraising, key hires)</li>
+<li><strong>Repeatable, high-volume, rules-based?</strong> → <span class="role-pill pill-agent">Agent</span> (transcript synthesis, draft generation, monitoring)</li>
+<li><strong>Creative + quality-sensitive + needs founder voice?</strong> → <span class="role-pill pill-combined">Combined</span> (marketing, dispute packs, SOWs)</li>
+<li><strong>Regulatory / legal / financial?</strong> → <span class="role-pill pill-human">Human + compliance</span> (bookkeeper, attorney, tax)</li>
+</ol>
+</div>
+
+<!-- PART 5 OPEN ITEMS -->
+<h2>Part 5 — Open Items / Risks</h2>
+<ul style="color:#aaa;font-size:13.5px;padding-left:20px;">
+<li><strong>3 known candidates placeholder</strong> — Qhayiya to fill from his network before FI submission</li>
+<li><strong>No equity in year 1 for the sales hire</strong> — defensible at M5 but may need to revisit in year 2 if the right candidate is equity-motivated</li>
+<li><strong>M5 sales hire CAC step-up</strong> (R12k → R25k) — accepted trade-off; 4.4-9.3 month payback (4.4 at R12k founder-time CAC, 9.3 at R25k sales-hire CAC)</li>
+<li><strong>Connector maintenance is the silent killer</strong> — if 2 of 6 connectors break in M3 and the founder is on the e-hailing gig, customer confidence erodes. Agent monitoring + human escalation path is the mitigation.</li>
+</ul>
+
+<div class="footer">
+Set 3 deliverable complete | 10 roles mapped | Top hire: Sales Lead / Founding AE (R25-35k + 5% ARR) | 6-mo run cost R69,400<br>
+PhyLo — Audit-Grade Fuel Monitoring | FI South Africa 2026
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhyLo — Month-End Fuel Audit + Pricing (Sprint 3)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.6; font-size: 14px; }
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.topbar { background: #14141c; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-logo { width: 32px; height: 32px; background: linear-gradient(135deg, #00c8ff, #0080ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 14px; }
+.brand-name { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+.brand-sub { color: #666; font-size: 12px; }
+.tabs { display: flex; gap: 4px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 4px; }
+.tab { background: transparent; color: #888; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.tab.active { background: linear-gradient(135deg, #00c8ff, #0080ff); color: #000; }
+.tab:hover:not(.active) { background: rgba(255,255,255,0.05); color: #fff; }
+.main { flex: 1; padding: 24px 32px; max-width: 1400px; margin: 0 auto; width: 100%; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.metric-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 18px 20px; }
+.metric-label { color: #888; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.metric-value { color: #fff; font-size: 26px; font-weight: 700; }
+.metric-value.green { color: #4ade80; }
+.metric-value.red { color: #f87171; }
+.metric-value.yellow { color: #facc15; }
+.metric-sub { color: #666; font-size: 12px; margin-top: 4px; }
+.section-title { color: #fff; font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+.vehicle-table { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+th { background: rgba(255,255,255,0.04); color: #888; padding: 12px 16px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+td { padding: 14px 16px; color: #d0d0e0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 13.5px; }
+tr:last-child td { border-bottom: none; }
+tr.vehicle-row { cursor: pointer; }
+tr.vehicle-row:hover { background: rgba(0,200,255,0.04); }
+.reg-plate { font-family: 'Courier New', monospace; font-weight: 700; color: #fff; }
+.route-tag { display: inline-block; background: rgba(0,200,255,0.1); color: #00c8ff; border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: 600; }
+.status-pill { display: inline-block; border-radius: 12px; padding: 3px 10px; font-size: 11px; font-weight: 700; }
+.status-clean { background: rgba(34,197,94,0.15); color: #4ade80; }
+.status-warn { background: rgba(245,158,11,0.15); color: #fbbf24; }
+.status-flag { background: rgba(239,68,68,0.15); color: #f87171; }
+.variance-good { color: #4ade80; font-weight: 600; }
+.variance-warn { color: #fbbf24; font-weight: 600; }
+.variance-bad { color: #f87171; font-weight: 600; }
+
+/* PRICING TAB */
+.pricing-intro { background: rgba(255,107,53,0.06); border: 1px solid rgba(255,107,53,0.2); border-radius: 8px; padding: 16px 20px; margin-bottom: 18px; }
+.pricing-intro .label { color: #FF6B35; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.pricing-intro p { color: #c8c8d8; font-size: 14px; }
+.pricing-intro strong { color: #FF6B35; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+.pricing-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px 22px; display: flex; flex-direction: column; }
+.pricing-card-highlight { background: linear-gradient(135deg, rgba(0,200,255,0.06), rgba(0,128,255,0.03)); border-color: #00c8ff; }
+.pricing-label { color: #888; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.pricing-title { color: #fff; font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+.pricing-amount { color: #fff; font-size: 32px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+.pricing-amount span { color: #aaa; font-size: 13px; font-weight: 500; }
+.pricing-floor { color: #888; font-size: 12px; margin-bottom: 14px; min-height: 16px; }
+.pricing-features { list-style: none; padding: 0; margin: 0 0 14px 0; }
+.pricing-features li { color: #aaa; font-size: 12.5px; padding: 5px 0 5px 18px; position: relative; }
+.pricing-features li::before { content: "✓"; color: #4ade80; position: absolute; left: 0; font-weight: 700; }
+.pricing-positioning { color: #00c8ff; font-size: 12px; font-style: italic; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: auto; }
+.pricing-cta { padding: 14px 20px; background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 8px; }
+.pricing-cta p { color: #4ade80; font-size: 13.5px; }
+.pricing-cta strong { color: #4ade80; }
+.pricing-context { margin-top: 12px; padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; }
+.pricing-context p { color: #888; font-size: 12.5px; }
+.pricing-context strong { color: #c8c8d8; }
+.comparison-table { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; margin-top: 18px; }
+.comparison-table th:first-child { width: 24%; }
+.comparison-table td { font-size: 12.5px; }
+
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-logo">P</div>
+    <div>
+      <div class="brand-name">PhyLo</div>
+      <div class="brand-sub">Audit-Grade Fuel Monitoring</div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-tab="dashboard">Dashboard</button>
+    <button class="tab" data-tab="pricing">Pricing</button>
+  </div>
+  <div></div>
+</div>
+
+<div class="main">
+
+  <!-- DASHBOARD TAB -->
+  <div class="tab-content active" id="dashboard">
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="metric-label">Monthly Variance</div>
+        <div class="metric-value red">R 78,440</div>
+        <div class="metric-sub">+5.8% vs expected</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Anomalies Detected</div>
+        <div class="metric-value yellow">3</div>
+        <div class="metric-sub">2 confirmed thefts</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Clean Vehicles</div>
+        <div class="metric-value green">57 / 60</div>
+        <div class="metric-sub">95% fleet OK</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Avg Loss / Event</div>
+        <div class="metric-value red">R 12,800</div>
+        <div class="metric-sub">R 38,400 total recoverable</div>
+      </div>
+    </div>
+
+    <div class="section-title">Vehicle Status — May 2026</div>
+    <div class="vehicle-table">
+      <table>
+        <thead>
+          <tr><th>Vehicle</th><th>Route</th><th>Distance</th><th>Expected</th><th>Actual</th><th>Variance</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr class="vehicle-row" data-plate="ZAN 123 GP" data-status="flag" onclick="phylOpenAudit(this)"><td><span class="reg-plate">ZAN 123 GP</span></td><td><span class="route-tag">ZA→ZW</span></td><td>2,340 km</td><td>587.2 L</td><td>687.3 L</td><td class="variance-bad">+100.1 L</td><td><span class="status-pill status-flag">Confirmed Theft</span></td></tr>
+          <tr class="vehicle-row" data-plate="FPK 441 NW" data-status="flag" onclick="phylOpenAudit(this)"><td><span class="reg-plate">FPK 441 NW</span></td><td><span class="route-tag">ZA→BW</span></td><td>1,820 km</td><td>456.0 L</td><td>512.4 L</td><td class="variance-bad">+56.4 L</td><td><span class="status-pill status-flag">Confirmed Theft</span></td></tr>
+          <tr class="vehicle-row" data-plate="JHB 882 GP" data-status="warn" onclick="phylOpenAudit(this)"><td><span class="reg-plate">JHB 882 GP</span></td><td><span class="route-tag">Local</span></td><td>820 km</td><td>205.0 L</td><td>206.1 L</td><td class="variance-warn">+1.1 L</td><td><span class="status-pill status-warn">False Positive</span></td></tr>
+          <tr class="vehicle-row" data-plate="PTA 044 GP" data-status="clean" onclick="phylOpenAudit(this)"><td><span class="reg-plate">PTA 044 GP</span></td><td><span class="route-tag">Local</span></td><td>640 km</td><td>160.0 L</td><td>160.8 L</td><td class="variance-good">+0.8 L</td><td><span class="status-pill status-clean">Clean</span></td></tr>
+          <tr class="vehicle-row" data-plate="CPT 122 WC" data-status="clean" onclick="phylOpenAudit(this)"><td><span class="reg-plate">CPT 122 WC</span></td><td><span class="route-tag">Local</span></td><td>920 km</td><td>230.0 L</td><td>230.5 L</td><td class="variance-good">+0.5 L</td><td><span class="status-pill status-clean">Clean</span></td></tr>
+          <tr class="vehicle-row"><td><span class="reg-plate">…55 more…</span></td><td colspan="6" style="color:#666;text-align:center;">All clean — within ±0.5% expected variance</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:#888;font-size:13px;margin-top:14px;">Click any flagged vehicle for the full audit modal. Click "Pricing" tab to see the three pricing concepts and discuss willingness to pay.</p>
+  </div>
+
+  <!-- PRICING TAB -->
+  <div class="tab-content" id="pricing">
+
+    <div class="pricing-intro">
+      <div class="label">How to read these three options</div>
+      <p>PhyLo does <strong>not</strong> replace your Cartrack, Tracker, Netstar, Webfleet, or MiX subscription. PhyLo <strong>reads the telematics feed you already have</strong> and produces the month-end audit document those dashboards cannot. Choose which way you'd prefer to pay for that layer.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-label">Path A — Default for typical customers</div>
+        <div class="pricing-title">Per-vehicle subscription</div>
+        <div class="pricing-amount">R45<span>/vehicle/month</span></div>
+        <div class="pricing-floor">Tiered: R35 (100-200), R25 (>200)</div>
+        <ul class="pricing-features">
+          <li>Dashboard, monthly report, alerts</li>
+          <li>1 dispute pack per quarter</li>
+          <li>Reads your existing telematics feed</li>
+          <li>~20% of your Cartrack basic subscription</li>
+        </ul>
+        <div class="pricing-positioning">Less than a fifth of your Cartrack bill. Sits on top, not in place of.</div>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-label">Path B — Default for risk-averse customers</div>
+        <div class="pricing-title">Per-incident only</div>
+        <div class="pricing-amount">R2,000<span>/confirmed event</span></div>
+        <div class="pricing-floor">No monthly floor</div>
+        <ul class="pricing-features">
+          <li>Detection engine, evidence pack, monthly report</li>
+          <li>Pay nothing monthly — R2,000 per proven event</li>
+          <li>Events above 85% confidence only</li>
+          <li>No per-vehicle number to compare to Cartrack</li>
+        </ul>
+        <div class="pricing-positioning">Pay nothing monthly. R2,000 per theft event PhyLo proves.</div>
+      </div>
+
+      <div class="pricing-card pricing-card-highlight">
+        <div class="pricing-label">Path C — Default for high-variance (pilot only)</div>
+        <div class="pricing-title">Soft floor + per-incident</div>
+        <div class="pricing-amount">R1,500<span>/month floor</span></div>
+        <div class="pricing-floor">+ R1,500 per confirmed theft</div>
+        <ul class="pricing-features">
+          <li>Floor covers up to 200 vehicles</li>
+          <li>R1,500 per event PhyLo proves</li>
+          <li>Cheapest defensible vs. Cartrack+PhyLo combined bill</li>
+          <li>Best for high-variance customers (R50k+/month)</li>
+        </ul>
+        <div class="pricing-positioning">R1,500 floor + R1,500 per proven event. ~20% of recovered value.</div>
+      </div>
+    </div>
+
+    <div class="pricing-cta">
+      <p><strong>All three paths start with a 30-day free diagnostic.</strong> PhyLo reads your telematics feed, produces a baseline loss report. You see your actual loss number in writing before you pick a path. <strong>The diagnostic is the sale.</strong></p>
+    </div>
+
+    <div class="pricing-context">
+      <p><strong>Why these prices:</strong> PhyLo Path A (R45/vehicle) is ~20% of Cartrack basic (R200-250/vehicle). A 60-truck fleet pays R13,200 Cartrack + R2,700 PhyLo Path A = R15,900 combined, a 20% premium on Cartrack alone (actual uplift R2,700 / R13,200 = 20.45%, rounded). The layer-not-replacement framing survives this bill. PhyLo at R150/vehicle (an earlier draft) would have been 60-75% above Cartrack — indefensible as a "layer."</p>
+    </div>
+
+    <div class="section-title" style="margin-top:24px;">Telematics competitor anchor (verify before pitch)</div>
+    <div class="comparison-table">
+      <table>
+        <thead>
+          <tr><th>Provider</th><th>R/vehicle/month (basic)</th><th>What they include for fuel</th><th>What they do NOT do (PhyLo's gap)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Cartrack</strong></td><td>R199-249</td><td>Fuel-level graphs, threshold alerts, basic theft notification</td><td>Multi-sensor physics validation, court-admissible evidence, month-end report</td></tr>
+          <tr><td><strong>Tracker</strong></td><td>R199-299</td><td>Same as Cartrack</td><td>Same gaps</td></tr>
+          <tr><td><strong>Netstar</strong></td><td>R185-280</td><td>Same</td><td>Same</td></tr>
+          <tr><td><strong>MiX / PowerFleet</strong></td><td>R250-350</td><td>Same + driver behaviour</td><td>Same gaps + PhyLo layers on top of their API</td></tr>
+          <tr><td><strong>Webfleet / Bridgestone</strong></td><td>R220-330</td><td>Same + TomTom routing</td><td>Same</td></tr>
+          <tr><td><strong>PhyLo (the layer)</strong></td><td><strong>Path A: R45/vehicle</strong><br>OR Path C: R1,500 floor + R1,500/event</td><td>Reads existing telematics feed — no hardware add</td><td>Provides the audit-grade document the telematics dashboards cannot</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="color:#666;font-size:12px;margin-top:14px;"><em>Source: LLM training data + PhyLo research report lines 832-905. All competitor figures must be verified with the named provider before any external pitch. See shared/pricing_anchor.md.</em></p>
+
+  </div>
+
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+function phylOpenAudit(row) {
+  const plate = row.dataset.plate;
+  const status = row.dataset.status;
+  const msgs = {
+    flag: plate + ': Confirmed theft. 97.3% confidence. Full audit modal would open here in production (timeline, GPS, sensor integrity, hypotheses, narrative, dispute pack).',
+    warn: plate + ': False positive filtered (dual-tank slosh on incline). Full filter modal would open here in production.',
+    clean: plate + ': Clean. No anomalies detected. Per-vehicle detail would open here in production.'
+  };
+  alert(msgs[status] || (plate + ': Detail would open here.'));
+}
+</script>
+</body>
+</html>

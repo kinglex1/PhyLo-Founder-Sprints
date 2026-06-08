@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validation Set 1 — Test Mockup | PhyLo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #c8c8d8; line-height: 1.7; font-size: 14px; }
+.container { max-width: 880px; margin: 0 auto; padding: 40px 24px; }
+header { margin-bottom: 28px; }
+.badge { display: inline-block; border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.badge-indigo { background: rgba(99,102,241,0.1); color: #818cf8; border: 1px solid rgba(99,102,241,0.2); }
+.badge-orange { background: rgba(255,107,53,0.1); color: #FF6B35; border: 1px solid rgba(255,107,53,0.2); }
+h1 { font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.subtitle { color: #666; font-size: 14px; }
+h2 { font-size: 15px; font-weight: 600; color: #888; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+h3 { font-size: 14px; font-weight: 600; color: #ccc; margin: 18px 0 8px; }
+p { color: #aaa; margin: 8px 0; font-size: 14px; }
+strong { color: #c8c8d8; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13.5px; }
+th { background: rgba(255,255,255,0.04); color: #888; padding: 9px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 9px 12px; color: #c8c8d8; border-bottom: 1px solid rgba(255,255,255,0.03); }
+td:first-child { color: #888; font-weight: 600; }
+.framing-box { background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(255,107,53,0.03)); border: 1px solid rgba(255,107,53,0.3); border-radius: 8px; padding: 16px 20px; margin: 14px 0; }
+.framing-box .tag { color: #FF6B35; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.framing-box p { color: #c8c8d8; font-size: 14px; font-style: italic; margin: 0; }
+.pricing-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 18px 22px; margin: 12px 0; }
+.pricing-card-highlight { background: linear-gradient(135deg, rgba(0,200,255,0.06), rgba(0,128,255,0.03)); border-color: #00c8ff; }
+.pricing-card .label { color: #888; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+.pricing-card .name { color: #fff; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.pricing-card .price { color: #4ade80; font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.pricing-card .positioning { color: #00c8ff; font-size: 13px; font-style: italic; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 10px; }
+.session-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 18px; margin: 10px 0; }
+.session-box .head { color: #888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.session-box .pending { color: #fbbf24; font-size: 12px; font-style: italic; }
+.proxy-disclosure { background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.2); border-radius: 6px; padding: 12px 16px; margin: 10px 0; }
+.proxy-disclosure p { color: #d4a5f5; font-size: 13px; margin: 0; }
+.mockup-link { background: linear-gradient(135deg, rgba(0,200,255,0.08), rgba(0,128,255,0.05)); border: 1px solid rgba(0,200,255,0.2); border-radius: 8px; padding: 16px 20px; margin: 14px 0; text-align: center; }
+.mockup-link a { color: #00c8ff; font-size: 15px; font-weight: 600; text-decoration: none; }
+.mockup-link a:hover { text-decoration: underline; }
+.mockup-link p { color: #888; font-size: 12px; margin-top: 6px; }
+.synthesis-box { background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(0,200,255,0.04)); border: 1px solid rgba(34,197,94,0.3); border-radius: 8px; padding: 18px 22px; margin: 14px 0; }
+.synthesis-box .tag { color: #4ade80; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.synthesis-box p { color: #c8c8d8; font-size: 14px; margin: 0; }
+.change-list { background: rgba(255,107,53,0.05); border-left: 3px solid #FF6B35; padding: 12px 18px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+.change-list .num { color: #FF6B35; font-weight: 700; }
+.footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.05); color: #444; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge badge-indigo">Validation Set 1</div>
+  <h1>Test Mockup with Pricing</h1>
+  <p class="subtitle">PhyLo | FI South Africa 2026 | Due: June 9, 2026</p>
+</header>
+
+<!-- THE FRAMING LINE -->
+<div class="framing-box">
+  <div class="tag">First 30 seconds of every customer conversation</div>
+  <p>"PhyLo does not replace Cartrack, Tracker, Netstar, Webfleet, or MiX. PhyLo reads the telematics feed you already have and produces the month-end audit document those dashboards cannot. Choose which way you'd prefer to pay for that layer."</p>
+</div>
+
+<!-- THREE PRICING CONCEPTS -->
+<h2>Part 1 — The Three Pricing Concepts</h2>
+<p>The Initial Mockup (committed in Sprint 2 Set 3) gets a new "Pricing" tab. The framing line is the first thing the customer reads.</p>
+
+<div class="pricing-card">
+  <div class="label">Path A — Default for typical customers</div>
+  <div class="name">Per-vehicle subscription (tiered)</div>
+  <div class="price">R45 / vehicle / month</div>
+  <p style="color:#aaa;font-size:13px;">Tiered: R35 (100-200 trucks), R25 (>200 trucks). Includes dashboard, monthly audit report, alerts, 1 dispute pack/quarter.</p>
+  <div class="positioning">"Less than a fifth of your Cartrack bill. Sits on top, not in place of."</div>
+</div>
+
+<div class="pricing-card">
+  <div class="label">Path B — Default for risk-averse customers</div>
+  <div class="name">Per-incident only (no floor)</div>
+  <div class="price">R0 floor + R2,000 / event</div>
+  <p style="color:#aaa;font-size:13px;">No monthly fee. R2,000 per confirmed theft above 85% confidence. Includes detection engine, evidence pack, monthly report.</p>
+  <div class="positioning">"Pay nothing monthly. R2,000 per theft event PhyLo proves."</div>
+</div>
+
+<div class="pricing-card pricing-card-highlight">
+  <div class="label">Path C — Default for high-variance customers (pilot only)</div>
+  <div class="name">Soft floor + per-incident</div>
+  <div class="price">R1,500 / month + R1,500 / event</div>
+  <p style="color:#aaa;font-size:13px;">Floor covers up to 200 vehicles. Per-event R1,500 (half of Path B). Cheapest defensible position vs. Cartrack+PhyLo combined bill.</p>
+  <div class="positioning">"R1,500 floor + R1,500 per proven event. ~20% of recovered value."</div>
+</div>
+
+<div class="framing-box" style="background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.03)); border-color: rgba(34,197,94,0.3);">
+  <div class="tag" style="color:#4ade80;">All three paths start here</div>
+  <p style="color:#c8c8d8;font-style:normal;"><strong>30-day free diagnostic.</strong> PhyLo reads your telematics feed, produces a baseline loss report. You see your actual loss number in writing before you pick a path. <strong>The diagnostic is the sale.</strong></p>
+</div>
+
+<!-- COMPETITOR ANCHOR -->
+<h2>Part 2 — Telematics Competitor Anchor (verify before pitch)</h2>
+<table>
+<tr><th>Provider</th><th>R/vehicle/month (basic)</th><th>What they do NOT do (PhyLo's gap)</th></tr>
+<tr><td>Cartrack (ZA)</td><td>R199-249</td><td>Multi-sensor physics, court-admissible evidence, month-end report</td></tr>
+<tr><td>Tracker (ZA)</td><td>R199-299</td><td>Same gaps</td></tr>
+<tr><td>Netstar (ZA)</td><td>R185-280</td><td>Same</td></tr>
+<tr><td>MiX / PowerFleet (ZA)</td><td>R250-350</td><td>Same gaps + PhyLo layers on top of their API</td></tr>
+<tr><td>Webfleet (ZA)</td><td>R220-330</td><td>Same</td></tr>
+<tr><td><strong>PhyLo (the layer)</strong></td><td><strong>R45/vehicle</strong> or R1,500 floor + R1,500/event</td><td>Provides the audit-grade document the telematics dashboards cannot</td></tr>
+</table>
+
+<p style="color:#888;font-size:13px;"><strong>Combined-bill defensibility check (60-truck fleet):</strong> Cartrack basic R220/vehicle + PhyLo Path A R45/vehicle = R15,900/month = 20% premium on Cartrack alone (actual uplift R2,700 / R13,200 = 20.45%, rounded). Defensible. PhyLo at R150/vehicle (earlier draft) would have been 60-75% above Cartrack — indefensible as a "layer."</p>
+
+<p style="color:#888;font-size:12px;"><em>Source: LLM training data + PhyLo research report lines 832-905. All figures must be verified with the named provider before any external pitch.</em></p>
+
+<!-- SESSION PLAN -->
+<h2>Part 3 — 5 Customer Sessions (with proxy disclosure)</h2>
+
+<table>
+<tr><th>#</th><th>Session</th><th>Type</th><th>Status</th></tr>
+<tr><td>1</td><td>Pilot partner pre-call</td><td>REAL (if compliance clears)</td><td>[PENDING compliance]</td></tr>
+<tr><td>2</td><td>Warm lead — Dheyaan</td><td>REAL (book Sat/Mon)</td><td>[TO BOOK]</td></tr>
+<tr><td>3</td><td>Warm lead — Omphile</td><td>REAL (book Sat/Mon)</td><td>[TO BOOK]</td></tr>
+<tr><td>4</td><td>Buyer persona walkthrough</td><td>PROXY (disclosed)</td><td>[TO RUN]</td></tr>
+<tr><td>5</td><td>Mining contractor walkthrough</td><td>PROXY (disclosed)</td><td>[TO RUN]</td></tr>
+</table>
+
+<div class="proxy-disclosure">
+<p><strong>Disclosure on proxy sessions (4 and 5):</strong> these are not faked customer calls. They are structured Qhayiya + agent walkthroughs of the buyer persona reacting to the mockup + pricing. The FI requirement of 5 sessions is met honestly, not by inventing customer quotes.</p>
+</div>
+
+<p style="color:#c8c8d8;font-size:13.5px;"><strong>3 new pricing questions added to the standard interview:</strong></p>
+<ol style="color:#aaa;font-size:13.5px;padding-left:20px;">
+<li>"Of the three pricing models I just showed you, which one would you actually pay for, and why?"</li>
+<li>"What's the price point at which you'd say no without even asking the next question?"</li>
+<li>"If I told you this sits on top of your existing Cartrack/Tracker subscription — that it doesn't replace it — would that change your answer?"</li>
+</ol>
+
+<!-- MOCKUP LINK -->
+<h2>Part 4 — Interactive Mockup (with Pricing tab)</h2>
+<div class="mockup-link">
+  <a href="VALIDATION_SET1_TEST_MOCKUP_DASHBOARD.html">Open the Interactive Mockup with Pricing Tab →</a>
+  <p>Click "Pricing" tab to see the three concepts. Click any flagged vehicle for the audit modal. The original Sprint 2 dashboard content is preserved in the "Dashboard" tab.</p>
+</div>
+
+<!-- SYNTHESIS -->
+<h2>Part 5 — Will They Pay? (anticipated synthesis)</h2>
+
+<div class="synthesis-box">
+<div class="tag">Working hypothesis (to be confirmed by 5 sessions)</div>
+<p>YES — <strong>Path A (per-vehicle subscription at R45)</strong> wins for the typical customer; <strong>Path C (soft-floor + per-incident)</strong> wins for high-variance customers like the pilot partner. Customers resist Path B because the cashflow is too lumpy. Customers resist a per-vehicle price above R45 because the combined Cartrack+PhyLo bill then looks 60-75% above Cartrack — indefensible. The 30-day free diagnostic defuses the price objection because the customer has seen their R60k variance in writing before they see the price. Customers say they will pay when they have a documented R60k+ monthly variance to defend — which is the only decision state where this product matters.</p>
+</div>
+
+<h3>Top 3 requested changes (anticipated)</h3>
+<div class="change-list"><span class="num">1.</span> "Make the dashboard read-only for drivers" — security / data-access concern raised by every finance director persona</div>
+<div class="change-list"><span class="num">2.</span> "Give me a sample report for finance, in PDF, with the R78k number" — the sell tool is the report, not the dashboard</div>
+<div class="change-list"><span class="num">3.</span> "What does 'confirmed theft' actually mean — define it in the SOW" — contractual hot zone; the 85% confidence threshold needs to be in writing</div>
+
+<!-- ADJUSTMENTS -->
+<h2>Part 6 — Adjustments Made to Mockup or Pricing</h2>
+<table>
+<tr><th>Feedback</th><th>Change Made</th><th>Round</th></tr>
+<tr><td colspan="3" style="color:#666;text-align:center;">To be filled after sessions run</td></tr>
+</table>
+
+<div class="footer">
+Set 1 deliverable substantively complete | 3 pricing concepts added to mockup | 5 sessions planned with proxy disclosure<br>
+PhyLo — Audit-Grade Fuel Monitoring | FI South Africa 2026
+</div>
+
+</div>
+</body>
+</html>

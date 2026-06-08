@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validation Set 2 — Revenue Model | PhyLo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #c8c8d8; line-height: 1.7; font-size: 14px; }
+.container { max-width: 880px; margin: 0 auto; padding: 40px 24px; }
+header { margin-bottom: 28px; }
+.badge { display: inline-block; border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.badge-green { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+h1 { font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.subtitle { color: #666; font-size: 14px; }
+h2 { font-size: 15px; font-weight: 600; color: #888; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+h3 { font-size: 14px; font-weight: 600; color: #ccc; margin: 18px 0 8px; }
+p { color: #aaa; margin: 8px 0; font-size: 14px; }
+strong { color: #c8c8d8; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13.5px; }
+th { background: rgba(255,255,255,0.04); color: #888; padding: 9px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 9px 12px; color: #c8c8d8; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+td:first-child { color: #888; font-weight: 600; }
+.selection-banner { background: linear-gradient(135deg, #0a2a1a, #0d3320); border: 1px solid #22c55e; border-radius: 10px; padding: 18px 24px; margin: 0 0 24px; }
+.selection-banner .label { color: #22c55e; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.selection-banner .model { color: #4ade80; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.selection-banner .rationale { color: #6ee7a0; font-size: 13.5px; margin-top: 6px; }
+.signal-box { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+.signal-box .tag { color: #4ade80; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.signal-box p { color: #aaa; margin: 5px 0; font-size: 13.5px; }
+.concern-box { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+.concern-box .tag { color: #f87171; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.concern-box p { color: #aaa; margin: 5px 0; font-size: 13.5px; }
+.adjustment { background: rgba(0,200,255,0.05); border-left: 3px solid #00c8ff; padding: 10px 16px; margin: 8px 0; border-radius: 0 6px 6px 0; color: #c8c8d8; font-size: 13.5px; }
+.adjustment strong { color: #00c8ff; }
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
+.kpi { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 16px; text-align: center; }
+.kpi .label { color: #888; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.kpi .value { color: #4ade80; font-size: 22px; font-weight: 800; }
+.kpi .sub { color: #888; font-size: 11px; margin-top: 2px; }
+.footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.05); color: #444; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge badge-green">Validation Set 2</div>
+  <h1>Revenue Model</h1>
+  <p class="subtitle">PhyLo | FI South Africa 2026 | Due: June 9, 2026</p>
+</header>
+
+<div class="selection-banner">
+  <div class="label">Selected Revenue Model</div>
+  <div class="model">Diagnostic-led, customer-choice</div>
+  <div class="rationale">30-day free diagnostic, then Path A (R45/vehicle, default), Path B (R2,000/event no floor), or Path C (R1,500/mo + R1,500/event, high-variance). Honest LTV:CAC 1.2-2.4x (below SaaS bar; customer's 22x ROI is the headline). Payback 4.4-9.3 mo. R1M ARR = 31 Path A OR 8 Path C OR 7 Path B customers.</div>
+</div>
+
+<!-- COMPARISON MATRIX -->
+<h2>Part 1 — Comparison Matrix (customers needed for R1M ARR)</h2>
+<table>
+<tr><th>Model</th><th>R/customer/year</th><th>Customers for R1M ARR</th><th>Notes</th></tr>
+<tr><td>Path A — Per-vehicle subscription (tiered)</td><td>R32,400</td><td><strong style="color:#4ade80;">31</strong> at 60-truck average</td><td>Defensible vs. Cartrack: 20.5% combined-bill premium (R2,700/R13,200). Recurring, predictable. Sales team's easiest pitch.</td></tr>
+<tr><td>Path B — Per-incident only (no floor)</td><td>R144,000</td><td><strong style="color:#4ade80;">7</strong> at 6 events/month</td><td>No per-vehicle number to compare to Cartrack. High-variance; only works for R50k+/month customers. Concentration risk.</td></tr>
+<tr><td>Path C — Soft floor + per-incident (pilot default)</td><td>R126,000</td><td><strong style="color:#4ade80;">8</strong> at 6 events/month</td><td>Cheapest defensible position vs. Cartrack combined bill. Best for high-variance customers. Concentration risk.</td></tr>
+<tr><td>Diagnostic-led (combined)</td><td>n/a</td><td>30-40 customers per 100 diagnostics</td><td>Customer acquisition is gated by the free diagnostic, not by the price. Conversion target 30-40%.</td></tr>
+</table>
+
+<p style="color:#888;font-size:13px;">The realistic plan: lead with Path A for most customers, Path C for the pilot and the high-variance segment, Path B as the no-floor option. Blended "31 Path A OR 8 Path C" is the way to present it to Mentors.</p>
+
+<!-- WHY -->
+<h2>Part 2 — Why Diagnostic-Led, Customer-Choice</h2>
+<div class="signal-box">
+<div class="tag">Three reasons</div>
+<p><strong style="color:#c8c8d8;">1.</strong> The diagnostic defuses the price objection because the customer has seen their R60k variance in writing before they see the price. The price becomes "how do you want to pay for the tool that just found you R60k," not "do you want to add another subscription."</p>
+<p><strong style="color:#c8c8d8;">2.</strong> The three paths cover the three customer types: Path A is for the typical customer (default), Path B is for the most risk-averse (no commitment), Path C is for high-variance customers (lowest cash risk for PhyLo, lowest combined-bill premium for the customer).</p>
+<p><strong style="color:#c8c8d8;">3.</strong> The combined-bill test survives: Path A on a 60-truck fleet is R45/vehicle = ~20% of Cartrack basic. Combined Cartrack+PhyLo is +20.5% on Cartrack alone (R2,700/R13,200). <strong>Defensible as a "layer."</strong> R150/vehicle (previous draft) would have been 60-75% above Cartrack — indefensible.</p>
+</div>
+
+<!-- UNIT ECONOMICS -->
+<h2>Part 3 — Unit Economics (Path A as the default)</h2>
+
+<p style="color:#fbbf24;font-size:13px;margin-bottom:12px;"><strong>Honest framing (corrected from an earlier draft that contained a 12x unit-conversion error in the LTV formula).</strong> Math below has been independently recomputed from the producer's own stated inputs. Honest LTV:CAC is below the SaaS bar; the deck's headline is the customer's 22x ROI, not PhyLo's LTV:CAC.</p>
+
+<div class="kpi-grid">
+  <div class="kpi"><div class="label">LTV (Path A, honest)</div><div class="value">R29,160</div><div class="sub">3-yr × 30% margin</div></div>
+  <div class="kpi"><div class="label">LTV : CAC</div><div class="value">1.2-2.4x</div><div class="sub">below 3x SaaS bar</div></div>
+  <div class="kpi"><div class="label">Payback</div><div class="value">4.4-9.3 mo</div><div class="sub">range across CAC bounds</div></div>
+</div>
+
+<table>
+<tr><th>Metric</th><th>Path A (typical)</th><th>Path C (high-variance)</th></tr>
+<tr><td>Per-customer annual revenue</td><td>R32,400 (60-truck × R45 × 12)</td><td>R126,000 (R1,500 + 6×R1,500 × 12)</td></tr>
+<tr><td>Per-customer LTV (3-yr, 30% margin)</td><td><strong style="color:#fbbf24;">R29,160</strong></td><td><strong style="color:#fbbf24;">R113,400</strong></td></tr>
+<tr><td>CAC</td><td>R12-25k</td><td>R18k</td></tr>
+<tr><td>LTV : CAC (honest)</td><td><strong style="color:#fbbf24;">1.17-2.43x</strong></td><td><strong style="color:#fbbf24;">6.3x</strong></td></tr>
+<tr><td>Payback period</td><td><strong>4.4-9.3 months</strong></td><td>2.6 months</td></tr>
+<tr><td>Customers for R1M ARR</td><td><strong>31</strong></td><td><strong>8</strong></td></tr>
+</table>
+
+<p style="color:#c8c8d8;font-size:13.5px;margin-top:12px;"><strong>Customer ROI (the headline for the deck):</strong> PhyLo's pilot data recovers R60-78k/month per customer = R720k-R936k/year. Customer pays R32,400/year for PhyLo Path A. <strong>Customer ROI = 22x+ per year.</strong> 4.4-month payback is on the customer's diagnostic investment, not PhyLo's CAC recovery. The 22x ROI is what the finance director signs off on.</p>
+
+<h3>Assumptions</h3>
+<ul style="color:#aaa;font-size:13.5px;padding-left:20px;">
+<li>36-month customer lifetime is conservative; a CCMA-defensible audit tool has switching-cost moat</li>
+<li>6 detections/month for Path C is mid-range for high-variance customers (pilot dataset: 5-8 events)</li>
+<li>CAC of R12-25k (Path A) / R18k (Path C) assumes Qhayiya's time in months 1-4, sales-hire in months 5+. The internal cost model has R14-29k as the diagnostic-inclusive range.</li>
+<li>Diagnostic conversion rate of 30-40% is industry-typical for free-trial-led B2B SaaS</li>
+<li>R45/vehicle Path A is the most defensible per-vehicle number; R35 (100-200) and R25 (>200) tiers not yet customer-validated</li>
+<li>60-truck fleet is the typical-customer assumption (Kgabo Moloto persona)</li>
+<li>30% gross margin is the year-2+ steady-state assumption. PhyLo's own LTV:CAC at this margin is 1.2-2.4x — below the SaaS bar. The R15M seed bridge funds the path to year-2+ scale.</li>
+<li>Year-1 gross margin is actually negative (founder-time dominant). The 30% margin does not apply in year 1; the seed capital covers the gap.</li>
+</ul>
+
+<!-- STRESS TEST -->
+<h2>Part 4 — Skeptical-Investor Stress Test</h2>
+<p>Stress-tested with a second LLM using a Series A investor prompt: "You've seen 200 SA B2B SaaS pitches. Rate the model 1-10, identify top 5 weaknesses."</p>
+
+<div class="concern-box">
+<div class="tag">Weakness 1 — Concentration risk</div>
+<p>A single R60k+/month theft-customer who churns destroys a meaningful slice of MRR. For Path C: 1 of 8 customers = 12.5% of revenue.</p>
+</div>
+<div class="adjustment"><strong>Adjustment:</strong> Build toward 31+ Path A customers across at least 3 verticals (trucking, last-mile, mining) so no single customer is more than 5% of MRR; for Path C, the 8-customer count is too thin to absorb a single churn — diversify fast.</div>
+
+<div class="concern-box">
+<div class="tag">Weakness 2 — CAC underestimation</div>
+<p>R12k is for a founder selling. Once a sales hire is in (month 5+), CAC will rise.</p>
+</div>
+<div class="adjustment"><strong>Adjustment:</strong> Model shows R12k in months 1-4, R25k in months 5-6 (see Set 3 6-month cost model). With the honest LTV (R29,160), the LTV:CAC at R25k CAC is 1.17x. The deck's headline pivots to the customer ROI (22x), not PhyLo's own LTV:CAC.</div>
+
+<div class="concern-box">
+<div class="tag">Weakness 3 — Churn assumption</div>
+<p>36-month lifetime is optimistic. Real SA B2B SaaS churns harder.</p>
+</div>
+<div class="adjustment"><strong>Adjustment:</strong> 24-month base case, 36-month upside case. Honest LTV:CAC at 24 months (Path A) is 1.6x at the R12k CAC, 0.8x at the R25k CAC — both sub-bar. The R15M seed bridge is what funds the year-1 negative-margin gap until year-2+ scale turns the unit economics positive. The deck's headline is the customer's 22x ROI, not PhyLo's LTV:CAC.</div>
+
+<div class="concern-box">
+<div class="tag">Weakness 4 — Detection fee dependency</div>
+<p>If PhyLo's detection is wrong (false negative — missing real theft), the per-detection upside evaporates.</p>
+</div>
+<div class="adjustment"><strong>Adjustment:</strong> Guarantee a minimum detection volume in the SOW; align with the partner's expected variance. The 85% confidence threshold protects against false positives; the per-event fee protects PhyLo from false-negative erosion.</div>
+
+<div class="concern-box">
+<div class="tag">Weakness 5 — Telematics vendor pushback</div>
+<p>Cartrack could build the same layer into their dashboard.</p>
+</div>
+<div class="adjustment"><strong>Adjustment:</strong> 12-18 month lead time moat via PINN defensibility + first-mover case studies. PhyLo's pilot partner case study becomes the wedge. If Cartrack responds by lowering the combined bill, PhyLo's customers are still better off — and the value prop is even stronger.</div>
+
+<!-- WG / MENTOR PRESSURE TEST -->
+<h2>Part 5 — Working Group / Mentor Pressure Test</h2>
+<p style="color:#888;font-size:13px;font-style:italic;">Simulated feedback (3 working-group members, 2 mentors, founder-as-customer). The simulated feedback below is honest practice for the WG run, with one mentor item explicitly pending until the pilot partner call lands. Real WG feedback (when bookable) will replace this section.</p>
+
+<table>
+<tr><th>Source</th><th>Feedback</th><th>Adjustment</th></tr>
+<tr><td>WG Member 1 (operations)</td><td>The 31 customers number assumes the founder is selling. What changes when a sales hire takes over in month 5? Show me the CAC delta.</td><td>Added the 6-month CAC ramp in the 6-month cost model (R12k M1-4, R25k M5-6).</td></tr>
+<tr><td>WG Member 2 (finance)</td><td>What's the churn assumption? 36 months is too clean. Real SA B2B SaaS churns harder.</td><td>24-month base case, 36-month upside case. Honest LTV at 24 months is below the SaaS bar; the R15M bridge covers the gap.</td></tr>
+<tr><td>WG Member 3 (tech)</td><td>You're a one-truck-pony on the PINN. What if Cartrack partners with someone who has a different approach?</td><td>PhyLo's value is the document, not the model. The PINN is a means; the audit report is the product. The lock-in is the historical baseline data + the SOW commitment, not the algorithm.</td></tr>
+<tr><td>Mentor 1 (Kaylash Bhana)</td><td>Five-leverage model — show me which pricing path captures each.</td><td>Path A captures the recurring subscription leverage. Path C captures the per-event outcome leverage. Diagnostic captures the free-trial conversion leverage.</td></tr>
+<tr><td>Mentor 2 (industry/logistics)</td><td>What does the pilot partner say about Path C's R1,500 floor — too high? Too low?</td><td><em>[PENDING pilot partner call]</em> — compliance review is the blocker.</td></tr>
+</table>
+
+<!-- FINAL -->
+<h2>Part 6 — Final Selection</h2>
+<div class="selection-banner">
+  <div class="label">Final Selection</div>
+  <div class="model">Diagnostic-led, customer-choice</div>
+  <div class="rationale">30-day free diagnostic is the front door. Path A is the default for typical customers (R45/vehicle/month, ~20% of Cartrack basic, 20% combined-bill premium). Path C is the default for high-variance customers (R1,500 floor + R1,500/event, ~20% of recovered value at pilot variance). Path B is the no-floor option. Honest unit economics (Path A LTV R29,160, LTV:CAC 1.2-2.4x at 30% margin, 4.4-9.3 month payback) are below the SaaS bar; the deck pivots to the customer's 22x ROI. R1M ARR scenario: 31 Path A OR 8 Path C customers, 6-month run cost R69,400.</div>
+</div>
+
+<div class="footer">
+Set 2 deliverable complete | 3-model comparison matrix | Diagnostic-led chosen | Honest LTV:CAC 1.2-2.4x + customer 22x ROI | 5 weaknesses addressed<br>
+PhyLo — Audit-Grade Fuel Monitoring | FI South Africa 2026
+</div>
+
+</div>
+</body>
+</html>
